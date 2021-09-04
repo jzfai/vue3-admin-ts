@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import testHook from '@/hooks/testooks'
+import testHook from '@/hooks/testhooks'
 let { ref1, ref2, hooksFunc } = testHook()
 const hookExample = () => {
   hooksFunc()
