@@ -11,15 +11,17 @@
 1.修复了build后,ref的问题(https://github.com/vuejs/vue-next/issues/4431)
 2.vue,element-plus,vite及插件更新到最新版本
 3.ResizeHandler.js 方法从mixin 改为hooks
+// 2021-09-06
+1.增加父子通信例子 parent-children
 ```
 
 ### 前言
-#### 本架构使用的技术为：vue3(setup-script)+vite2+element-plus+typescript 的新一代的前端框架，框架使用类似 vue-admin-template
+#### 本架构使用的技术为：vue3(setup-script)+vite2+element-plus+ts 的新一代的前端框架，框架使用类似 vue-admin-template
 
 ```
 框架有js和ts版本
-js版本分支：https://github.com/jzfai/vue3.0-admin-template
-ts版本分支：https://github.com/jzfai/vue3.0-admin-ts
+js版本分支：https://github.com/jzfai/vue3-admin-template
+ts版本分支：https://github.com/jzfai/vue3-admin-ts
 如果想学习vue3+vite2的可以把这个框架和vue-admin-template框架进行对比，后期也我会出在架构设计过程中
 vue2和vue3的区别，以及如何快速的把vue2迁移到3中的教程
 ```
@@ -51,10 +53,10 @@ vue2和vue3的区别，以及如何快速的把vue2迁移到3中的教程
 ```javascript
 
 克隆项目
-git clone https://github.com/jzfai/vue3.0-admin-template.git
+git clone https://github.com/jzfai/vue3-admin-template.git
 
 进入项目目录
-cd  vue3.0-admin-template
+cd  vue3-admin-template
 
 运行yarn安装依赖
 yarn
@@ -68,18 +70,19 @@ yarn run dev
   "dev": "vite --mode serve-dev", ---- 开发时运行
    "build": "vite build --mode build",  ---- 打包发布生产环境
    "serve": "vite preview --mode build" ---- 这个是在你本地打包完后（yarn run build）后会生产一个dist文件夹，这个命令在你本地启动一个本地服务用于查看dist文件内容，发布生产前可以用这个先看下打包的效果
-     
+
    "preview:build": "yarn run build && vite preview " --- 构建并查看（建议更新上product前运行一次,查看是否有问题）
 
 },
 ```
 
-##### 后期会出架构中 vue3.0+vite2.0 开发时的一些坑以及如何快速的把 vue2.0 项目迁移到 3.0，框架还在努力开发中，但是基本功能已经完成
+##### 后期会出架构中 vue3+vite2 开发时的一些坑以及如何快速的把 vue2 项目迁移到 vue3，框架还在努力开发中，但是基本功能已经完成
 
-## 大家的支持是我前进的动力 欢迎加入一起开发
+#### 如果需要实时交流的可以加入wx群(有vue3+ts视频教程)
 
-#### 如果需要实时交流的可以加入QQ群(有vue3+ts视频教程)
 
-### ![http://8.135.1.141/file/images/1630398868394.png](http://8.135.1.141/file/images/1630398868394.png)
 
-### 大家的支持是我前进的动力    欢迎加入一起开发
+ ![http://8.135.1.141/file/images/1631005886699.png](http://8.135.1.141/file/images/1631005886699.png)
+
+大家的支持是我前进的动力    欢迎加入一起开发
+
