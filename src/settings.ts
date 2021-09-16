@@ -1,7 +1,7 @@
 import { Obj_type } from '@/types/common'
 
 const setting: Obj_type = {
-  title: 'Vue3.0 Admin ts',
+  title: 'vue3 admin ts',
   /**
    * @type {boolean} true | false
    * @description Whether fix the header
