@@ -70,7 +70,6 @@ yarn run dev
   "dev": "vite --mode serve-dev", ---- 开发时运行
    "build": "vite build --mode build",  ---- 打包发布生产环境
    "serve": "vite preview --mode build" ---- 这个是在你本地打包完后（yarn run build）后会生产一个dist文件夹，这个命令在你本地启动一个本地服务用于查看dist文件内容，发布生产前可以用这个先看下打包的效果
-
    "preview:build": "yarn run build && vite preview " --- 构建并查看（建议更新上product前运行一次,查看是否有问题）
 
 },
@@ -79,7 +78,6 @@ yarn run dev
 ##### 后期会出架构中 vue3+vite2 开发时的一些坑以及如何快速的把 vue2 项目迁移到 vue3，框架还在努力开发中，但是基本功能已经完成
 
 #### 如果需要实时交流的可以加入wx群(有vue3+ts视频教程)
-
 
 
  ![http://8.135.1.141/file/images/1631005886699.png](http://8.135.1.141/file/images/1631005886699.png)
