@@ -3,7 +3,7 @@
     <template v-if="showSidebarItem(item.children, item)">
       <Link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{ 'submenu-title-noDropdown': !isNest }">
-          <item v-if="item.meta" :icon="item.meta && item.meta.icon" />
+          <item :icon="onlyOneChild.meta?.icon || item.meta?.icon" />
           <template #title>{{ onlyOneChild.meta?.title }}</template>
         </el-menu-item>
       </Link>
@@ -13,7 +13,6 @@
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" />
         <span>{{ item.meta.title }}</span>
       </template>
-
       <SidebarItem
         v-for="child in item.children"
         :key="child.path"
@@ -32,8 +31,9 @@ import Link from './Link'
 import Item from './Item'
 import { isExternal } from '@/utils/validate'
 import path from 'path'
+import { RouteItemTy } from '@/types/router'
 let { proxy }: any = getCurrentInstance()
-const props = defineProps({
+defineProps({
   //每一个router Item
   item: {
     type: Object,
@@ -56,8 +56,8 @@ onMounted(() => {
 })
 //显示sidebarItem 的情况
 proxy.onlyOneChild = null
-let showSidebarItem = (children = [], parent: any) => {
-  const showingChildren = children.filter((item: any) => {
+let showSidebarItem = (children = [], parent: RouteItemTy) => {
+  const showingChildren = children.filter((item: RouteItemTy) => {
     if (item.hidden) {
       return false
     } else {
@@ -87,15 +87,6 @@ let resolvePath = (routePath: string) => {
 </script>
 
 <style lang="scss">
-@import '@/styles/variables.scss';
-.sub-el-icon,
-.nav-icon {
-  display: inline-block;
-  font-size: 14px;
-  margin-right: 10px;
-  position: relative;
-}
-
 // menu hover
 /* .submenu-title-noDropdown,
   .el-submenu__title {

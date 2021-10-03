@@ -1,10 +1,15 @@
-import { Obj_type } from '@/types/common'
 import { createStore } from 'vuex'
 import getters from './getters'
-
-//简单的方式
+import { ObjTy } from '@/types/common'
+//auto import (perfect!!!)
 const modulesFiles = import.meta.globEager('./modules/*.ts')
-const modules: Obj_type = {}
+const modules: ObjTy = {}
+// console.log(modulesFiles);
+for (const path in modulesFiles) {
+  const moduleName = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
+  modules[moduleName] = modulesFiles[path].default
+}
+
 //复杂的方式
 // const modulesFiles = import.meta.globEager('./modules/*.js')
 // console.log(Object.keys(modulesFiles));
@@ -16,12 +21,7 @@ const modules: Obj_type = {}
 //   return modules
 // }, {})
 // console.log(modules);
-for (const path in modulesFiles) {
-  const moduleName: string = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
-  console.log('moduleName', moduleName)
-  modules[moduleName] = modulesFiles[path].default
-}
-export default createStore<state_type>({
+export default createStore({
   modules,
   getters
 })

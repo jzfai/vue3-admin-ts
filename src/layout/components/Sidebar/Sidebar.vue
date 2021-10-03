@@ -21,16 +21,15 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, computed } from 'vue'
+import { computed } from 'vue'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 //导入配置文件
 import settings from '@/settings'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-let { proxy }: any = getCurrentInstance()
 const store = useStore()
-const router = useRouter()
+const route = useRoute()
 let routes = computed(() => {
   return store.state.permission.routes
 })
@@ -38,10 +37,9 @@ const isCollapse = computed(() => {
   return store.state.app.sidebar.opened
 })
 const variables = computed(() => {
-  /*vite中获取scss变量有问题*/
-  // let data=JSON.parse(JSON.stringify(scssVariables.replace(/:export/,'')))
-  // console.log(typeof  JSON.parse(data));
-  // return scssVariables
+  // let data = JSON.parse(scssVariables.replace(/:export\s*/, ''))
+  // console.log('scssVariables')
+  // console.log(typeof data)
   return {
     menuText: '#bfcbd9',
     menuActiveText: '#409EFF',
@@ -53,17 +51,14 @@ const variables = computed(() => {
     sideBarWidth: '210px'
   }
 })
-const activeMenu = computed(() => router.currentRoute.value.fullPath)
-// let activeMenu2 = () => {
-//   console.log("p1111ath",111);
-//   const {meta, path} = router
-//   // if set path, the sidebar will highlight the path you set
-//   // if (meta.activeMenu) {
-//   //   return meta.activeMenu
-//   // }
-//   console.log("path",path);
-//   return path
-// }
+const activeMenu = computed(() => {
+  const { meta, fullPath } = route
+  // if set path, the sidebar will highlight the path you set
+  if (meta.activeMenu) {
+    return meta.activeMenu
+  }
+  return fullPath
+})
 </script>
 
 <style lang="scss">

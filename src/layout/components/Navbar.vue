@@ -1,4 +1,3 @@
-<!--suppress ALL -->
 <template>
   <div class="navbar rowBC">
     <div class="rowSC">
@@ -11,12 +10,9 @@
       <breadcrumb class="breadcrumb-container" />
     </div>
     <!--nav title-->
-    <div v-if="settings.showTitle" class="heardCenterTitle">vue3 admin Template</div>
-    <div v-if="settings.ShowDropDown" class="right-menu">
+    <div class="heardCenterTitle" v-if="settings.showTitle">{{ settings.showTitle }}</div>
+    <div class="right-menu" v-if="settings.ShowDropDown">
       <el-dropdown trigger="click" size="medium">
-        <!--<span class="el-dropdown-link">-->
-        <!--下拉菜单<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
-        <!--</span>-->
         <div class="avatar-wrapper">
           <img
             src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"
@@ -26,8 +22,17 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item divided @click="logout">退出登录</el-dropdown-item>
+            <router-link to="/">
+              <el-dropdown-item>Home</el-dropdown-item>
+            </router-link>
+            <a target="_blank" href="https://github.com/jzfai/vue3-admin-template">
+              <el-dropdown-item>Github</el-dropdown-item>
+            </a>
+            <a target="_blank" href="https://github.com/jzfai/vue3-admin-template">
+              <el-dropdown-item>Docs</el-dropdown-item>
+            </a>
+            <!--<el-dropdown-item>修改密码</el-dropdown-item>-->
+            <el-dropdown-item divided @click="loginOut">login out</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -36,14 +41,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, getCurrentInstance, computed, watch, ref, toRefs, reactive } from 'vue'
 import Breadcrumb from './Breadcrumb'
 import Hamburger from './Hamburger'
+import { computed, getCurrentInstance } from 'vue'
 import settings from '@/settings'
-import { getToken, setToken, removeToken } from '@/utils/auth'
-import { axios_c_ty } from '@/types/common'
-
-const { proxy }: any = getCurrentInstance()
+import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
+let { proxy }: any = getCurrentInstance()
 
 const opened = computed(() => {
   return proxy.$store.state.app.sidebar.opened
@@ -55,31 +59,18 @@ const toggleSideBar = () => {
 /*
  * 退出登录
  * */
-const logutReq = () => {
-  return new Promise((resolve) => {
-    proxy
-      .$axiosReq({
-        url: '/ty-user/user/loginValid',
-        method: 'post',
-        isParams: true
-      })
-      .then((res: any) => {
-        if (res.code === 20000) {
-          resolve(res)
-        }
-      })
+const store = useStore()
+const loginOut = () => {
+  store.dispatch('user/logout').then(() => {
+    ElMessage({ message: '退出登录成功', type: 'success' })
+    proxy.$router.push(`/login?redirect=${proxy.$route.fullPath}`)
   })
-}
-const logout = async () => {
-  // await logutReq();
-  removeToken()
-  proxy.$router.push(`/login?redirect=${proxy.$route.fullPath}`)
 }
 </script>
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: $navBarHeight;
   overflow: hidden;
   position: relative;
   background: #fff;

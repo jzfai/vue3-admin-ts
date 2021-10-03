@@ -1,16 +1,18 @@
-<!--suppress ALL -->
 <template>
   <div :class="classObj" class="layout-wrapper">
-    <!--左侧-->
+    <!--left side-->
     <Sidebar class="sidebar-container" v-if="settings.showLeftMenu" />
-    <!--右侧-->
+    <!--right side-->
     <div class="main-container">
-      <Navbar />
+      <div>
+        <Navbar />
+        <TagsView v-if="settings.needTagsView" />
+      </div>
       <AppMain />
     </div>
+    <!--<Settings />-->
   </div>
 </template>
-
 <!--原理vue2.0-->
 <script lang="ts">
 /*可以设置默认的名字*/
@@ -20,15 +22,13 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { Sidebar, Navbar, AppMain } from './components'
+import { Sidebar, Navbar, AppMain, TagsView } from './components'
 import { getCurrentInstance, computed } from 'vue'
 import settings from '@/settings'
 let { proxy }: any = getCurrentInstance()
-
 let opened = computed(() => {
   return proxy.$store.state.app.sidebar.opened
 })
-
 let classObj = computed(() => {
   return {
     closeSidebar: !opened.value,
@@ -36,19 +36,18 @@ let classObj = computed(() => {
   }
 })
 //import ResizeHook to   listen  page size that   open or close
-import H_ResizeHook from './hook/ResizeHandler'
-H_ResizeHook()
+import ResizeHook from './hook/ResizeHandler'
+ResizeHook()
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/variables.scss';
 .layout-wrapper {
-  display: flex;
-  align-content: start;
-  justify-content: start;
+  overflow: hidden;
+  //display: flex;
+  //align-content: start;
+  //justify-content: start;
 }
 .main-container {
-  flex-grow: 1;
   min-height: 100%;
   transition: margin-left 0.28s;
   margin-left: $sideBarWidth;
@@ -72,7 +71,7 @@ H_ResizeHook()
     width: 54px !important;
   }
   .main-container {
-    margin-left: 54px;
+    margin-left: 54px !important;
   }
 }
 .hideSidebar {

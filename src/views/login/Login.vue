@@ -1,6 +1,5 @@
 <template>
   <div class="login-container columnCC">
-    <!--注意此处ref中的refloginForm 必须加上单引号，不然build后访问会报错应该是转换为h函数时有问题,已经提了个问题到官方 -->
     <el-form ref="refloginForm" size="medium" class="login-form" :model="formInline" :rules="formRulesMixin">
       <div class="title-container">
         <h3 class="title text-center">{{ settings.title }}</h3>
@@ -28,7 +27,7 @@
             :type="passwordType"
             name="password"
             @keyup.enter="handleLogin"
-            placeholder="密码(123456)"
+            placeholder="password(123456)"
           />
           <span class="show-pwd" @click="showPwd">
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -36,9 +35,8 @@
         </div>
       </el-form-item>
       <div class="tip-message">{{ tipMessage }}</div>
-      <!--   @click.native.prevent -- native有问题  -->
       <el-button :loading="loading" type="primary" class="login-btn" size="medium" @click.prevent="handleLogin">
-        登 录
+        Login
       </el-button>
     </el-form>
   </div>
@@ -51,33 +49,28 @@ export default {
 }
 </script>
 
-<script lang="ts" setup>
-/*
- * 初始化参数比如引入组件，proxy,state等
- * */
-import { reactive, getCurrentInstance, watch, toRefs, ref } from 'vue'
-import { setToken } from '@/utils/auth'
+<script setup lang="ts">
+import { reactive, getCurrentInstance, watch, ref } from 'vue'
 import settings from '@/settings'
-const { proxy }: any = getCurrentInstance()
-//form表单
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
+import { ObjTy } from '@/types/common'
+let { proxy }: any = getCurrentInstance()
+//form
 let formInline = reactive({
   username: 'admin',
   password: '123456'
 })
-/*
- * 监听路由变化处理
- * */
-import { axios_req_ty, Obj_type } from '@/types/common'
-let state = reactive<{ otherQuery: Obj_type; redirect: any }>({
+let state: ObjTy = reactive({
   otherQuery: {},
   redirect: undefined
 })
-import { useRoute } from 'vue-router'
-// state.otherQuery={}
-// state.redirect=undefined
+
+/* listen router change  */
 const route = useRoute()
-let getOtherQuery = (query: any) => {
-  return Object.keys(query).reduce((acc: any, cur: string | number) => {
+let getOtherQuery = (query: ObjTy) => {
+  return Object.keys(query).reduce((acc: ObjTy, cur) => {
     if (cur !== 'redirect') {
       acc[cur] = query[cur]
     }
@@ -88,7 +81,6 @@ let getOtherQuery = (query: any) => {
 watch(
   route,
   (route) => {
-    console.log('监听到路由的变化', route)
     const query = route.query
     if (query) {
       state.redirect = query.redirect
@@ -97,48 +89,15 @@ watch(
   },
   { immediate: true }
 )
-//导出属性到页面中使用
-let { otherQuery, redirect } = toRefs(state)
 /*
- * 登录相关
+ *  login relative
  * */
-let resetData = () => {
-  tipMessage.value = ''
-  proxy.sleepMixin(20).then(() => {
-    loading.value = false
-  })
-}
 let loading = ref(false)
 let tipMessage = ref('')
-let loginReq = () => {
-  loading.value = true
-  let reqConfig: axios_req_ty = {
-    url: '/ty-user/user/loginValid',
-    data: formInline,
-    method: 'post',
-    isParams: true,
-    isAlertErrorMsg: false
-  }
-  proxy.$axiosReq(reqConfig).then((resData: any) => {
-    //需要将用户信息存储到本地
-    if (resData.code === 20000) {
-      setToken(resData.data?.jwtToken)
-      proxy.$router.push({
-        path: state.redirect || '/',
-        query: state.otherQuery
-      })
-      resetData()
-    } else {
-      tipMessage.value = resData.msg
-      proxy.sleepMixin(30).then(() => {
-        loading.value = false
-      })
-    }
-  })
-}
-const refloginForm = ref<any>(null)
+const store = useStore()
 let handleLogin = () => {
-  refloginForm.value.validate((valid: any) => {
+  let refloginForm = ''
+  proxy.$refs['refloginForm'].validate((valid: boolean) => {
     if (valid) {
       loginReq()
     } else {
@@ -146,11 +105,26 @@ let handleLogin = () => {
     }
   })
 }
+let loginReq = () => {
+  loading.value = true
+  store
+    .dispatch('user/login', formInline)
+    .then(() => {
+      ElMessage({ message: '登录成功', type: 'success' })
+      proxy.$router.push({ path: state.redirect || '/', query: state.otherQuery })
+    })
+    .catch((res) => {
+      tipMessage.value = res.msg
+      proxy.sleepMixin(30).then(() => {
+        loading.value = false
+      })
+    })
+}
+
 /*
- * 密码的显示和隐藏
+ *  password show or hidden
  * */
-let passwordType = ref<string>('password')
-const refPassword = ref<HTMLElement | null>(null)
+let passwordType = ref('password')
 let showPwd = () => {
   if (passwordType.value === 'password') {
     passwordType.value = ''
@@ -158,13 +132,9 @@ let showPwd = () => {
     passwordType.value = 'password'
   }
   proxy.$nextTick(() => {
-    // let refPassword: any
-    // if (proxy.isBuildEnvMixin()) {
-    //   refPassword = proxy.$refs['password']
-    // } else {
-    //   refPassword = proxy.$refs["'password'"]
-    // }
-    refPassword.value?.focus()
+    console.log(proxy.$refs.password)
+    let refPassword = null
+    proxy.$refs["'password'"].focus()
   })
 }
 </script>
@@ -185,7 +155,7 @@ $light_gray: #eee;
     .title {
       font-size: 22px;
       color: #eee;
-      margin: 0 auto 25px auto;
+      margin: 0px auto 25px auto;
       text-align: center;
       font-weight: bold;
     }
@@ -212,7 +182,6 @@ $light_gray: #eee;
   width: 100%;
   margin-bottom: 30px;
 }
-
 .show-pwd {
   width: 50px;
   font-size: 16px;
@@ -231,12 +200,11 @@ $light_gray: #eee;
     border-radius: 5px;
     color: #454545;
   }
-
   .el-input input {
     background: transparent;
-    border: 0;
+    border: 0px;
     -webkit-appearance: none;
-    border-radius: 0;
+    border-radius: 0px;
     padding: 10px 5px 10px 15px;
     color: #fff;
     height: 42px; //此处调整item的高度

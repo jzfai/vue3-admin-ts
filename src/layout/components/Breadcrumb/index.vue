@@ -3,7 +3,7 @@
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
         <span v-if="item.redirect === 'noRedirect' || index === levelList.length - 1" class="no-redirect">
-          {{ item.meta.title }}
+          {{ item.meta?.title }}
         </span>
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
       </el-breadcrumb-item>
@@ -11,61 +11,47 @@
   </el-breadcrumb>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { onMounted, onBeforeMount, getCurrentInstance, watch, ref } from 'vue'
 import { compile } from 'path-to-regexp'
-import { Obj_type } from '@/types/common'
-// 获取store和router
-// import {useRouter} from 'vue-router'
-// import {useStore} from 'vuex'
-const levelList = ref(null)
-const { proxy }: any = getCurrentInstance()
-const isDashboard = (route: any) => {
+import { RouteItemTy } from '@/types/router'
+let levelList = ref(null)
+let { proxy }: any = getCurrentInstance()
+const getBreadcrumb = () => {
+  // only show routes with meta.title
+  let matched = proxy.$route.matched.filter((item: RouteItemTy) => item.meta && item.meta.title)
+  const first = matched[0]
+  if (!isDashboard(first)) {
+    //it can replace the first page if not exits
+    matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched)
+  }
+  levelList.value = matched.filter(
+    (item: RouteItemTy) => item.meta && item.meta.title && item.meta.breadcrumb !== false
+  )
+}
+
+const isDashboard = (route: RouteItemTy) => {
   const name = route?.name
   if (!name) {
     return false
   }
   return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
 }
-const getBreadcrumb = () => {
-  // only show routes with meta.title
-  const matched = proxy.$route.matched.filter((item: any) => item.meta && item.meta.title)
-  const first = matched[0]
-  if (!isDashboard(first)) {
-    // it can replace the first page if not exits
-    // matched = [{path: '/dashboard', meta: {title: 'Dashboard'}}].concat(matched)
-  }
-  levelList.value = matched.filter((item: any) => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-  console.log('levelList', levelList)
-}
-
-const pathCompile = (path: any) => {
+const pathCompile = (path: string) => {
   const { params } = proxy.$route
   const toPath = compile(path)
   return toPath(params)
 }
-const handleLink = (item: Obj_type) => {
+const handleLink = (item: RouteItemTy) => {
   const { redirect, path } = item
   if (redirect) {
     proxy.$router.push(redirect)
     return
   }
-  proxy.$router.push(pathCompile(path))
+  if (path) {
+    proxy.$router.push(pathCompile(path))
+  }
 }
-// const props = defineProps({
-//   name: {
-//     require: true,
-//     default: "fai",
-//     type:String,
-//   },
-// });
-// const state = reactive({
-//   levelList: null
-// });
-
-// const routes = computed(() => {
-//    return proxy.$store.state.permission.routes;
-//  });
 watch(
   () => proxy.$route,
   () => {
@@ -73,21 +59,12 @@ watch(
   },
   { immediate: true }
 )
-// const store = useStore()
-// const router = useRouter()
 onMounted(() => {
   console.log(proxy.$route)
 })
 onBeforeMount(() => {
   getBreadcrumb()
 })
-// let helloFunc = () => {
-//   console.log("helloFunc");
-// };
-// 导出给refs使用
-// defineExpose({ helloFunc });
-// 导出属性到页面中使用
-// let {levelList} = toRefs(state);
 </script>
 
 <style lang="scss" scoped>
@@ -96,6 +73,7 @@ onBeforeMount(() => {
   font-size: 14px;
   line-height: 50px;
   margin-left: 8px;
+
   .no-redirect {
     color: #97a8be;
     cursor: text;
