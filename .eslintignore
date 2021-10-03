@@ -1,0 +1,8 @@
+public
+node_modules
+.history
+.husky
+dist
+*.d.ts
+*.svg
+yarn.lock
