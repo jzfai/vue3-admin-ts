@@ -27,7 +27,7 @@ vue2和vue3的区别，以及如何快速的把vue2迁移到3中的教程
 
 ### 效果
 
-### 线上体验地址：http://8.135.1.141/vue3.0-admin-template
+### 线上体验地址：http://8.135.1.141/vue3-admin-ts
 
 ![http://8.135.1.141/file/images/1629713090928.png](http://8.135.1.141/file/images/1629713090928.png)
 

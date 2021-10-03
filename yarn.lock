@@ -4899,10 +4899,10 @@ vite-plugin-svg-icons@^1.0.4:
     svg-baker "1.7.0"
     svgo "^2.3.1"
 
-vite@^2.5.10:
-  version "2.6.1"
-  resolved "https://registry.npmmirror.com/vite/download/vite-2.6.1.tgz?cache=0&sync_timestamp=1632942509248&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fvite%2Fdownload%2Fvite-2.6.1.tgz#2e17908fa865d962d5fe33631df09c99e7ec486e"
-  integrity sha1-LheQj6hl2WLV/jNjHfCcmefsSG4=
+vite@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.npmmirror.com/vite/download/vite-2.6.2.tgz?cache=0&sync_timestamp=1633019069109&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fvite%2Fdownload%2Fvite-2.6.2.tgz#5bbb4afe1f69ed9d6482e51a0f761f8cfc230e22"
+  integrity sha1-W7tK/h9p7Z1kguUaD3YfjPwjDiI=
   dependencies:
     esbuild "^0.13.2"
     postcss "^8.3.8"
