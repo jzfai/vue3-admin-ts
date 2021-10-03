@@ -1,4 +1,4 @@
-/*使用vue3.0 tsx语法书写*/
+/*使用vue3.0 jsx语法书写*/
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -10,19 +10,26 @@ export default defineComponent({
     title: {
       type: String,
       default: ''
+    },
+    elIcon: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
     /*此处写法像极了react*/
+    // let {proxy} = getCurrentInstance();
     const { icon } = props
     const renderItem = () => {
       if (icon) {
-        if (icon.includes('el-icon')) {
-          // @ts-ignore
-          return <i className={[icon, 'sub-el-icon']} />
-        } else {
-          return <svg-icon icon-class={icon} className="nav-icon" />
-        }
+        // element-plus remove el-icon
+        // view https://element-plus.org/zh-CN/component/icon.html
+        // if (icon.includes('el-icon')) {
+        //   return <i className={[icon, 'sub-el-icon']} />
+        // } else {
+        //   return <svg-icon icon-class={icon} className="nav-icon" />
+        // }
+        return <svg-icon icon-class={icon} className="nav-icon" />
       }
     }
     return () => {

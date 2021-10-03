@@ -15,12 +15,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { getCurrentInstance } from 'vue'
-
-let { proxy }: any = getCurrentInstance()
-
-const props = defineProps({
+let { proxy } = getCurrentInstance()
+defineProps({
   isActive: {
     type: Boolean,
     default: false

@@ -1,18 +1,7 @@
 #### 更新日志
 ```
-// 2021-08-28
-1.setting.js文件中增加了是否需要登录属性 false-->不需要登录直接进入主页面
-2.修复main-container页面部分显示问题
-3.element-plus更新到最新版本"element-plus": "^1.1.0-beta.7",
-4.把element-plus默认语言修改成中文
-// 2021-08-31
-5.增加了mock, hook , svg-icon,vuex的使用示例
-// 2021-09-04
-1.修复了build后,ref的问题(https://github.com/vuejs/vue-next/issues/4431)
-2.vue,element-plus,vite及插件更新到最新版本
-3.ResizeHandler.js 方法从mixin 改为hooks
-// 2021-09-06
-1.增加父子通信例子 parent-children
+//10-03
+change vue3-admin-template to  ts version
 ```
 
 ### 前言

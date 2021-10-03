@@ -7,69 +7,48 @@
   <div class="mt-2">action</div>
   <el-button @click="openSideBar">openSideBar</el-button>
   <el-button @click="closeSideBar">closeSideBar</el-button>
+  <div>是否开启：{{ opened }}</div>
 </template>
 
+<script lang="ts">
+/*可以设置默认的名字*/
+// import { mapState } from 'vuex'
+export default {
+  name: 'Login'
+  // computed: {
+  //   ...mapState({
+  //     opened: (state: statTy) => state.app,
+  //     opened2: (state: statTy) => state.app
+  //   })
+  // }
+}
+</script>
+
 <script setup lang="ts">
-import { onMounted, getCurrentInstance, watch, ref, toRefs, reactive, computed } from 'vue'
-//获取store和router
-// import {useRouter} from 'vue-router'
+import { ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-let { proxy }: any = getCurrentInstance()
-
 /*getter*/
-let getterValue = ref<Array<string>>([])
-const getterFunc = (): void => {
+let getterValue = ref(null)
+const getterFunc = () => {
   getterValue.value = store.getters.cachedViews
 }
 
 /*mutations*/
 /*建议commit用M_开头 action用A_开头*/
-const c_openSideBar = (): void => {
+const c_openSideBar = () => {
   store.commit('app/M_sidebar_opened', true)
 }
-const c_closeSideBar = (): void => {
+const c_closeSideBar = () => {
   store.commit('app/M_sidebar_opened', false)
 }
 /*actions*/
-const openSideBar = (): void => {
+const openSideBar = () => {
   store.dispatch('app/A_sidebar_opened', true)
 }
-const closeSideBar = (): void => {
+const closeSideBar = () => {
   store.dispatch('app/A_sidebar_opened', false)
 }
-// const props = defineProps({
-//   name: {
-//     require: true,
-//     default: "fai",
-//     type:String,
-//   },
-// });
-// const state = reactive({
-//   levelList: null
-// });
-
-//const routes = computed(() => {
-//    return proxy.$store.state.permission.routes;
-//  });
-// watch(() => props.name, (oldValue,newValue) => {
-//
-//   },
-//   { immediate: true }
-// );
-
-// const store = useStore()
-// const router = useRouter()
-// onMounted(()=>{
-//   console.log("页面挂载了")
-// })
-// let helloFunc = () => {
-//   console.log("helloFunc");
-// };
-//导出给refs使用
-// defineExpose({ helloFunc });
-//导出属性到页面中使用
-// let {levelList} = toRefs(state);
 </script>
 
 <style scoped lang="scss"></style>
