@@ -1,23 +1,21 @@
 <template>
-  <div class="app-main">
-    <router-view :key="key" v-slot="{ Component }">
-      <keep-alive :include="cachedViews">
-        <component :is="Component" />
-      </keep-alive>
-    </router-view>
-    <!--<transition name="fade-transform" mode="out-in">-->
-    <!--<div>-->
-    <!---->
-    <!--</div>-->
-    <!--</transition>-->
-  </div>
+  <router-view v-slot="{ Component }">
+    <transition name="fade-transform" mode="out-in">
+      <div class="app-main" :class="{ 'show-tag-view': setting.needTagsView }" :key="key">
+        <keep-alive :include="cachedViews">
+          <component :is="Component" :key="key" />
+        </keep-alive>
+      </div>
+    </transition>
+  </router-view>
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, computed } from 'vue'
+import setting from '@/settings'
 
-const { proxy }: any = getCurrentInstance()
-// string.instanceOf String
+import { getCurrentInstance, computed } from 'vue'
+let { proxy }: any = getCurrentInstance()
+
 const key = computed(() => {
   return proxy.$route.path
 })
@@ -26,13 +24,17 @@ const cachedViews = computed(() => {
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app-main {
+  padding: 10px;
   /*50 = navbar  */
-  min-height: calc(100vh - 50px);
+  height: calc(100vh - #{$navBarHeight});
   width: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
+}
+.show-tag-view {
+  height: calc(100vh - #{$navBarHeight} - #{$tagViewHeight}) !important;
 }
 .fixed-header + .app-main {
   padding-top: 50px;
@@ -40,7 +42,6 @@ const cachedViews = computed(() => {
 </style>
 
 <style lang="scss">
-// fix css style bug in open el-dialog
 .el-popup-parent--hidden {
   .fixed-header {
     padding-right: 15px;

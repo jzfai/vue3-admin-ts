@@ -7,9 +7,6 @@
 <script setup lang="ts">
 import { isExternal } from '@/utils/validate'
 import { onMounted, computed, getCurrentInstance, reactive } from 'vue'
-//获取store和router
-// import {useRouter} from 'vue-router'
-// import {useStore} from 'vuex'
 let { proxy }: any = getCurrentInstance()
 const props = defineProps({
   to: {
@@ -26,7 +23,7 @@ const type = computed(() => {
   }
   return 'router-link'
 })
-const linkProps = (to: any) => {
+const linkProps = (to: string) => {
   if (isExternalValid.value) {
     return {
       href: to,
@@ -41,26 +38,10 @@ const linkProps = (to: any) => {
 const state = reactive({
   levelList: null
 })
-
-// watch(() => props.name, (oldValue,newValue) => {
-//
-//   },
-//   { immediate: true }
-// );
-
-// const store = useStore()
-// const router = useRouter()
 onMounted(() => {
   console.log(state.levelList)
   console.log(props.to)
 })
-// let helloFunc = () => {
-//   console.log("helloFunc");
-// };
-//导出给refs使用
-// defineExpose({ helloFunc });
-//导出属性到页面中使用
-// let {levelList} = toRefs(state);
 </script>
 
 <style scoped lang="scss"></style>

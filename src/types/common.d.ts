@@ -1,18 +1,19 @@
-interface ImportMeta {
-  env: any
-  url: string
-  globEager: any
-}
+/*类型命名建议以Ty结尾*/
+/*
+*
+枚举 类，接口 都是大驼峰 WangMeng
+方法，变量，常量 小驼峰 wangMeng
+* */
 /*通用对象*/
-interface Obj_type {
+interface ObjTy {
   [propName: string]: any
 }
 /*axiosReq请求配置*/
 import { AxiosRequestConfig } from 'axios'
-interface axios_req_ty extends AxiosRequestConfig {
+interface AxiosReqTy extends AxiosRequestConfig {
   url?: string
   method?: string
-  data?: Obj_type
+  data?: ObjTy
   isParams?: boolean
   bfLoading?: boolean
   afHLoading?: boolean
@@ -22,10 +23,10 @@ interface axios_req_ty extends AxiosRequestConfig {
   baseURL?: string
   timeout?: number
 }
-interface axios_c_ty {
+interface AxiosConfigTy {
   url?: string
   method?: string
-  data?: Obj_type
+  data?: ObjTy
   isParams?: boolean
   bfLoading?: boolean
   afHLoading?: boolean

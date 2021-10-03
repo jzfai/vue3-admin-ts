@@ -2,9 +2,10 @@ import router, { asyncRoutes } from '@/router'
 import store from './store'
 import settings from './settings'
 import { getToken } from '@/utils/auth'
-import { router_type } from '@/types/router'
+import { RouterRowTy, RouterTy } from '@/types/router'
+import { ObjTy } from '@/types/common'
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to: ObjTy, from: ObjTy, next: any) => {
   /*
    * 正常流程如下:主要有两大点token和role
    * 1.是否与token 没有去登录页 ,有 如果要去登录页则重定向到首页。没有, 重新定向到登录页
@@ -25,20 +26,26 @@ router.beforeEach(async (to, from, next) => {
       if (isPermission) {
         next()
       } else {
-        //过滤权限
-        const permissionCodeArr: Array<number> = await reqPermission()
-        const asyncRoutesAf: router_type = await filterPermissionFunc(permissionCodeArr, asyncRoutes)
-        //保存过滤后的路由到vuex中供菜单使用
-        store.commit('permission/M_routes', asyncRoutesAf)
-        store.commit('permission/M_isSettingPermission', true)
-        //...to 路由加载完后再放行,防止白屏
-        //replace: true只是一个设置信息，告诉VUE本次操作后，不能通过浏览器后退按钮，返回前一个路由。=
-        //vue3.0中addRoutes被销毁了
-        console.log('asyncRoutesAf', asyncRoutesAf)
-        asyncRoutesAf.forEach((route) => {
-          router.addRoute(route)
-        })
-        next({ ...to, replace: true })
+        try {
+          await store.dispatch('user/getInfo')
+          //过滤权限
+          const permissionCodeArr: Array<number> = await reqPermission()
+          const asyncRoutesAf: RouterTy = await filterPermissionFunc(permissionCodeArr, asyncRoutes)
+          //保存过滤后的路由到vuex中供菜单使用
+          store.commit('permission/M_routes', asyncRoutesAf)
+          store.commit('permission/M_isSettingPermission', true)
+          //...to 路由加载完后再放行,防止白屏
+          //replace: true只是一个设置信息，告诉VUE本次操作后，不能通过浏览器后退按钮，返回前一个路由。=
+          //vue3.0中addRoutes被销毁了
+          console.log('asyncRoutesAf', asyncRoutesAf)
+          asyncRoutesAf.forEach((route) => {
+            router.addRoute(route)
+          })
+          next({ ...to, replace: true })
+        } catch (err) {
+          await store.dispatch('user/resetToken')
+          next(`/login?redirect=${to.path}`)
+        }
       }
     }
   } else {
@@ -54,10 +61,10 @@ router.beforeEach(async (to, from, next) => {
 })
 
 //权限过滤方法
-function filterPermissionFunc(permissionCodeArr: Array<number>, asyncRoutes: router_type): Promise<router_type> {
+function filterPermissionFunc(permissionCodeArr: Array<number>, asyncRoutes: RouterTy): Promise<RouterTy> {
   return new Promise((resolve) => {
-    const filterRouter: router_type = []
-    asyncRoutes.forEach(async (routeItem) => {
+    const filterRouter: RouterTy = []
+    asyncRoutes.forEach(async (routeItem: RouterRowTy) => {
       if (!routeItem.hidden) {
         //判断children
         if (routeItem.children) {

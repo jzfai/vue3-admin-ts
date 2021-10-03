@@ -2,7 +2,7 @@ import store from '@/store'
 import axios from 'axios'
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 import { getToken, setToken } from '@/utils/auth'
-import { axios_c_ty, axios_req_ty } from '@/types/common'
+import { AxiosConfigTy, AxiosReqTy } from '@/types/common'
 let requestData: any
 let loadingE: any
 
@@ -12,7 +12,7 @@ const service: any = axios.create({
 })
 // 请求拦截
 service.interceptors.request.use(
-  (request: axios_req_ty) => {
+  (request: AxiosReqTy) => {
     // console.log('request', request)
     // token配置
     request.headers['AUTHORIZE_TOKEN'] = getToken()
@@ -120,7 +120,7 @@ export default function khReqMethod({
   baseURL,
   timeout,
   isAlertErrorMsg = true
-}: axios_c_ty): any {
+}: AxiosConfigTy): any {
   return service({
     url: url,
     method: method ?? 'post',
