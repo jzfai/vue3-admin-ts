@@ -9,6 +9,15 @@
 
 [国内访问](http://8.135.1.141/vue3-admin-template)
 
+## 更新日志
+
+```javascript
+//10-03
+change vue3-admin-template to  ts version
+//10-08
+add error log collection func
+```
+
 ## 例子
 
  ---- 我们先看看加载速度和构建后的包大小：
@@ -35,10 +44,10 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/jzfai/vue3-admin-template.git
+git clone https://github.com/jzfai/vue3-admin-ts.git
 
 # 进入项目目录
-cd  vue3-admin-template
+cd  vue3-admin-ts
 
 # 安装依赖(建议用yarn)
 yarn
@@ -159,7 +168,7 @@ Modern browsers and Internet Explorer 11+.
 
 ## 版本
 
-[MIT](https://github.com/jzfai/vue3-admin-templateLICENSE) license.
+[MIT](https://github.com/jzfai/vue3-admin-ts/blob/master/LICENSE) license.
 
 Copyright (c) 2021-present  kuanghua
 
