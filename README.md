@@ -55,7 +55,7 @@ yarn
 yarn run dev
 ```
 
-using the browser to open http://localhost:5001
+using the browser to open http://localhost:5003
 
 ## Build
 
