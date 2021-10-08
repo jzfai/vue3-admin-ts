@@ -7,6 +7,7 @@ English | [简体中文](./README-zh.md)
 A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plus and similar design  for   vue-admin-template
 
 [Access address](http://8.135.1.141/vue3-admin-template)
+
 [国内访问](http://8.135.1.141/vue3-admin-template)
 
 ## Update log
@@ -14,6 +15,8 @@ A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plu
 ```javascript
 //10-03
 change vue3-admin-template to  ts version
+//10-08
+add error log collection func
 ```
 ## Demo
 
@@ -40,10 +43,10 @@ You can refer to first：[documentation of vue-admin-template ](https://juejin.i
 
 ```bash
 # clone the project
-git clone https://github.com/jzfai/vue3-admin-template.git
+git clone https://github.com/jzfai/vue3-admin-ts.git
 
 # enter the project directory
-cd vue3-admin-template
+cd vue3-admin-ts
 
 # install dependency(Recommend use yarn)
 yarn
@@ -110,7 +113,7 @@ Modern browsers and Internet Explorer 11+.
 
 ## License
 
-[MIT](https://github.com/jzfai/vue3-admin-templateLICENSE) license.
+[MIT](https://github.com/jzfai/vue3-admin-ts/blob/master/LICENSE) license.
 
 Copyright (c) 2021-present  kuanghua
 
