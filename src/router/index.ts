@@ -141,7 +141,7 @@ export const constantRoutes: RouterTy = [
     children: [
       {
         component: () => {},
-        path: 'https://github.com/jzfai/vue3-admin-template.git',
+        path: 'https://github.com/jzfai/vue3-admin-ts.git',
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
