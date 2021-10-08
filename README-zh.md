@@ -1,4 +1,4 @@
-# vue-admin-ts
+# vue3-admin-ts
 
 > 这是一个基础的 vue3 admin 管理后台。它只包含了 Element-Plus UI & axios & svg-icon& permission control & lint，这些搭建后台必要的东西。
 
