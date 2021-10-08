@@ -205,8 +205,8 @@ const multiDelBtnClick = async () => {
       bfLoading: true
     })
     .then(() => {
+      selectPageReq()
       proxy.elMessageMixin('删除成功')
-      proxy.selectPageReq()
     })
 }
 </script>
