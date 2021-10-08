@@ -1,0 +1,116 @@
+# vue-admin-ts
+
+English | [简体中文](./README-zh.md)
+
+> A basic vue3 admin template with  vite2 & Element-Plus UI & axios & svg-icon& permission control & lint
+
+A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plus and similar design  for   vue-admin-template
+
+[Access address](http://8.135.1.141/vue3-admin-template)
+[国内访问](http://8.135.1.141/vue3-admin-template)
+
+## Update log
+
+```javascript
+//10-03
+change vue3-admin-template to  ts version
+```
+## Demo
+
+ ---- Let's look at the loading speed and the size of the built package first.：
+
+![template-speed-analysis](http://8.135.1.141/file/images/template-speed-analysis.png)
+
+![template-demo](http://8.135.1.141/file/images/template-demo.png)
+
+## Related items
+
+- js version：[vue3-element-admin](https://github.com/jzfai/vue3-admin-template.git)
+- ts version：[vue3-element-ts](https://github.com/jzfai/vue3-admin-ts.git)
+- js version for plus：[vue3-element-plus](https://github.com/jzfai/vue3-admin-plus.git)
+- react version： [react-admin-template](https://github.com/jzfai/react-admin-template.git)
+- Micro-service background data：[micro-service-plus](https://github.com/jzfai/micro-service-plus)
+
+## Documents
+
+-- Efforts are being made to develop documents ......
+You can refer to first：[documentation of vue-admin-template ](https://juejin.im/post/59097cd7a22b9d0065fb61d2)
+
+## Build Setup
+
+```bash
+# clone the project
+git clone https://github.com/jzfai/vue3-admin-template.git
+
+# enter the project directory
+cd vue3-admin-template
+
+# install dependency(Recommend use yarn)
+yarn
+
+# develop
+yarn run dev
+```
+
+using the browser to open http://localhost:5001
+
+## Build
+
+```bash
+# build for test environment
+yarn run build
+
+# build for production environment
+yarn run build-serve
+```
+
+## Advanced
+
+```bash
+# preview the release environment effect
+yarn run preview:build-serve
+
+# preview the release environment effect
+yarn run preview
+
+# code format check
+yarn run lint
+
+```
+
+Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/guide/essentials/deploy.html) for more information
+
+
+
+## Related Project
+
+- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
+
+- [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
+
+- [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template)
+
+- [awesome-project](https://github.com/PanJiaChen/vue-element-admin/issues/2312)
+
+## Extra
+
+This framework is still in the process of improvement. .....
+
+## Browsers support
+
+Note: Vue3 is not supported the Internet Explorer
+Modern browsers and Internet Explorer 11+.
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
+| --------- | --------- | --------- | --------- |
+|Edge| last 2 versions| last 2 versions| last 2 versions
+
+## Discussion and Cmmunication
+[WeChat group](http://8.135.1.141/file/images/wx-groud.png)
+
+## License
+
+[MIT](https://github.com/jzfai/vue3-admin-templateLICENSE) license.
+
+Copyright (c) 2021-present  kuanghua
+
