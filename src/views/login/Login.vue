@@ -132,9 +132,7 @@ let showPwd = () => {
     passwordType.value = 'password'
   }
   proxy.$nextTick(() => {
-    console.log(proxy.$refs.password)
-    let refPassword = null
-    proxy.$refs["'password'"].focus()
+    proxy.$refs['password'].focus()
   })
 }
 </script>
