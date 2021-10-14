@@ -1,7 +1,8 @@
 import { loginReq, logoutReq, getInfoReq } from '@/api/user'
 import { setToken, removeToken } from '@/utils/auth'
-// import { resetRouter } from '@/router'
 import { ObjTy } from '@/types/common'
+import { UserTy } from '@/types/store'
+import settings from '@/settings'
 
 //token: getToken(),
 
@@ -9,18 +10,19 @@ const getDefaultState = () => {
   return {
     //token: getToken(),
     username: '',
-    avatar: ''
+    avatar: '',
+    roles: []
   }
 }
 
 const state = getDefaultState()
 
 const mutations = {
-  SET_NAME: (state: UserTy, username: string) => {
+  M_username: (state: UserTy, username: string) => {
     state.username = username
   },
-  SET_AVATAR: (state: UserTy, avatar: string) => {
-    state.avatar = avatar
+  M_roles: (state: UserTy, roles: Array<string>) => {
+    state.roles = roles
   }
 }
 
@@ -53,8 +55,17 @@ const actions = {
           if (!data) {
             return reject('Verification failed, please Login again.')
           }
-          const { username } = data
-          commit('SET_NAME', username)
+          //此处模拟数据
+          const rolesArr: any = localStorage.getItem('roles')
+          if (rolesArr) {
+            data.roles = JSON.parse(rolesArr)
+          } else {
+            data.roles = ['admin']
+            localStorage.setItem('roles', JSON.stringify(data.roles))
+          }
+          const { roles, username } = data
+          commit('M_username', username)
+          commit('M_roles', roles)
           // commit('SET_AVATAR', avatar)
           resolve(data)
         })

@@ -157,9 +157,7 @@ export const constantRoutes: RouterTy = [
         meta: { title: 'Error Log', icon: 'bug' }
       }
     ]
-  }
-]
-export const asyncRoutes: RouterTy = [
+  },
   {
     path: '/writing-demo',
     component: Layout,
@@ -197,10 +195,75 @@ export const asyncRoutes: RouterTy = [
         meta: { title: 'Parent-Children' }
       }
     ]
-  },
-  // 404 page must be placed at the end !!!
-  // using pathMatch install of "*" in vue-router 4.0
-  { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
+  }
+]
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes: RouterTy = [
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/page',
+    alwaysShow: true, // will always show the root menu
+    name: 'Permission',
+    meta: {
+      title: 'Permission',
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'roleIndex',
+        component: () => import('@/views/permission/index'),
+        name: 'Permission',
+        meta: {
+          title: 'role Index'
+          //roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'page',
+        component: () => import('@/views/permission/page'),
+        name: 'PagePermission',
+        meta: {
+          title: 'Page Permission',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'directive',
+        component: () => import('@/views/permission/directive'),
+        name: 'DirectivePermission',
+        meta: {
+          title: 'Directive Permission'
+          // if do not set roles, means: this page does not require permission
+        }
+      },
+      {
+        path: 'code-index',
+        component: () => import('@/views/permission/CodePermission'),
+        name: 'CodePermission',
+        meta: {
+          title: 'Code Index'
+        }
+      },
+      {
+        path: 'code-page',
+        component: () => import('@/views/permission/CodePage'),
+        name: 'CodePage',
+        meta: {
+          title: 'Code Page',
+          code: 1
+        }
+      },
+
+      // 404 page must be placed at the end !!!
+      // using pathMatch install of "*" in vue-router 4.0
+      { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
+    ]
+  }
 ]
 
 const router: Router = createRouter({

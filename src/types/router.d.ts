@@ -15,6 +15,8 @@ interface RouteItemTy {
     affix?: boolean
     activeMenu?: string
     breadcrumb?: boolean
+    roles?: Array<string>
+    code?: number
   }
   children?: RouterTy
   redirect?: string

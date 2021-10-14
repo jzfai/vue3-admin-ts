@@ -1,5 +1,7 @@
+import { StateTy } from '@/types/store'
+
 const getters = {
-  device: (state: statTy) => state.app.device,
-  cachedViews: (state: statTy) => state.app.cachedViews
+  device: (state: StateTy) => state.app.device,
+  cachedViews: (state: StateTy) => state.app.cachedViews
 }
 export default getters

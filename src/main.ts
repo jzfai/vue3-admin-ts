@@ -32,7 +32,9 @@ app.component('svg-icon', svgIcon)
 //global mount moment-mini
 import $momentMini from 'moment-mini'
 app.config.globalProperties.$momentMini = $momentMini
-
+//import global directive
+import directive from '@/directive'
+directive(app)
 //import router  intercept
 import './permission'
 

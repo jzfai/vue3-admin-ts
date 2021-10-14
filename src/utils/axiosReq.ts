@@ -4,7 +4,7 @@ import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 import { getToken, setToken } from '@/utils/auth'
 import { AxiosConfigTy, AxiosReqTy } from '@/types/common'
 let requestData: any
-let loadingE: any
+let loadingE: boolean
 
 const service: any = axios.create({
   // baseURL: process.env.VUE_APP_BASE_URL,

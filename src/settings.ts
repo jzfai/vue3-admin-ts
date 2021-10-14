@@ -1,4 +1,4 @@
-interface settingTy {
+interface SettingTy {
   title: string
   fixedHeader: boolean
   sidebarLogo: boolean
@@ -8,13 +8,14 @@ interface settingTy {
   showHamburger: boolean
   isNeedLogin: boolean
   isNeedNprogress: boolean
-  needTagsView: boolean
+  showTagsView: boolean
   tagsViewNum: number
   openProdMock: boolean
   errorLog: string | Array<string>
+  permissionMode: string
 }
 
-const setting: settingTy = {
+const setting: SettingTy = {
   title: 'Vue3 Admin Ts',
   /**
    * @type {boolean} true | false
@@ -58,7 +59,7 @@ const setting: settingTy = {
    * @type {boolean} true | false
    * @description Whether show TagsView
    */
-  needTagsView: true,
+  showTagsView: true,
   /**
    * @description TagsView show number
    */
@@ -75,7 +76,11 @@ const setting: settingTy = {
    * The default is only used in the production env
    * If you want to also use it in dev, you can pass ['build', 'serve']
    */
-  errorLog: ['serve', 'build']
+  errorLog: ['build'],
+  /**
+   * @type {string} 'roles' | 'code'
+   */
+  permissionMode: 'roles'
 }
 
 export default setting
