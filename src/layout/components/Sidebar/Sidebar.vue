@@ -66,5 +66,8 @@ const activeMenu = computed(() => {
   .el-menu {
     border-right: none;
   }
+  .el-scrollbar__wrap {
+    padding-bottom: 8vh;
+  }
 }
 </style>

@@ -17,8 +17,8 @@ export default {
   name: 'Login'
   // computed: {
   //   ...mapState({
-  //     opened: (state: statTy) => state.app,
-  //     opened2: (state: statTy) => state.app
+  //     opened: (state: StatTy) => state.app,
+  //     opened2: (state: StatTy) => state.app
   //   })
   // }
 }

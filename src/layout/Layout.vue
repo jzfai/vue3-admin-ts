@@ -2,11 +2,11 @@
   <div :class="classObj" class="layout-wrapper">
     <!--left side-->
     <Sidebar class="sidebar-container" v-if="settings.showLeftMenu" />
-    <!--right side-->
+    <!--right container-->
     <div class="main-container">
       <div>
         <Navbar />
-        <TagsView v-if="settings.needTagsView" />
+        <TagsView v-if="settings.showTagsView" />
       </div>
       <AppMain />
     </div>

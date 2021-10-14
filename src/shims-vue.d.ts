@@ -8,4 +8,4 @@ declare module '*.vue' {
 declare module './*'
 declare module '@/*'
 declare module '@/hooks'
-declare module 'js-cookie'
+declare module '*'

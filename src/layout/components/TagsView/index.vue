@@ -16,22 +16,6 @@
         <span v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </div>
-    <!--    <scroll-pane ref="refScrollPane" class="tags-view-wrapper" @scroll="handleScroll">-->
-    <!--      <router-link-->
-    <!--        v-for="tag in visitedViews"-->
-    <!--        ref="refTag"-->
-    <!--        :key="tag.path"-->
-    <!--        :class="isActive(tag) ? 'active' : ''"-->
-    <!--        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"-->
-    <!--        tag="span"-->
-    <!--        class="tags-view-item"-->
-    <!--        @click.middle="!isAffix(tag) ? closeSelectedTag(tag) : ''"-->
-    <!--        @contextmenu.prevent="openMenu(tag, $event)"-->
-    <!--      >-->
-    <!--        {{ tag.title }}-->
-    <!--        <span v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />-->
-    <!--      </router-link>-->
-    <!--    </scroll-pane>-->
     <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
       <li @click="refreshSelectedTag(selectedTag)">Refresh</li>
       <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">Close</li>
@@ -149,23 +133,6 @@ const addTags = () => {
   }
   return false
 }
-// const refTag = ref(null)
-// const refScrollPane = ref(null)
-// const moveToCurrentTag = () => {
-//   proxy.$nextTick(() => {
-//     // console.log('refTag', tag)
-//     for (const tag of tag.value.tag) {
-//       if (tag.to.path === proxy.$route.path) {
-//         refScrollPane.value.moveToTarget(tag)
-//         // when query is different then update
-//         if (tag.to.fullPath !== proxy.$route.fullPath) {
-//           store.dispatch('tagsView/updateVisitedView', proxy.$route)
-//         }
-//         break
-//       }
-//     }
-//   })
-// }
 
 const refreshSelectedTag = (view: RouteItemTy) => {
   store.dispatch('tagsView/delCachedView', view).then(() => {
@@ -252,7 +219,7 @@ let { visible, top, left, selectedTag } = toRefs(state)
       display: inline-block;
       position: relative;
       cursor: pointer;
-      height: 26px;
+      height: 27px;
       line-height: 26px;
       border: 1px solid #d8dce5;
       color: #495060;
@@ -312,6 +279,7 @@ let { visible, top, left, selectedTag } = toRefs(state)
 //reset element css of el-icon-close
 .tags-view-wrapper {
   .tags-view-item {
+    border-radius: 3px;
     .el-icon-close {
       width: 16px;
       height: 16px;

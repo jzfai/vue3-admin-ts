@@ -9,14 +9,12 @@ module.exports = {
     node: true
   },
   globals: {
+    defineEmits: true,
     document: true,
     localStorage: true,
     window: true,
     defineProps: true,
-    defineEmits: true,
-    defineExpose: true,
-    ObjTy: true,
-    axiosConfigTy: true
+    defineExpose: true
   },
   extends: [
     'plugin:vue/vue3-essential',
@@ -29,9 +27,11 @@ module.exports = {
     ecmaVersion: 2021
   },
   rules: {
+    'linebreak-style': ['error', 'unix'],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/no-absolute-path': 'off',
+    'no-async-promise-executor': 'off',
     'import/no-extraneous-dependencies': 'off',
     'vue/no-multiple-template-root': 'off',
     'vue/html-self-closing': 'off',
@@ -44,8 +44,8 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': ['off'],
     'vue/no-setup-props-destructure': ['off'],
     '@typescript-eslint/no-empty-function': ['off'],
-    //这个为了适配script-setup的变量问题
-    //'@typescript-eslint/no-unused-vars': ['off'],
+    //can config  to 2 if need more then required
+    '@typescript-eslint/no-unused-vars': [1],
     'no-param-reassign': ['off']
   },
   overrides: [
