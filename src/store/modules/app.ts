@@ -1,4 +1,5 @@
 import { ObjTy } from '@/types/common'
+import { AppTy } from '@/types/store'
 
 const state: AppTy = {
   sidebar: {

@@ -2,8 +2,6 @@ import { loginReq, logoutReq, getInfoReq } from '@/api/user'
 import { setToken, removeToken } from '@/utils/auth'
 import { ObjTy } from '@/types/common'
 import { UserTy } from '@/types/store'
-import settings from '@/settings'
-
 //token: getToken(),
 
 const getDefaultState = () => {
