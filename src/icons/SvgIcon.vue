@@ -35,7 +35,7 @@ export default defineComponent({
 })
 </script>
 
-<style scope>
+<style scope lang="scss">
 .sub-el-icon,
 .nav-icon {
   display: inline-block;
@@ -45,11 +45,10 @@ export default defineComponent({
 }
 
 .svg-icon {
-  position: relative;
-  top: -0.07em;
   width: 1em;
   height: 1em;
+  position: relative;
   fill: currentColor;
-  vertical-align: middle;
+  vertical-align: -2px;
 }
 </style>

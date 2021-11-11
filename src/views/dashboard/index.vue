@@ -2,9 +2,18 @@
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ username }}</div>
   </div>
+
+  <div>update element-plus to 1.2.+, add svg icon, icon-font is abandoned</div>
+  <i class="el-icon-add-location">abandoned</i>
+  <div>
+    <el-icon>
+      <Svg.Edit></Svg.Edit>
+    </el-icon>
+  </div>
 </template>
 
 <script setup lang="ts">
+import * as Svg from '@element-plus/icons'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 
