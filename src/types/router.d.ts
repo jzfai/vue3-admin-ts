@@ -16,6 +16,7 @@ interface RouteItemTy {
     activeMenu?: string
     breadcrumb?: boolean
     roles?: Array<string>
+    elSvgIcon?: string
     code?: number
   }
   children?: RouterTy

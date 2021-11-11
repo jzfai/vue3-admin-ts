@@ -13,6 +13,7 @@ interface SettingTy {
   openProdMock: boolean
   errorLog: string | Array<string>
   permissionMode: string
+  delWindowHeight: string
 }
 
 const setting: SettingTy = {
@@ -54,7 +55,8 @@ const setting: SettingTy = {
    * @description Whether need nprogress
    */
   isNeedNprogress: true,
-
+  //table height(100vh-delWindowHeight)
+  delWindowHeight: '210px',
   /**
    * @type {boolean} true | false
    * @description Whether show TagsView
