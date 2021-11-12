@@ -19,7 +19,7 @@ router.beforeEach(async (to: any, from, next: any) => {
    * 1.是否与token 没有去登录页 ,有 如果要去登录页则重定向到首页。没有, 重新定向到登录页
    * 2.判断是否权限筛选,是,直接放行。没有，筛选动态路由后，添加动态路由然后放行，
    * */
-  const hasToken: string = settings.isNeedLogin ? getToken() : 'temp_token'
+  const hasToken: string | null = settings.isNeedLogin ? getToken() : 'temp_token'
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
