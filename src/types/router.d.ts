@@ -18,6 +18,8 @@ interface RouteItemTy {
     roles?: Array<string>
     elSvgIcon?: string
     code?: number
+    cachePage?: boolean
+    leaveRmCachePage?: boolean
   }
   children?: RouterTy
   redirect?: string

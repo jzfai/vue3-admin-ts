@@ -4,8 +4,6 @@ import { AppTy } from '@/types/store'
 const state: AppTy = {
   sidebar: {
     opened: true
-    //opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
-    // withoutAnimation: false
   },
   device: 'desktop',
   cachedViews: []

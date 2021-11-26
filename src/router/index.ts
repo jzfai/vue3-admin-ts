@@ -44,6 +44,66 @@ export const constantRoutes: RouterTy = [
     ]
   },
   {
+    path: '/writing-demo',
+    component: Layout,
+    meta: { title: 'Writing Demo', icon: 'eye-open' },
+    alwaysShow: true,
+    children: [
+      {
+        path: 'hook',
+        component: () => import('@/views/example/hook/Hook.vue'),
+        name: 'Hook',
+        meta: { title: 'Hook-Demo' }
+      },
+      {
+        path: 'vuex-use',
+        component: () => import('@/views/example/vuex-use/VuexUse.vue'),
+        name: 'VuexUse',
+        meta: { title: 'Vuex-Demo' }
+      },
+      {
+        path: 'mock-test',
+        component: () => import('@/views/example/mock-test/MockTest.vue'),
+        name: 'MockTest',
+        meta: { title: 'Mock-Demo' }
+      },
+      {
+        path: 'svg-icon',
+        component: () => import('@/views/example/svg-icon/SvgIcon.vue'),
+        name: 'SvgIcon',
+        meta: { title: 'Svg-Demo' }
+      },
+      {
+        path: 'parent-children',
+        component: () => import('@/views/example/parent-children/Parent.vue'),
+        name: 'Parent',
+        meta: { title: 'Parent-Children' }
+      },
+      {
+        path: 'keep-alive',
+        component: () => import('@/views/example/keep-alive'),
+        name: 'KeepAlive',
+        //cachePage: cachePage when page enter, default false
+        //leaveRmCachePage: remove cachePage when page leave, default false
+        meta: { title: 'Keep-Alive', cachePage: true, leaveRmCachePage: false }
+      },
+      {
+        path: 'router-demo-f',
+        name: 'routerDemoF',
+        hidden: true,
+        component: () => import('@/views/example/keep-alive/RouterDemoF.vue'),
+        meta: { title: 'RouterDemo-F', activeMenu: '/writing-demo/keep-alive' }
+      },
+      {
+        path: 'router-demo-s',
+        name: 'routerDemoS',
+        hidden: true,
+        component: () => import('@/views/example/keep-alive/RouterDemoS.vue'),
+        meta: { title: 'RouterDemo-S', activeMenu: '/writing-demo/keep-alive' }
+      }
+    ]
+  },
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
@@ -64,7 +124,6 @@ export const constantRoutes: RouterTy = [
       }
     ]
   },
-
   {
     path: '/form',
     component: Layout,
@@ -156,44 +215,6 @@ export const constantRoutes: RouterTy = [
         component: () => import('@/views/error-log/index'),
         name: 'ErrorLog',
         meta: { title: 'Error Log', icon: 'bug' }
-      }
-    ]
-  },
-  {
-    path: '/writing-demo',
-    component: Layout,
-    meta: { title: 'Writing Demo', icon: 'eye-open' },
-    alwaysShow: true,
-    children: [
-      {
-        path: 'hook',
-        component: () => import('@/views/example/hook/Hook.vue'),
-        name: 'Hook',
-        meta: { title: 'Hook-Demo' }
-      },
-      {
-        path: 'vuex-use',
-        component: () => import('@/views/example/vuex-use/VuexUse.vue'),
-        name: 'VuexUse',
-        meta: { title: 'Vuex-Demo' }
-      },
-      {
-        path: 'mock-test',
-        component: () => import('@/views/example/mock-test/MockTest.vue'),
-        name: 'MockTest',
-        meta: { title: 'Mock-Demo' }
-      },
-      {
-        path: 'svg-icon',
-        component: () => import('@/views/example/svg-icon/SvgIcon.vue'),
-        name: 'SvgIcon',
-        meta: { title: 'Svg-Demo' }
-      },
-      {
-        path: 'parent-children',
-        component: () => import('@/views/example/parent-children/Parent.vue'),
-        name: 'Parent',
-        meta: { title: 'Parent-Children' }
       }
     ]
   }

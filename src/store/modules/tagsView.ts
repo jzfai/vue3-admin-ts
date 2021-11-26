@@ -4,12 +4,10 @@ import { ObjTy } from '@/types/common'
 
 interface tagsViewTy {
   visitedViews: RouterTy
-  cachedViews: RouterTy
 }
 
 const state = {
-  visitedViews: [],
-  cachedViews: []
+  visitedViews: []
 }
 
 const mutations = {
@@ -31,12 +29,6 @@ const mutations = {
       )
     }
   },
-  ADD_CACHED_VIEW: (state: tagsViewTy, view: any) => {
-    if (state.cachedViews.includes(view.name)) return
-    if (!view.meta.noCache) {
-      state.cachedViews.push(view.name)
-    }
-  },
 
   DEL_VISITED_VIEW: (state: tagsViewTy, view: any) => {
     for (const [i, v] of state.visitedViews.entries()) {
@@ -46,32 +38,16 @@ const mutations = {
       }
     }
   },
-  DEL_CACHED_VIEW: (state: tagsViewTy, view: any) => {
-    const index = state.cachedViews.indexOf(view.name)
-    index > -1 && state.cachedViews.splice(index, 1)
-  },
 
   DEL_OTHERS_VISITED_VIEWS: (state: tagsViewTy, view: any) => {
     state.visitedViews = state.visitedViews.filter((v: any) => {
       return v.meta.affix || v.path === view.path
     })
   },
-  DEL_OTHERS_CACHED_VIEWS: (state: tagsViewTy, view: any) => {
-    const index = state.cachedViews.indexOf(view.name)
-    if (index > -1) {
-      state.cachedViews = state.cachedViews.slice(index, index + 1)
-    } else {
-      // if index = -1, there is no cached tags
-      state.cachedViews = []
-    }
-  },
 
   DEL_ALL_VISITED_VIEWS: (state: tagsViewTy) => {
     // keep affix tags
     state.visitedViews = state.visitedViews.filter((tag: RouteItemTy) => tag.meta?.affix)
-  },
-  DEL_ALL_CACHED_VIEWS: (state: tagsViewTy) => {
-    state.cachedViews = []
   },
 
   UPDATE_VISITED_VIEW: (state: tagsViewTy, view: any) => {
@@ -87,22 +63,16 @@ const mutations = {
 const actions = {
   addView({ dispatch }: ObjTy, view: any) {
     dispatch('addVisitedView', view)
-    dispatch('addCachedView', view)
   },
   addVisitedView({ commit }: ObjTy, view: any) {
     commit('ADD_VISITED_VIEW', view)
-  },
-  addCachedView({ commit }: ObjTy, view: any) {
-    commit('ADD_CACHED_VIEW', view)
   },
 
   delView({ dispatch, state }: ObjTy, view: any) {
     return new Promise((resolve) => {
       dispatch('delVisitedView', view)
-      dispatch('delCachedView', view)
       resolve({
-        visitedViews: [...state.visitedViews],
-        cachedViews: [...state.cachedViews]
+        visitedViews: [...state.visitedViews]
       })
     })
   },
@@ -112,20 +82,11 @@ const actions = {
       resolve([...state.visitedViews])
     })
   },
-  delCachedView({ commit, state }: ObjTy, view: any) {
-    return new Promise((resolve) => {
-      commit('DEL_CACHED_VIEW', view)
-      resolve([...state.cachedViews])
-    })
-  },
-
   delOthersViews({ dispatch, state }: ObjTy, view: RouteItemTy) {
     return new Promise((resolve) => {
       dispatch('delOthersVisitedViews', view)
-      dispatch('delOthersCachedViews', view)
       resolve({
-        visitedViews: [...state.visitedViews],
-        cachedViews: [...state.cachedViews]
+        visitedViews: [...state.visitedViews]
       })
     })
   },
@@ -135,20 +96,12 @@ const actions = {
       resolve([...state.visitedViews])
     })
   },
-  delOthersCachedViews({ commit, state }: ObjTy, view: RouteItemTy) {
-    return new Promise((resolve) => {
-      commit('DEL_OTHERS_CACHED_VIEWS', view)
-      resolve([...state.cachedViews])
-    })
-  },
 
   delAllViews({ dispatch, state }: ObjTy, view: RouteItemTy) {
     return new Promise((resolve) => {
       dispatch('delAllVisitedViews', view)
-      dispatch('delAllCachedViews', view)
       resolve({
-        visitedViews: [...state.visitedViews],
-        cachedViews: [...state.cachedViews]
+        visitedViews: [...state.visitedViews]
       })
     })
   },
@@ -156,12 +109,6 @@ const actions = {
     return new Promise((resolve) => {
       commit('DEL_ALL_VISITED_VIEWS')
       resolve([...state.visitedViews])
-    })
-  },
-  delAllCachedViews({ commit, state }: ObjTy) {
-    return new Promise((resolve) => {
-      commit('DEL_ALL_CACHED_VIEWS')
-      resolve([...state.cachedViews])
     })
   },
 
