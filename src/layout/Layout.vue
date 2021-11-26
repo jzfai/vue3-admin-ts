@@ -41,12 +41,6 @@ ResizeHook()
 </script>
 
 <style lang="scss" scoped>
-.layout-wrapper {
-  overflow: hidden;
-  //display: flex;
-  //align-content: start;
-  //justify-content: start;
-}
 .main-container {
   min-height: 100%;
   transition: margin-left 0.28s;

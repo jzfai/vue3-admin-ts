@@ -1,26 +1,28 @@
 <template>
-  <div>getter</div>
-  <el-button @click="getterFunc">获取getter:{{ getterValue }}</el-button>
-  <div class="mt-2">commit</div>
-  <el-button @click="c_openSideBar">c_openSideBar</el-button>
-  <el-button @click="c_closeSideBar">c_closeSideBar</el-button>
-  <div class="mt-2">action</div>
-  <el-button @click="openSideBar">openSideBar</el-button>
-  <el-button @click="closeSideBar">closeSideBar</el-button>
-  <div>是否开启：{{ opened }}</div>
+  <div>
+    <div>getter</div>
+    <el-button @click="getterFunc">获取getter:{{ getterValue }}</el-button>
+    <div class="mt-2">commit</div>
+    <el-button @click="c_openSideBar">c_openSideBar</el-button>
+    <el-button @click="c_closeSideBar">c_closeSideBar</el-button>
+    <div class="mt-2">action</div>
+    <el-button @click="openSideBar">openSideBar</el-button>
+    <el-button @click="closeSideBar">closeSideBar</el-button>
+    <div>是否开启：{{ opened }}</div>
+  </div>
 </template>
 
 <script lang="ts">
 /*可以设置默认的名字*/
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 export default {
-  name: 'Login'
-  // computed: {
-  //   ...mapState({
-  //     opened: (state: StatTy) => state.app,
-  //     opened2: (state: StatTy) => state.app
-  //   })
-  // }
+  name: 'Login',
+  computed: {
+    ...mapState({
+      opened: (state) => state.app,
+      opened2: (state) => state.app
+    })
+  }
 }
 </script>
 
