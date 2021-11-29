@@ -896,18 +896,18 @@
   resolved "https://registry.npmmirror.com/@vue/shared/download/@vue/shared-3.2.23.tgz#e885a2ba099d40b69d5461157f3ade31e46a09a9"
   integrity sha512-U+/Jefa0QfXUF2qVy9Dqlrb6HKJSr9/wJcM66wXmWcTOoqg7hOWzF4qruDle51pyF4x3wMn6TSH54UdjKjCKMA==
 
-"@vueuse/core@^6.7.3":
-  version "6.8.0"
-  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-6.8.0.tgz?cache=0&sync_timestamp=1636163337001&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40vueuse%2Fcore%2Fdownload%2F%40vueuse%2Fcore-6.8.0.tgz#dc004bc30031e053e9ef5011203c4a80f00986ed"
-  integrity sha1-3ABLwwAx4FPp71ARIDxKgPAJhu0=
+"@vueuse/core@^7.0.0":
+  version "7.1.2"
+  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-7.1.2.tgz#61ab2698c725ccaf168676f34cf6f41f76f8df34"
+  integrity sha512-SLoOPfhZdNRNUkZfx+wrHj6WycWdSw2RmNS8E4ngQ2kmBoJjRarGy51/GkGdjqHQqmhuwuFoNO2WaU0yBn3ffg==
   dependencies:
-    "@vueuse/shared" "6.8.0"
+    "@vueuse/shared" "7.1.2"
     vue-demi "*"
 
-"@vueuse/shared@6.8.0":
-  version "6.8.0"
-  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-6.8.0.tgz?cache=0&sync_timestamp=1636163336465&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40vueuse%2Fshared%2Fdownload%2F%40vueuse%2Fshared-6.8.0.tgz#50713b770941293e557a4eae9424cad2aad44a85"
-  integrity sha1-UHE7dwlBKT5Vek6ulCTK0qrUSoU=
+"@vueuse/shared@7.1.2":
+  version "7.1.2"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-7.1.2.tgz#caee72d0669ecdb2b845349e8fea9431e50c09d6"
+  integrity sha512-AjYh4y9S5FMOoHDsysqcXY/1mpqNTrnWUD50yaaiyf+5kGWQVIpAkkjKZlYSC/NHKxxCRn0cLR4nWMzceUWewQ==
   dependencies:
     vue-demi "*"
 
@@ -1728,19 +1728,19 @@ electron-to-chromium@^1.3.896:
   resolved "https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.4.3.tgz#82480df3ef607f04bb38cc3f30a628d8b895339f"
   integrity sha512-hfpppjYhqIZB8jrNb0rNceQRkSnBN7QJl3W26O1jUv3F3BkQknqy1YTqVXkFnIcFtBc3Qnv5M7r5Lez2iOLgZA==
 
-element-plus@^1.2.0-beta.3:
-  version "1.2.0-beta.3"
-  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.2.0-beta.3.tgz#0ded059e6c8ddc6f5d9dcdf32e1b7ed44ac38099"
-  integrity sha512-vvUxR3uL2k9K+WCWz/98hq4uPQ6jvfGf0hfzWvao7pySJkNQq9DtRPC6/4/zUceA/J6Y2Yo3xSbR19JRCwurRw==
+element-plus@^1.2.0-beta.4:
+  version "1.2.0-beta.4"
+  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.2.0-beta.4.tgz#970c7c6307ef7433a84691720cdd4c979116677b"
+  integrity sha512-wYOwa/Zop5xMqhqkS7jOd32FF0Y2IpquIu8JLMbmvwlWvRUVetE5RO5lvxiF6etZgq8urRVttisXnOzJ9YOItQ==
   dependencies:
     "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.10.2"
-    "@vueuse/core" "^6.7.3"
+    "@vueuse/core" "^7.0.0"
     async-validator "^4.0.7"
     dayjs "^1.10.7"
     lodash "^4.17.21"
     memoize-one "^6.0.0"
-    normalize-wheel-es "^1.1.0"
+    normalize-wheel-es "^1.1.1"
 
 emmet@^2.3.0:
   version "2.3.4"
@@ -3278,10 +3278,10 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.npm.taobao.org/normalize-path/download/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha1-Dc1p/yOhybEf0JeDFmRKA4ghamU=
 
-normalize-wheel-es@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmmirror.com/normalize-wheel-es/download/normalize-wheel-es-1.1.0.tgz#db017af1dd5d4c6222c07ae38bc224049d25861e"
-  integrity sha1-2wF68d1dTGIiwHrji8IkBJ0lhh4=
+normalize-wheel-es@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmmirror.com/normalize-wheel-es/download/normalize-wheel-es-1.1.1.tgz#a8096db6a56f94332d884fd8ebeda88f2fc79569"
+  integrity sha1-qAlttqVvlDMtiE/Y6+2ojy/HlWk=
 
 nprogress@^0.2.0:
   version "0.2.0"

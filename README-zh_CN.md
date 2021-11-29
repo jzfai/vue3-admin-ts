@@ -26,8 +26,6 @@ in router page you need add root element,such as div, but is not necessary for c
 fix some issue
 ```
 
-
-
 ## 线上体验
 
 [github address](https://github.com/jzfai/vue3-admin-ts.git)
