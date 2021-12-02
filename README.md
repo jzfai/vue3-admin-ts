@@ -2,7 +2,7 @@
 
 **English** | [中文](./README-zh_CN.md)
 
-> A basic vue3 admin template with  vite2 & Element-Plus UI & axios & svg-icon& permission control & lint
+> vue3 admin plus provides enterprise-level development demo
 
 A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plus ，It's fast!
 
@@ -18,8 +18,8 @@ add domo of 'import export download template' in CRUD
 //11-26
 update vue3 version and so on;
 add keep-alive use demo and router using  demo ，look for "http://8.135.1.141/vue3-admin-template/#/writing-demo/keep-alive"
-add the param cachePage and leaveRmCachePage to route for keep-alive look for https://github.com/jzfai/vue3-admin-template/blob/master/src/router/index.js
-add collection  the error log of img loading fail look for "http://8.135.1.141/vue3-admin-template/#/error-log/log"
+add the param cachePage and leaveRmCachePage to route for keep-alive,look for https://github.com/jzfai/vue3-admin-template/blob/master/src/router/index.js
+add collection the error log of img loading fail,look for "http://8.135.1.141/vue3-admin-template/#/error-log/log"
 in router page you need add root element,such as div, but is not necessary for children component
 fix some issue
 ```
@@ -40,7 +40,7 @@ github 地址：  https://github.com/jzfai/vue3-admin-ts.git
 
 ![template-speed-analysis](http://8.135.1.141/file/images/template-speed-analysis.png)
 
-![template-demo](http://8.135.1.141/file/images/template-demo.png)
+![template-demo](http://8.135.1.141/file/images/plus-demo.png)
 
 
 ## Related items
@@ -59,14 +59,6 @@ The framework is available in js, ts and plus versions
 - [前端proxy跨域，nginx，后端跨域配置介绍， 以及跨域原理简介（基础篇）](https://juejin.cn/post/7029560170451566606)
 - [Vue3 ref和reactive的使用和区别以及响应式原理](https://juejin.cn/post/7029559671648518151)
 
-#### The difference with vue-admin-template
-
-1.The layout method uses flex instead of the previous float, and the float layout method is completely removed, and some layout methods are optimized.
-
-2.Use vue3 (setup-script) to write, replace webpack with vite2, add vue3's jsx writing method, vite2 is faster, use vue3 composition instead of vue2 option api writing, easier to maintain and migrate
-
-3.Simplified some complex logic and optimized the design method of the architecture part
-
 
 #### Comparison of performance between vue3 and vue2
 
@@ -81,7 +73,7 @@ The framework is available in js, ts and plus versions
 - **Rewrite the implementation of virtual DOM and Tree-Shaking**
 
 
-[Comparison of packaging speed between vite2 and webpack](https://github.com/jzfai/vue3-admin-ts/issues/2)
+[Comparison of packaging speed between vite2 and webpack](https://github.com/jzfai/vue3-admin-temlate/issues/2)
 
 ## Build Setup
 
@@ -128,6 +120,7 @@ yarn run lint
 ## Extra
 
 Architecture development is not easy. If you feel good, please give me a **start**. The architecture is still being improved. Welcome to join me in development and become Contributors together! ! ! !
+
 
 ## Browsers support
 
