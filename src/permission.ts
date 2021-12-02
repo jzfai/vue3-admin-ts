@@ -39,8 +39,9 @@ router.beforeEach(async (to: any, from, next: any) => {
             accessRoutes = await store.dispatch('permission/generateRoutes', roles)
           } else {
             accessRoutes = asyncRoutes
-            store.commit('permission/M_routes', accessRoutes)
           }
+          // setting constRouters and accessRoutes to vuex , in order to sideBar for using
+          store.commit('permission/M_routes', accessRoutes)
           // dynamically add accessible routes
           //router4 addRoutes destroyed
           accessRoutes.forEach((route: RouterRowTy) => {

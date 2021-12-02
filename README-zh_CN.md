@@ -4,7 +4,7 @@
 
 
 
-> 这是一个基础的 vue3 admin 管理后台。它只包含了 Element-Plus UI & axios & svg-icon& permission control & lint，这些搭建后台必要的东西。
+> vue3 admin plus 提供企业级开发demo
 
 
 本架构使用的技术为：vue3(setup-script)+vite2+element-plus 的新一代的前端框架，It's fast!
@@ -20,8 +20,8 @@ add domo of 'import export download template' in CRUD
 //11-26
 update vue3 version and so on;
 add keep-alive use demo and router using  demo ，look for "http://8.135.1.141/vue3-admin-template/#/writing-demo/keep-alive"
-add the param cachePage and leaveRmCachePage to route for keep-alive look for https://github.com/jzfai/vue3-admin-template/blob/master/src/router/index.js
-add collection  the error log of img loading fail look for "http://8.135.1.141/vue3-admin-template/#/error-log/log"
+add the param cachePage and leaveRmCachePage to route for keep-alive,look for https://github.com/jzfai/vue3-admin-template/blob/master/src/router/index.js
+add collection the error log of img loading fail,look for "http://8.135.1.141/vue3-admin-template/#/error-log/log"
 in router page you need add root element,such as div, but is not necessary for children component
 fix some issue
 ```
@@ -43,7 +43,7 @@ github 地址：  https://github.com/jzfai/vue3-admin-ts.git
 
 ![template-speed-analysis](http://8.135.1.141/file/images/template-speed-analysis.png)
 
-![template-demo](http://8.135.1.141/file/images/template-demo.png)
+![template-demo](http://8.135.1.141/file/images/plus-demo.png)
 
 ## 相关项目
 
@@ -64,17 +64,7 @@ github 地址：  https://github.com/jzfai/vue3-admin-ts.git
 - [前端proxy跨域，nginx，后端跨域配置介绍， 以及跨域原理简介（基础篇）](https://juejin.cn/post/7029560170451566606)
 - [Vue3 ref和reactive的使用和区别以及响应式原理](https://juejin.cn/post/7029559671648518151)
 
-#### 和 vue-admin-template 的区别
-
-1.布局方式全部采用 flex 代替以前的 float，float 布局方式全部移除,优化了部分布局方式
-
-2.采用 vue3(setup-script)书写，用 vite2 替换 webpack，加入了 vue3 的 jsx 写法，vite2速度更快,使用vue3 的 composition 代替 vue2 option api 写法，更易维护和迁移
-
-3.简化了部分复杂的逻辑，优化了架构部分设计方式
-
-
-
-vue3和vue2在性能上的对比
+#### vue3和vue2在性能上的对比
 
 - 打包大小减少41%
 
@@ -86,7 +76,7 @@ vue3和vue2在性能上的对比
 
 - **重写虚拟DOM的实现和Tree-Shaking**
 
-[vite2和webpack打包速度上的对比](https://github.com/jzfai/vue3-admin-template/issues/2)
+[vite2和webpack打包速度上的对比](https://github.com/jzfai/vue3-admin-ts/issues/2)
 
 ## 构建步骤
 
@@ -148,14 +138,14 @@ yarn run lint
   - lint
 
 - 全局功能
-  #- 国际化多语言
+  - 国际化多语言
   #- 多种动态换肤
   - 动态侧边栏（支持多级路由嵌套）
   - 动态面包屑
   - 快捷导航(标签页)
   - Svg Sprite 图标
   - 本地/后端 mock 数据
-  #- Screenfull全屏
+  - Screenfull全屏
   - 自适应收缩侧边栏
 
 - 编辑器
