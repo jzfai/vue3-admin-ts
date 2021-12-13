@@ -14,6 +14,7 @@ interface SettingTy {
   errorLog: string | Array<string>
   permissionMode: string
   delWindowHeight: string
+  tmpToken: string
 }
 
 const setting: SettingTy = {
@@ -82,7 +83,11 @@ const setting: SettingTy = {
   /**
    * @type {string} 'roles' | 'code'
    */
-  permissionMode: 'roles'
+  permissionMode: 'roles',
+  /*
+   * setting dev token when  isNeedLogin is setting false
+   * */
+  tmpToken: 'tmp_token'
 }
 
 export default setting

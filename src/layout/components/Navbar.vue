@@ -25,7 +25,7 @@
             <router-link to="/">
               <el-dropdown-item>Home</el-dropdown-item>
             </router-link>
-            <a target="_blank" href="https://github.com/jzfai/vue3-admin-template">
+            <a target="_blank" href="https://github.com/jzfai/vue3-admin-ts">
               <el-dropdown-item>Github</el-dropdown-item>
             </a>
             <a target="_blank" href="https://juejin.cn/post/7036302298435289095">
@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { CaretBottom } from '@element-plus/icons'
+import { CaretBottom } from '@element-plus/icons-vue'
 import Breadcrumb from './Breadcrumb'
 import Hamburger from './Hamburger'
 import { computed, getCurrentInstance } from 'vue'

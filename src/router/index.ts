@@ -10,7 +10,7 @@ export const constantRoutes: RouterTy = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index')
+        component: () => import('@/views/redirect')
       }
     ]
   },
@@ -21,12 +21,12 @@ export const constantRoutes: RouterTy = [
   },
   {
     path: '/404',
-    component: () => import('@/views/error-page/404'),
+    component: () => import('@/views/error-page/404.vue'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/error-page/401'),
+    component: () => import('@/views/error-page/401.vue'),
     hidden: true
   },
   {
@@ -37,7 +37,7 @@ export const constantRoutes: RouterTy = [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: () => import('@/views/dashboard/index'),
+        component: () => import('@/views/dashboard/index.vue'),
         //using el svg icon, the elSvgIcon first when at the same time using elSvgIcon and icon
         meta: { title: 'Dashboard', elSvgIcon: 'Fold' }
       }
@@ -113,13 +113,13 @@ export const constantRoutes: RouterTy = [
       {
         path: 'table',
         name: 'Table',
-        component: () => import('@/views/table/index'),
+        component: () => import('@/views/table/index.vue'),
         meta: { title: 'Table', icon: 'table' }
       },
       {
         path: 'tree',
         name: 'Tree',
-        component: () => import('@/views/tree/index'),
+        component: () => import('@/views/tree/index.vue'),
         meta: { title: 'Tree', icon: 'tree' }
       }
     ]
@@ -131,7 +131,7 @@ export const constantRoutes: RouterTy = [
       {
         path: 'index',
         name: 'Form',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/form/index.vue'),
         meta: { title: 'Form', icon: 'table' }
       }
     ]
@@ -149,31 +149,31 @@ export const constantRoutes: RouterTy = [
     children: [
       {
         path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        component: () => import('@/views/nested/menu1/index.vue'), // Parent router-view
         name: 'Menu1',
         meta: { title: 'Menu1' },
         children: [
           {
             path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
+            component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
             name: 'Menu1-1',
             meta: { title: 'Menu1-1' }
           },
           {
             path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
+            component: () => import('@/views/nested/menu1/menu1-2/index.vue'),
             name: 'Menu1-2',
             meta: { title: 'Menu1-2' },
             children: [
               {
                 path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
                 name: 'Menu1-2-1',
                 meta: { title: 'Menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
                 name: 'Menu1-2-2',
                 meta: { title: 'Menu1-2-2' }
               }
@@ -181,7 +181,7 @@ export const constantRoutes: RouterTy = [
           },
           {
             path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
+            component: () => import('@/views/nested/menu1/menu1-3/index.vue'),
             name: 'Menu1-3',
             meta: { title: 'Menu1-3' }
           }
@@ -189,7 +189,7 @@ export const constantRoutes: RouterTy = [
       },
       {
         path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
+        component: () => import('@/views/nested/menu2/index.vue'),
         name: 'Menu2',
         meta: { title: 'menu2' }
       }
@@ -238,7 +238,7 @@ export const asyncRoutes: RouterTy = [
     children: [
       {
         path: 'roleIndex',
-        component: () => import('@/views/permission/index'),
+        component: () => import('@/views/permission'),
         name: 'Permission',
         meta: {
           title: 'role Index'
@@ -247,7 +247,7 @@ export const asyncRoutes: RouterTy = [
       },
       {
         path: 'page',
-        component: () => import('@/views/permission/page'),
+        component: () => import('@/views/permission/page.vue'),
         name: 'PagePermission',
         meta: {
           title: 'Page Permission',
@@ -256,7 +256,7 @@ export const asyncRoutes: RouterTy = [
       },
       {
         path: 'directive',
-        component: () => import('@/views/permission/directive'),
+        component: () => import('@/views/permission/directive.vue'),
         name: 'DirectivePermission',
         meta: {
           title: 'Directive Permission'
@@ -265,7 +265,7 @@ export const asyncRoutes: RouterTy = [
       },
       {
         path: 'code-index',
-        component: () => import('@/views/permission/CodePermission'),
+        component: () => import('@/views/permission/CodePermission.vue'),
         name: 'CodePermission',
         meta: {
           title: 'Code Index'
@@ -273,7 +273,7 @@ export const asyncRoutes: RouterTy = [
       },
       {
         path: 'code-page',
-        component: () => import('@/views/permission/CodePage'),
+        component: () => import('@/views/permission/CodePage.vue'),
         name: 'CodePage',
         meta: {
           title: 'Code Page',
