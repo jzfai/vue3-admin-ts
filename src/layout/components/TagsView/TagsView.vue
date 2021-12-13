@@ -28,7 +28,7 @@
 <script setup lang="ts">
 // import ScrollPane from './ScrollPane'
 import path from 'path'
-import { Close } from '@element-plus/icons'
+import { Close } from '@element-plus/icons-vue'
 import { onMounted, getCurrentInstance, watch, toRefs, reactive, computed } from 'vue'
 //获取store和router
 import { useRouter } from 'vue-router'
@@ -133,14 +133,11 @@ const addTags = () => {
   }
   return false
 }
-
 const refreshSelectedTag = (view: RouteItemTy) => {
-  store.dispatch('tagsView/delCachedView', view).then(() => {
-    const { fullPath } = view
-    proxy.$nextTick(() => {
-      proxy.$router.replace({
-        path: '/redirect' + fullPath
-      })
+  const { fullPath } = view
+  proxy.$nextTick(() => {
+    proxy.$router.replace({
+      path: '/redirect' + fullPath
     })
   })
 }
@@ -153,9 +150,7 @@ const closeSelectedTag = (view: RouteItemTy) => {
 }
 const closeOthersTags = () => {
   proxy.$router.push(state.selectedTag)
-  store.dispatch('tagsView/delOthersViews', state.selectedTag).then(() => {
-    // moveToCurrentTag()
-  })
+  store.dispatch('tagsView/delOthersViews', state.selectedTag)
 }
 const closeAllTags = (view: RouteItemTy) => {
   store.dispatch('tagsView/delAllViews').then(({ visitedViews }) => {

@@ -4,5 +4,3 @@ node_modules
 .husky
 dist
 *.d.ts
-*.svg
-yarn.lock
