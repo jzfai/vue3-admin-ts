@@ -7,9 +7,15 @@ import viteSvgIcons from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 import setting from './src/settings'
 const prodMock = setting.openProdMock
-export default ({ command }: any) => {
+import packageJson from './package.json'
+// import { loadEnv } from 'vite'
+export default ({ command, mode }: any) => {
   return {
-    base: '/',
+    /*
+     * "/vue3-admin-ts" nginx deploy folder
+     * detail to look https://vitejs.cn/config/#base
+     * */
+    base: `/${packageJson.name}/`,
     define: {
       'process.platform': null,
       'process.version': null
