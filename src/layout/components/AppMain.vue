@@ -1,11 +1,16 @@
 <template>
-  <div class="app-main" :class="{ 'show-tag-view': setting.showTagsView }">
+  <div class="app-main" :class="{ 'show-tag-view': settings.showTagsView }">
     <router-view v-slot="{ Component }">
-      <transition name="fade-transform" mode="out-in">
+      <!--has transition  Judging by settings.mainNeedAnimation-->
+      <transition name="fade-transform" mode="out-in" v-if="settings.mainNeedAnimation">
         <keep-alive :include="cachedViews">
           <component :is="Component" :key="key" />
         </keep-alive>
       </transition>
+      <!-- no transition -->
+      <keep-alive :include="cachedViews" v-else>
+        <component :is="Component" :key="key" />
+      </keep-alive>
     </router-view>
   </div>
 </template>
@@ -18,6 +23,9 @@ import { useStore } from 'vuex'
 import { ObjTy } from '@/types/common'
 let store = useStore()
 let route = useRoute()
+let settings = computed(() => {
+  return store.state.app.settings
+})
 
 // cachePage: is true, keep-alive this Page
 // leaveRmCachePage: is true, keep-alive remote when page leave

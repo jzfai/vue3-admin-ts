@@ -7,15 +7,18 @@ import viteSvgIcons from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 import setting from './src/settings'
 const prodMock = setting.openProdMock
-import packageJson from './package.json'
+// import packageJson from './package.json'
 // import { loadEnv } from 'vite'
 export default ({ command, mode }: any) => {
   return {
     /*
-     * "/vue3-admin-ts" nginx deploy folder
+     * "/vue3-admin-plus" nginx deploy folder
      * detail to look https://vitejs.cn/config/#base
+     * how to config, such as http://8.135.1.141/vue3-admin-plus/#/dashboard
+     * "/vue3-admin-plus/" --> config to base is you need
+     * http://8.135.1.141 --> if you config "/" , you can visit attached  to http://8.135.1.141
      * */
-    base: `/${packageJson.name}/`,
+    base: setting.viteBasePath,
     define: {
       'process.platform': null,
       'process.version': null
@@ -24,9 +27,9 @@ export default ({ command, mode }: any) => {
     server: {
       hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
       // 服务配置
-      port: 5003, // 类型： number 指定服务器端口;
+      port: 5001, // 类型： number 指定服务器端口;
       open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
-      cors: false // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
+      cors: true // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
       //proxy look for https://vitejs.cn/config/#server-proxy
       // proxy: {
       //   '/api': {
@@ -49,7 +52,7 @@ export default ({ command, mode }: any) => {
         // appoint svg icon using mode
         symbolId: 'icon-[dir]-[name]'
       }),
-      //https://blog.csdn.net/weixin_42067720/article/details/115579817
+      //https://github.com/anncwb/vite-plugin-mock/blob/HEAD/README.zh_CN.md
       viteMockServe({
         supportTs: true,
         mockPath: 'mock',
@@ -69,8 +72,10 @@ export default ({ command, mode }: any) => {
       chunkSizeWarningLimit: 2000,
       //remote console.log in prod
       terserOptions: {
+        //detail to look https://terser.org/docs/api-reference#compress-options
         compress: {
-          drop_console: true,
+          drop_console: false,
+          pure_funcs: ['console.log', 'console.info'],
           drop_debugger: true
         }
       },
@@ -89,7 +94,8 @@ export default ({ command, mode }: any) => {
         '~': resolve(__dirname, './'),
         '@': resolve(__dirname, 'src')
       }
-      //extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs']
+      //why remove it , look for https://github.com/vitejs/vite/issues/6026
+      // extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs']
     },
     css: {
       preprocessorOptions: {

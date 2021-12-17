@@ -1,11 +1,12 @@
 import { ObjTy } from '@/types/common'
 import { AppTy } from '@/types/store'
-
+import defaultSettings from '@/settings'
 const state: AppTy = {
   sidebar: {
     opened: true
   },
   device: 'desktop',
+  settings: defaultSettings,
   cachedViews: []
 }
 

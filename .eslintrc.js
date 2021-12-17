@@ -1,5 +1,4 @@
-//https://blog.csdn.net/Sheng_zhenzhen/article/details/108685176
-//
+// https://blog.csdn.net/Sheng_zhenzhen/article/details/108685176
 module.exports = {
   root: true,
   env: {
@@ -27,7 +26,8 @@ module.exports = {
     ecmaVersion: 2021
   },
   rules: {
-    'linebreak-style': ['error', 'unix'],
+    //close lf error
+    'linebreak-style': ['off'],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/no-absolute-path': 'off',
@@ -44,16 +44,9 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': ['off'],
     'vue/no-setup-props-destructure': ['off'],
     '@typescript-eslint/no-empty-function': ['off'],
+    'vue/script-setup-uses-vars': ['off'],
     //can config  to 2 if need more then required
-    '@typescript-eslint/no-unused-vars': [1],
+    '@typescript-eslint/no-unused-vars': [0],
     'no-param-reassign': ['off']
-  },
-  overrides: [
-    {
-      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
-      env: {
-        jest: true
-      }
-    }
-  ]
+  }
 }

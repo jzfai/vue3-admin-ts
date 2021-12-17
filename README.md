@@ -85,8 +85,8 @@ using the browser to open http://localhost:5001
 ## Build
 
 ```bash
-# build for dev environment
-yarn run build-serve
+# build for test environment
+yarn run build-test
 
 # build for production environment
 yarn run  build
@@ -95,9 +95,6 @@ yarn run  build
 ## Others
 
 ```bash
-# preview the dev environment effect
-yarn run preview:build-serve
-
 # preview the release environment effect
 yarn run preview
 

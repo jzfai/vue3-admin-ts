@@ -1,5 +1,6 @@
 /*vuex ts*/
 import { RouterTy } from '@/types/router'
+import { ObjTy } from '@/types/common'
 
 interface StateTy {
   app: AppTy
@@ -19,7 +20,8 @@ interface AppTy {
     //opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
     // withoutAnimation: false
   }
-  device: 'desktop'
+  device: string
+  settings: ObjTy
   cachedViews: Array<string>
 }
 interface PermissionTy {
