@@ -85,7 +85,7 @@ const consoleErrorFun = () => {
 const normalError = () => {
   throw new Error(' throw new Error("")\n')
 }
-let { proxy } = getCurrentInstance()
+let { proxy }: any = getCurrentInstance()
 let updateReq = () => {
   return proxy
     .$axiosReq({

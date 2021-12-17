@@ -55,7 +55,7 @@ const normalError = () => {
   throw new Error(' throw new Error("")\n')
 }
 
-let { proxy } = getCurrentInstance()
+let { proxy }: any = getCurrentInstance()
 let reqCrossOrigin = () => {
   proxy
     .$axiosReq({
@@ -70,6 +70,7 @@ let reqCrossOrigin = () => {
 }
 
 import axiosReq from '@/utils/axiosReq'
+import { ObjTy } from '@/types/common'
 let req404 = () => {
   axiosReq({
     // baseURL: 'http://8.135.1.141/micro-service-test',
@@ -78,7 +79,7 @@ let req404 = () => {
     method: 'put',
     isParams: true,
     bfLoading: true
-  }).then((res) => {})
+  }).then((res: ObjTy) => {})
   //the error will collection to unhandledrejection if you  no catch
   // .catch((err) => {})
 }

@@ -117,7 +117,7 @@ export default {
 import { Delete } from '@element-plus/icons-vue'
 import { onMounted, getCurrentInstance, ref, reactive, onActivated, onDeactivated } from 'vue'
 import settings from '@/settings'
-let { proxy } = getCurrentInstance()
+let { proxy }: any = getCurrentInstance()
 import bus from '@/utils/bus'
 /*
  * 一般根据页面层次来排序 如此页面 表格查询和筛选->table的操作
@@ -131,13 +131,10 @@ onMounted(() => {
 const errorLogProd = () => {
   throw new Error('产生的错误日志')
 }
-const consoleToPlatform = (err) => {
+const consoleToPlatform = (err: any) => {
   //加个custom不收集
   console.error('custom' + err)
 }
-
-let data: Array<ObjTy> = []
-console.log(data)
 
 //img loader err test
 let imgShow = ref(false)
@@ -147,7 +144,7 @@ const errorLogImg = () => {
 
 /*表格查询和筛选*/
 let usertableData = ref([])
-let searchFormMixin = reactive({
+let searchFormMixin: ObjTy = reactive({
   errorLog: '',
   pageUrl: '8.135.1.141',
   createTime: '',
@@ -169,15 +166,15 @@ let selectPageReq = () => {
     bfLoading: false,
     isAlertErrorMsg: false
   }
-  proxy.$axiosReq(reqConfig).then((resData) => {
+  proxy.$axiosReq(reqConfig).then((resData: any) => {
     usertableData.value = resData.data?.records
     proxy.pageTotalMixin = resData.data?.total
   })
 }
 import tablePageHook from '@/hooks/useTablePage'
-import { ObjTy } from '@/types/common'
+
 let { pageNum, pageSize, handleCurrentChange, handleSizeChange } = tablePageHook(selectPageReq)
-const dateTimePacking = (timeArr) => {
+const dateTimePacking = (timeArr: Array<string>) => {
   if (timeArr && timeArr.length === 2) {
     searchFormMixin.startTime = timeArr[0]
     searchFormMixin.endTime = timeArr[1]
@@ -199,9 +196,9 @@ const searchBtnClick = () => {
 
 /*添加和修改*/
 /*详情*/
-let detailData = ref({})
+let detailData: ObjTy = ref({})
 /*删除*/
-let deleteByIdReq = (id) => {
+let deleteByIdReq = (id: number) => {
   return proxy.$axiosReq({
     url: '/ty-user/errorCollection/deleteById',
     data: { id: id },
@@ -210,7 +207,10 @@ let deleteByIdReq = (id) => {
     bfLoading: true
   })
 }
-let tableDelClick = async (row) => {
+
+import { ObjTy } from '@/types/common'
+import { type } from 'node:os'
+let tableDelClick = async (row: ObjTy) => {
   await proxy
     .elConfirmMixin('确定', `您确定要删除【${row.pageUrl}】吗？`)
     .then(() => {
@@ -225,14 +225,14 @@ let tableDelClick = async (row) => {
 
 /*批量删除*/
 let multipleSelection = ref([])
-const handleSelectionChange = (val) => {
+const handleSelectionChange = (val: any) => {
   multipleSelection.value = val
 }
 const multiDelBtnClick = async () => {
   let rowDeleteIdArrMixin = []
   // let selectionArr = proxy.$refs.refuserTable //--c
   let deleteNameTitle = ''
-  rowDeleteIdArrMixin = multipleSelection.value.map((mItem) => {
+  rowDeleteIdArrMixin = multipleSelection.value.map((mItem: any) => {
     deleteNameTitle = deleteNameTitle + mItem.pageUrl + ','
     return mItem.id
   })
