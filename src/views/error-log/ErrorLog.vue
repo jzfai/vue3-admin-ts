@@ -106,14 +106,14 @@
   </div>
 </template>
 
-<script lang='ts'>
-/*可以设置默认的名字*/
+<script lang="ts">
+//@ts-ignore
 export default {
   name: 'ErrorLog'
 }
 </script>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { Delete } from '@element-plus/icons-vue'
 import { onMounted, getCurrentInstance, ref, reactive, onActivated, onDeactivated } from 'vue'
 import settings from '@/settings'
@@ -135,6 +135,9 @@ const consoleToPlatform = (err) => {
   //加个custom不收集
   console.error('custom' + err)
 }
+
+let data: Array<ObjTy> = []
+console.log(data)
 
 //img loader err test
 let imgShow = ref(false)
@@ -172,6 +175,7 @@ let selectPageReq = () => {
   })
 }
 import tablePageHook from '@/hooks/useTablePage'
+import { ObjTy } from '@/types/common'
 let { pageNum, pageSize, handleCurrentChange, handleSizeChange } = tablePageHook(selectPageReq)
 const dateTimePacking = (timeArr) => {
   if (timeArr && timeArr.length === 2) {

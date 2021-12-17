@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { computed, getCurrentInstance, ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()

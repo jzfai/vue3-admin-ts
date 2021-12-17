@@ -19,6 +19,7 @@
 2.在路由配置处设置cachePage：即可缓存
 -->
 <script lang="ts">
+//@ts-ignore
 export default {
   name: 'KeepAlive'
 }
