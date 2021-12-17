@@ -10,6 +10,7 @@ interface ObjTy {
 }
 /*axiosReq请求配置*/
 import { AxiosRequestConfig } from 'axios'
+import { type } from 'os'
 interface AxiosReqTy extends AxiosRequestConfig {
   url?: string
   method?: string
@@ -23,6 +24,9 @@ interface AxiosReqTy extends AxiosRequestConfig {
   baseURL?: string
   timeout?: number
 }
+
+export type detailDialogMixin = boolean
+
 interface AxiosConfigTy {
   url?: string
   method?: string
@@ -36,3 +40,8 @@ interface AxiosConfigTy {
   baseURL?: string
   timeout?: number
 }
+
+import '@/mixins/commonMixin'
+import '@/mixins/elementMixin'
+import '@/mixins/routerMixin'
+import '@/mixins/websocketMixin'
