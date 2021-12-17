@@ -58,7 +58,6 @@ export const constantRoutes: RouterTy = [
   {
     path: '/error-log',
     component: Layout,
-    name: 'ErrorLog',
     redirect: '/error-log/list',
     meta: { title: 'ErrorLog', icon: 'bug' },
     children: [

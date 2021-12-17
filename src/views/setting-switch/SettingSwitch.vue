@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script lang="ts" setup >
+<script lang="ts" setup>
 import { computed, getCurrentInstance, ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
