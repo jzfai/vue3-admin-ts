@@ -21,11 +21,13 @@ const errorLogReq = (errLog: string) => {
   })
 }
 
-export default function (app: ObjTy) {
-  //type judge
-  // base type  using 'type of'
-  // Reference type using 'instance of'
-  // recommend to reading https://www.jianshu.com/p/ddc7f189d130
+export default function () {
+  /*
+   * type judge
+   * base type  using 'type of'
+   * Reference type using 'instance of'
+   * recommend to reading https://www.jianshu.com/p/ddc7f189d130
+   * */
   const checkNeed = () => {
     const env = import.meta.env.VITE_APP_ENV
     const { errorLog }: ObjTy = setting
@@ -38,21 +40,47 @@ export default function (app: ObjTy) {
     return false
   }
   if (checkNeed()) {
-    //error log white
-    const whiteList: Array<string> = ['cancel']
-    //add img load error log listen
-    document.addEventListener(
+    //JS运行时错误和资源加载错误
+    window.addEventListener(
       'error',
-      (err: any) => {
-        const errLog: any = `${JSON.stringify(err.target.outerHTML)}`
-        errorLogReq(errLog)
+      ({ error, target }: ObjTy) => {
+        if (target.outerHTML) {
+          //img error collection
+          const errLog = `${JSON.stringify(target.outerHTML)}`
+          //console.log('errorString', errLog)
+          errorLogReq(errLog)
+        } else {
+          const errLog = `${error.stack.substr(0, 300)}`
+          //console.log('errorString', errLog)
+          errorLogReq(errLog)
+        }
       },
+      //use Event capture  to collection  img error
       true
     )
-    app.config.errorHandler = (err: any) => {
-      if (whiteList.includes(err)) return
-      const errLog = `${err.message}---${err.stack.substr(0, 300)}`
+    //promise被reject并且错误信息没有被处理的时候，会抛出一个unhandledrejection
+    //接口错误处理，cross origin , 404,401
+    window.addEventListener('unhandledrejection', ({ reason }) => {
+      let errLog = ''
+      if (typeof reason === 'string') {
+        errLog = reason
+      } else {
+        errLog = `${reason.stack.substr(0, 300)}`
+      }
       errorLogReq(errLog)
+    })
+
+    //些特殊情况下，还需要捕获处理console.error，捕获方式就是重写window.console.error
+    const _oldConsoleError = window.console.error
+    window.console.error = function () {
+      // eslint-disable-next-line prefer-rest-params
+      const errLog = Object.values(arguments).join(',')
+      if (errLog.indexOf('custom') === -1) {
+        errorLogReq(errLog)
+      }
+      // @ts-ignore
+      // eslint-disable-next-line prefer-rest-params
+      _oldConsoleError && _oldConsoleError.apply(window, arguments)
     }
   }
 }

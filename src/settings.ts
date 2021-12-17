@@ -1,8 +1,6 @@
 interface SettingTy {
   title: string
-  fixedHeader: boolean
   sidebarLogo: boolean
-  showTitle: boolean
   showLeftMenu: boolean
   ShowDropDown: boolean
   showHamburger: boolean
@@ -15,15 +13,14 @@ interface SettingTy {
   permissionMode: string
   delWindowHeight: string
   tmpToken: string
+  showNavbarTitle: boolean
+  showTopNavbar: boolean
+  mainNeedAnimation: boolean
+  viteBasePath: string
 }
 
 const setting: SettingTy = {
   title: 'Vue3 Admin Ts',
-  /**
-   * @type {boolean} true | false
-   * @description Whether fix the header
-   */
-  fixedHeader: true,
   /**
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
@@ -33,31 +30,22 @@ const setting: SettingTy = {
    * @type {boolean} true | false
    * @description Whether show the title in Navbar
    */
-  showTitle: false,
-  /**
-   * @type {boolean} true | false
-   * @description Whether show the settings right-panel
-   */
-  showLeftMenu: true,
+  showNavbarTitle: false,
   /**
    * @type {boolean} true | false
    * @description Whether show the drop-down
    */
   ShowDropDown: true,
+  /**
+   * @type {boolean} true | false
+   * @description Whether show Hamburger
+   */
   showHamburger: true,
   /**
    * @type {boolean} true | false
-   * @description Whether need login
+   * @description Whether show the settings right-panel
    */
-  isNeedLogin: true,
-
-  /**
-   * @type {boolean} true | false
-   * @description Whether need nprogress
-   */
-  isNeedNprogress: true,
-  //table height(100vh-delWindowHeight)
-  delWindowHeight: '210px',
+  showLeftMenu: true,
   /**
    * @type {boolean} true | false
    * @description Whether show TagsView
@@ -67,27 +55,59 @@ const setting: SettingTy = {
    * @description TagsView show number
    */
   tagsViewNum: 6,
-  //showSettings: true
+  /**
+   * @type {boolean} true | false
+   * @description Whether show the top Navbar
+   */
+  showTopNavbar: true,
+  /* page  animation related*/
+  /**
+   * @type {boolean} true | false
+   * @description Whether need animation of main area
+   */
+  mainNeedAnimation: true,
+  /**
+   * @type {boolean} true | false
+   * @description Whether need nprogress
+   */
+  isNeedNprogress: true,
+
+  /*page login or other*/
+  /**
+   * @type {boolean} true | false
+   * @description Whether need login
+   */
+  isNeedLogin: true,
+  /**
+   * @type {string} 'roles' | 'code'
+   */
+  permissionMode: 'roles',
   /**
    * @type {boolean} true | false
    * @description Whether  open prod mock
    */
   openProdMock: true,
   /**
-   * @type {string | array} 'serve' | ['build', 'serve']
+   * @type {string | array} 'dev' | ['prod','test','dev'] according to the .env file props of VITE_APP_ENV
    * @description Need show err logs component.
    * The default is only used in the production env
-   * If you want to also use it in dev, you can pass ['build', 'serve']
+   * If you want to also use it in dev, you can pass ['dev', 'test']
    */
-  errorLog: ['build'],
-  /**
-   * @type {string} 'roles' | 'code'
-   */
-  permissionMode: 'roles',
+  errorLog: ['prod'],
+  /*
+   * table height(100vh-delWindowHeight)
+   * */
+  delWindowHeight: '210px',
   /*
    * setting dev token when  isNeedLogin is setting false
    * */
-  tmpToken: 'tmp_token'
+  tmpToken: 'tmp_token',
+
+  /*
+   * vite.config.js base config
+   * such as
+   * */
+  viteBasePath: '/vue3-admin-ts/'
 }
 
 export default setting

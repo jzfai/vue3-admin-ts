@@ -4,13 +4,10 @@
     <Sidebar class="sidebar-container" v-if="settings.showLeftMenu" />
     <!--right container-->
     <div class="main-container">
-      <div>
-        <Navbar />
-        <TagsView v-if="settings.showTagsView" />
-      </div>
+      <Navbar v-if="settings.showTopNavbar" />
+      <TagsView v-if="settings.showTagsView" />
       <AppMain />
     </div>
-    <!--<Settings />-->
   </div>
 </template>
 <!--原理vue2.0-->
@@ -24,15 +21,19 @@ export default {
 <script setup lang="ts">
 import { Sidebar, Navbar, AppMain, TagsView } from './components'
 import { getCurrentInstance, computed } from 'vue'
-import settings from '@/settings'
 let { proxy }: any = getCurrentInstance()
 let opened = computed(() => {
   return proxy.$store.state.app.sidebar.opened
 })
+import { useStore } from 'vuex'
+const store = useStore()
+let settings = computed(() => {
+  return store.state.app.settings
+})
 let classObj = computed(() => {
   return {
     closeSidebar: !opened.value,
-    hideSidebar: !settings.showLeftMenu
+    hideSidebar: !settings.value.showLeftMenu
   }
 })
 //import ResizeHook to   listen  page size that   open or close
