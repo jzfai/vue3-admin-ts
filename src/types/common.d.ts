@@ -41,7 +41,3 @@ interface AxiosConfigTy {
   timeout?: number
 }
 
-import '@/mixins/commonMixin'
-import '@/mixins/elementMixin'
-import '@/mixins/routerMixin'
-import '@/mixins/websocketMixin'
