@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    //仅当 “module” 选项设置为 “esnext” 或 “system”，并且 “target” 选项设置为 “es2017” 或更高版本时，才允许使用顶级 “await” 表达式
+    "target": "esnext",
+    "module": "esnext",
+    "strict": false,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "escompileOnSaveModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "pretty": true,
+    "resolveJsonModule": true,
+    "allowJS": true, // 允许编译器编译JS，JSX文件
+    "checkJs": true, // 允许在JS文件中报错，通常与allowJS一起使用
+    "suppressImplicitAnyIndexErrors": true,
+    "strictPropertyInitialization": false,
+    "downlevelIteration": true,
+    "noUnusedLocals": false,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "removeComments": false,
+    "strictFunctionTypes": false,
+    "baseUrl": ".",
+    "types": ["vite/client", "node"],
+    "typeRoots": ["./node_modules/@types/", "./types"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "preview/**/*.ts",
+    "preview/**/*.d.ts",
+    "preview/**/*.tsx",
+    "preview/**/*.vue"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
