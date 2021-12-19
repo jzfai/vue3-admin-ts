@@ -123,7 +123,6 @@ import bus from '@/utils/bus'
  * 一般根据页面层次来排序 如此页面 表格查询和筛选->table的操作
  * 每个模块按：响应数据定义->公用方法->请求方法->页面按钮操作方法 进行排序
  * */
-
 let testData = ref('testData')
 onMounted(() => {
   console.log('testData', testData)
@@ -229,7 +228,7 @@ const handleSelectionChange = (val: any) => {
   multipleSelection.value = val
 }
 const multiDelBtnClick = async () => {
-  let rowDeleteIdArrMixin = []
+  let rowDeleteIdArrMixin: Array<any> = []
   // let selectionArr = proxy.$refs.refuserTable //--c
   let deleteNameTitle = ''
   rowDeleteIdArrMixin = multipleSelection.value.map((mItem: any) => {

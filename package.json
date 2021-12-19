@@ -10,7 +10,8 @@
     "build": "vite build --mode build",
     "preview": "yarn run build && vite preview ",
     "lint": "eslint --ext .js,.jsx,.vue,.ts,.tsx src --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "tsc-check": "tsc"
   },
   "dependencies": {
     "@element-plus/icons-vue": "0.2.4",

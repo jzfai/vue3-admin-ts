@@ -6,7 +6,7 @@ import NProgress from 'nprogress'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 import 'nprogress/nprogress.css'
 import getPageTitle from '@/utils/getPageTitle'
-import { RouterRowTy } from '@/types/router'
+import { RouterRowTy, RouterTy } from '@/types/router'
 
 const whiteList = ['/login', '/404', '/401'] // no redirect whitelist
 router.beforeEach(async (to: any, from, next: any) => {
@@ -28,7 +28,7 @@ router.beforeEach(async (to: any, from, next: any) => {
         next()
       } else {
         try {
-          let accessRoutes = []
+          let accessRoutes: RouterTy = []
           if (settings.isNeedLogin) {
             // get user info
             // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
