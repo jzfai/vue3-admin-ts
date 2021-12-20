@@ -37,6 +37,8 @@
     "esModuleInterop": true,
     //忽略所有的声明文件（ *.d.ts）的类型检查。
     "skipLibCheck": true,
+    //指定默认读取的目录
+    "typeRoots": ["./node_modules/@types/", "./types"],
     "lib": ["esnext", "dom", "ES2015"],
     "types": ["vite/client"],
     "baseUrl": "./",
@@ -44,12 +46,6 @@
       "@/*": ["src/*"]
     }
   },
-  //指定默认读取的目录
-  "typeRoots": ["./node_modules/@types/", "./types"],
-  //指定默认读取vite/client包下得types
-  "types": ["vite/client"],
-  //指定需要得lib包
-  "lib": ["esnext", "dom", "ES2015"],
   //"files": [],
   //include包含的文件会被ts进行编译
   "include": ["src/**/*"]
