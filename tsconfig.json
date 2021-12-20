@@ -38,7 +38,7 @@
     //忽略所有的声明文件（ *.d.ts）的类型检查。
     "skipLibCheck": true,
     //指定默认读取的目录
-    "typeRoots": ["./node_modules/@types/", "./types"],
+    //"typeRoots": ["./node_modules/@types/", "./types"],
     "lib": ["esnext", "dom", "ES2015"],
     "types": ["vite/client"],
     "baseUrl": "./",
