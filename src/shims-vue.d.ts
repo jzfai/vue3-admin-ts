@@ -21,3 +21,4 @@ declare var dialogTitleMixin: string
 declare var detailDialogMixin: boolean
 declare var startEndArrMixin: Array<any>
 declare var searchFormMixin: any
+declare var formRulesMixin: any

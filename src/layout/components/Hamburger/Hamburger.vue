@@ -15,9 +15,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { getCurrentInstance } from 'vue'
-let { proxy } = getCurrentInstance()
+let { proxy }: any = getCurrentInstance()
 defineProps({
   isActive: {
     type: Boolean,

@@ -24,8 +24,8 @@
 <script setup lang="ts">
 import { onBeforeMount, getCurrentInstance, watch, ref, computed } from 'vue'
 import { compile } from 'path-to-regexp'
-let levelList = ref(null)
-let { proxy } = getCurrentInstance()
+let levelList: any = ref(null)
+let { proxy }: any = getCurrentInstance()
 
 //Whether close the animation fo breadcrumb
 import { useStore } from 'vuex'

@@ -22,9 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
+import { computed } from 'vue'
 //导入配置文件
 import settings from '@/settings'
 import { useRoute } from 'vue-router'

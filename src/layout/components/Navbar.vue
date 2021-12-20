@@ -10,7 +10,7 @@
       <breadcrumb class="breadcrumb-container" />
     </div>
     <!--nav title-->
-    <div class="heardCenterTitle" v-if="settings.showTitle">{{ settings.showTitle }}</div>
+    <div class="heardCenterTitle" v-if="settings.showNavbarTitle">{{ settings.showNavbarTitle }}</div>
     <div class="right-menu" v-if="settings.ShowDropDown">
       <el-dropdown trigger="click" size="medium">
         <div class="avatar-wrapper">
