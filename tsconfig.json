@@ -4,13 +4,14 @@
     "module": "esnext",
     //	启用所有严格类型检查选项。
     //启用 --strict相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict， --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
-    "strict": false,
+    "strict": true,
     // 允许编译器编译JS，JSX文件
     "allowJs": false,
     // 允许在JS文件中报错，通常与allowJS一起使用
     "checkJs": false,
     // 允许使用jsx
     "jsx": "preserve",
+    "declaration": true,
     //移除注解
     "removeComments": true,
     //不可以忽略any
@@ -29,6 +30,8 @@
     "sourceMap": false,
     //变量定义了但是未使用
     "noUnusedLocals": false,
+    //是否允许把json文件当做模块进行解析
+    "resolveJsonModule": true,
     //和noUnusedLocals一样，针对func
     "noUnusedParameters": false,
     // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
@@ -37,18 +40,17 @@
     "esModuleInterop": true,
     //忽略所有的声明文件（ *.d.ts）的类型检查。
     "skipLibCheck": true,
-    //指定默认读取的目录
-    //"typeRoots": ["./node_modules/@types/", "./types"],
-    "lib": ["esnext", "dom", "ES2015"],
-    "types": ["vite/client"],
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    //指定默认读取的目录
+    //"typeRoots": ["./node_modules/@types/", "./types"],
+    "lib": ["ES2018", "DOM"]
   },
   //"files": [],
-  //include包含的文件会被ts进行编译
-  "include": ["src/**/*"]
+  //include包含文件夹会被ts进行读取
+  "include": ["src", "typings"]
   //exclude 可以去除include中指定的文件，不能去除file指定的文件
   //  "exclude": [
   ////    "src/src1.ts"
