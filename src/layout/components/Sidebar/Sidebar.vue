@@ -41,7 +41,7 @@ const isCollapse = computed(() => {
 //change  scss variable to js
 const dillScssExportToJson = (scssExportJson) => {
   let jsonString = scssExportJson.replace(/:export\s*/, '').replace(/[\s+\r\n]/g, '')
-  let scssJson = {}
+  let scssJson: ObjTy = {}
   jsonString
     .slice(1, jsonString.length - 2)
     .split(';')
@@ -54,6 +54,7 @@ const dillScssExportToJson = (scssExportJson) => {
 
 //get scss variable
 import scssExportJson from '@/styles/variables-to-js.scss'
+import { ObjTy } from '@/types/common'
 let scssJson = dillScssExportToJson(scssExportJson)
 const activeMenu = computed(() => {
   const { meta, fullPath } = route
