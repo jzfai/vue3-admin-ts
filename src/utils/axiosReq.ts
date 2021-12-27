@@ -45,13 +45,12 @@ service.interceptors.request.use(
 // 响应拦截
 service.interceptors.response.use(
   (res: any) => {
-    console.log('res', res)
     if (reqConfig.afHLoading && loadingE) {
       loadingE.close()
     }
     // 如果是下载文件直接返回
     if (reqConfig.isDownLoadFile) {
-      return res.data
+      return res
     }
     const { flag, msg, isNeedUpdateToken, updateToken, code } = res.data
     //更新token保持登录状态
@@ -59,7 +58,7 @@ service.interceptors.response.use(
       setToken(updateToken)
     }
     const successCode = '0,200,20000'
-    if (successCode.indexOf(code)) {
+    if (successCode.indexOf(code)!==-1) {
       return res.data
     } else {
       if (code === 403) {

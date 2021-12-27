@@ -14,8 +14,6 @@ router.beforeEach(async (to: any, from, next: any) => {
   if (settings.isNeedNprogress) NProgress.start()
   // set page title
   document.title = getPageTitle(to.meta.title)
-  //set tmp token when setting isNeedLogin false
-  if (!settings.isNeedLogin) setToken(settings.tmpToken)
   const hasToken: string | null = getToken()
   if (hasToken) {
     if (to.path === '/login') {
