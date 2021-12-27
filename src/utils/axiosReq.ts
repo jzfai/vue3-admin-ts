@@ -2,7 +2,7 @@ import store from '@/store'
 import axios from 'axios'
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 import { getToken, setToken } from '@/utils/auth'
-import { AxiosConfigTy, AxiosReqTy, ObjTy } from '@/types/common'
+import { AxiosConfigTy, AxiosReqTy, ObjTy } from '~/common'
 let reqConfig: any
 let loadingE: any
 

@@ -55,7 +55,7 @@ import settings from '@/settings'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 let { proxy }: any = getCurrentInstance()
 //form
 let formInline = reactive({

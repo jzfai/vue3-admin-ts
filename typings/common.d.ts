@@ -1,16 +1,11 @@
-/*类型命名建议以Ty结尾*/
-/*
-*
-枚举 类，接口 都是大驼峰 WangMeng
-方法，变量，常量 小驼峰 wangMeng
-* */
-/*通用对象*/
+//common type file, you can not export the type in common.d.ts
+//not export can use
 interface ObjTy {
   [propName: string]: any
 }
+
 /*axiosReq请求配置*/
 import { AxiosRequestConfig } from 'axios'
-import { type } from 'os'
 interface AxiosReqTy extends AxiosRequestConfig {
   url?: string
   method?: string
@@ -24,9 +19,6 @@ interface AxiosReqTy extends AxiosRequestConfig {
   baseURL?: string
   timeout?: number
 }
-
-export type detailDialogMixin = boolean
-
 interface AxiosConfigTy {
   url?: string
   method?: string
@@ -40,4 +32,3 @@ interface AxiosConfigTy {
   baseURL?: string
   timeout?: number
 }
-

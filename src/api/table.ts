@@ -1,5 +1,5 @@
 import request from 'axios'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 
 export function getList(params: ObjTy) {
   return request({

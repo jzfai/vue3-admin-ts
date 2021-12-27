@@ -1,5 +1,5 @@
 import request from '@/utils/axiosReq'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 
 export function loginReq(data: ObjTy) {
   return request({

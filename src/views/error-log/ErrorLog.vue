@@ -207,7 +207,7 @@ let deleteByIdReq = (id: number) => {
   })
 }
 
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 import { type } from 'node:os'
 let tableDelClick = async (row: ObjTy) => {
   await proxy

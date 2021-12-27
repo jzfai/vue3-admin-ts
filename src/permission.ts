@@ -6,7 +6,7 @@ import NProgress from 'nprogress'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 import 'nprogress/nprogress.css'
 import getPageTitle from '@/utils/getPageTitle'
-import { RouterRowTy, RouterTy } from '@/types/router'
+import { RouterRowTy, RouterTy } from '~/router'
 
 const whiteList = ['/login', '/404', '/401'] // no redirect whitelist
 router.beforeEach(async (to: any, from, next: any) => {

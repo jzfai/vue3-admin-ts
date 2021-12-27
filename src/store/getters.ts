@@ -1,4 +1,4 @@
-import { StateTy } from '@/types/store'
+import { StateTy } from '~/store'
 
 const getters = {
   device: (state: StateTy) => state.app.device,

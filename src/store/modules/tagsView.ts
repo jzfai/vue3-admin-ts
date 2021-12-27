@@ -1,6 +1,6 @@
 import setting from '@/settings'
-import { RouterTy, RouteItemTy } from '@/types/router'
-import { ObjTy } from '@/types/common'
+import { RouterTy, RouteItemTy } from '~/router'
+import { ObjTy } from '~/common'
 
 interface tagsViewTy {
   visitedViews: RouterTy
@@ -29,7 +29,6 @@ const mutations = {
       )
     }
   },
-
   DEL_VISITED_VIEW: (state: tagsViewTy, view: any) => {
     for (const [i, v] of state.visitedViews.entries()) {
       if (v.path === view.path) {

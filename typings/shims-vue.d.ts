@@ -5,9 +5,3 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-
-//declare import module
-declare module './*'
-declare module '@/*'
-declare module '@/hooks'
-declare module '*'

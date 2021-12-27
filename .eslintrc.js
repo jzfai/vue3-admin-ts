@@ -28,7 +28,8 @@ module.exports = {
     }
   },
   rules: {
-    //close lf error
+    'no-undef': [1],
+    'prefer-const': [1],
     'import/no-unresolved': [0],
     'vue/multi-word-component-names': 'off',
     'vue/no-deprecated-router-link-tag-prop': 'off',

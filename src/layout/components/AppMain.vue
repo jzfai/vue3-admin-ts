@@ -20,7 +20,7 @@ import setting from '@/settings'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 let store = useStore()
 let route = useRoute()
 let settings = computed(() => {

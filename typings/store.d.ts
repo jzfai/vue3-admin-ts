@@ -1,20 +1,17 @@
-/*vuex ts*/
+// the ts file of vuex
 import { RouterTy } from '@/types/router'
 import { ObjTy } from '@/types/common'
-
-interface StateTy {
+export interface StateTy {
   app: AppTy
   permission: PermissionTy
   user: UserTy
 }
-
-interface UserTy {
+export interface UserTy {
   username: string
   avatar: string
   roles: Array<string>
 }
-
-interface AppTy {
+export interface AppTy {
   sidebar: {
     opened: boolean
     //opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
@@ -24,7 +21,7 @@ interface AppTy {
   settings: ObjTy
   cachedViews: Array<string>
 }
-interface PermissionTy {
+export interface PermissionTy {
   isGetUserInfo: boolean //是否已经设置了权限
   routes: RouterTy //将过滤后的异步路由和静态路由集合
   addRoutes: RouterTy //过滤后的异步路由

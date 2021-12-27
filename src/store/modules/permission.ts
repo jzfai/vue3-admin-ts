@@ -1,8 +1,8 @@
 import { constantRoutes, asyncRoutes } from '@/router'
 import settings from '@/settings'
-import { PermissionTy } from '@/types/store'
-import { RouteItemTy, RouterRowTy, RouterTy } from '@/types/router'
-import { ObjTy } from '@/types/common'
+import { PermissionTy } from '~/store'
+import { RouteItemTy, RouterRowTy, RouterTy } from '~/router'
+import { ObjTy } from '~/common'
 
 /**
  * Use meta.code to determine if the current user has permission

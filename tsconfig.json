@@ -42,7 +42,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "~/*": ["typings/*"],
     },
     //指定默认读取的目录
     //"typeRoots": ["./node_modules/@types/", "./types"],

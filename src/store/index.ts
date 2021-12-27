@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import getters from './getters'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 //auto import (perfect!!!)
 const modulesFiles = import.meta.globEager('./modules/*.ts')
 const modules: ObjTy = {}

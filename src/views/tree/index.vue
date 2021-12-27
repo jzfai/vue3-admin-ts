@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { watch, toRefs, reactive, ref } from 'vue'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 const state = reactive({
   filterText: '',
   data2: [
