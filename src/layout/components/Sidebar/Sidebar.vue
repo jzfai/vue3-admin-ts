@@ -54,7 +54,7 @@ const dillScssExportToJson = (scssExportJson) => {
 
 //get scss variable
 import scssExportJson from '@/styles/variables-to-js.scss'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/'
 let scssJson = dillScssExportToJson(scssExportJson)
 const activeMenu = computed(() => {
   const { meta, fullPath } = route

@@ -96,7 +96,6 @@ export default ({ command, mode }: any) => {
     },
     resolve: {
       alias: {
-        '~': resolve(__dirname, './'),
         '@': resolve(__dirname, 'src')
       }
       //why remove it , look for https://github.com/vitejs/vite/issues/6026

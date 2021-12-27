@@ -1,8 +1,7 @@
-/*page common ts*/
+//the ts of router
 import { RouteRecordRaw } from 'vue-router'
-
 /*此处扩展的类型*/
-interface RouteItemTy {
+export interface RouteItemTy {
   hidden?: boolean
   alwaysShow?: boolean
   code?: number
@@ -25,5 +24,5 @@ interface RouteItemTy {
   redirect?: string
 }
 
-type RouterRowTy = RouteRecordRaw & RouteItemTy
-type RouterTy = Array<RouterRowTy>
+export type RouterRowTy = RouteRecordRaw & RouteItemTy
+export type RouterTy = Array<RouterRowTy>

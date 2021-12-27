@@ -33,8 +33,8 @@ import { onMounted, getCurrentInstance, watch, toRefs, reactive, computed } from
 //获取store和router
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { RouterTy, RouteItemTy } from '@/types/router'
-import { ObjTy } from '@/types/common'
+import { RouterTy, RouteItemTy } from '~/router'
+import { ObjTy } from '~/common'
 const store = useStore()
 const router = useRouter()
 let { proxy }: any = getCurrentInstance()

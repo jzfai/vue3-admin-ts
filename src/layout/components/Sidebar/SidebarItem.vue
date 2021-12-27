@@ -31,7 +31,7 @@ import Link from './Link.vue'
 import Item from './Item'
 import { isExternal } from '@/utils/validate'
 import path from 'path'
-import { RouteItemTy } from '@/types/router'
+import { RouteItemTy } from '~/router'
 let { proxy }: any = getCurrentInstance()
 defineProps({
   //每一个router Item

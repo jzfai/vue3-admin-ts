@@ -70,7 +70,7 @@ let reqCrossOrigin = () => {
 }
 
 import axiosReq from '@/utils/axiosReq'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 let req404 = () => {
   axiosReq({
     // baseURL: 'http://8.135.1.141/micro-service-test',

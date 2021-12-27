@@ -3,7 +3,7 @@ import request from '@/utils/axiosReq'
 import setting from '@/settings'
 import bus from '@/utils/bus'
 import pack from '../../package.json'
-import { ObjTy } from '@/types/common'
+import { ObjTy } from '~/common'
 const errorLogReq = (errLog: string) => {
   request({
     url: '/ty-user/errorCollection/insert',

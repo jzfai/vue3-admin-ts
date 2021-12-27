@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, Router } from 'vue-router'
 import Layout from '@/layout'
-import { RouterTy } from '@/types/router'
+import { RouterTy } from '~/router'
 
 export const constantRoutes: RouterTy = [
   {

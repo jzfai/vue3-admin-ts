@@ -34,7 +34,7 @@ let settings = computed(() => {
   return store.state.app.settings
 })
 
-import { RouteItemTy } from '@/types/router'
+import { RouteItemTy } from '~/router'
 const getBreadcrumb = () => {
   // only show routes with meta.title
   let matched = proxy.$route.matched.filter((item: RouteItemTy) => item.meta && item.meta.title)
