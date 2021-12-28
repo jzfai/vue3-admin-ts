@@ -24,13 +24,13 @@
 <script setup lang="ts">
 import { onBeforeMount, getCurrentInstance, watch, ref, computed } from 'vue'
 import { compile } from 'path-to-regexp'
-let levelList: any = ref(null)
-let { proxy }: any = getCurrentInstance()
+const levelList: any = ref(null)
+const { proxy }: any = getCurrentInstance()
 
 //Whether close the animation fo breadcrumb
 import { useStore } from 'vuex'
-let store = useStore()
-let settings = computed(() => {
+const store = useStore()
+const settings = computed(() => {
   return store.state.app.settings
 })
 

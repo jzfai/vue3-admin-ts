@@ -14,9 +14,9 @@ import { ObjTy } from '~/common'
 //获取store和router
 // import {useRouter} from 'vue-router'
 // import {useStore} from 'vuex'
-let { proxy }: any = getCurrentInstance()
+const { proxy }: any = getCurrentInstance()
 
-let refChildren: any = ref(null)
+const refChildren: any = ref(null)
 onMounted(() => {
   /*获取子元素两种方法*/
   //第一种

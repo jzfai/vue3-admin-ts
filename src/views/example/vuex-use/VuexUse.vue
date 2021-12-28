@@ -16,7 +16,7 @@ import { ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
 /*getter*/
-let getterValue = ref(null)
+const getterValue = ref(null)
 const getterFunc = () => {
   getterValue.value = store.getters.cachedViews
 }

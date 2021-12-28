@@ -21,16 +21,16 @@ export default {
 <script setup lang="ts">
 import { Sidebar, Navbar, AppMain, TagsView } from './components'
 import { getCurrentInstance, computed } from 'vue'
-let { proxy }: any = getCurrentInstance()
-let opened = computed(() => {
+const { proxy }: any = getCurrentInstance()
+const opened = computed(() => {
   return proxy.$store.state.app.sidebar.opened
 })
 import { useStore } from 'vuex'
 const store = useStore()
-let settings = computed(() => {
+const settings = computed(() => {
   return store.state.app.settings
 })
-let classObj = computed(() => {
+const classObj = computed(() => {
   return {
     closeSidebar: !opened.value,
     hideSidebar: !settings.value.showLeftMenu

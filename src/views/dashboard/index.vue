@@ -20,7 +20,7 @@ import * as Svg from '@element-plus/icons-vue'
 import { computed,ref} from 'vue'
 import { useStore } from 'vuex'
 
-let store = useStore()
+const store = useStore()
 const username = computed(() => {
   return store.state.user.username
 })

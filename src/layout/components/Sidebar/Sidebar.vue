@@ -26,12 +26,15 @@ import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
 import { computed } from 'vue'
 //导入配置文件
-import settings from '@/settings'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 const store = useStore()
+let settings = computed(() => {
+  return store.state.app.settings
+})
+
 const route = useRoute()
-let routes = computed(() => {
+const routes = computed(() => {
   return store.state.permission.routes
 })
 const isCollapse = computed(() => {
@@ -40,13 +43,13 @@ const isCollapse = computed(() => {
 
 //change  scss variable to js
 const dillScssExportToJson = (scssExportJson) => {
-  let jsonString = scssExportJson.replace(/:export\s*/, '').replace(/[\s+\r\n]/g, '')
-  let scssJson: ObjTy = {}
+  const jsonString = scssExportJson.replace(/:export\s*/, '').replace(/[\s+\r\n]/g, '')
+  const scssJson: ObjTy = {}
   jsonString
     .slice(1, jsonString.length - 2)
     .split(';')
     .forEach((fItem) => {
-      let arr = fItem.split(':')
+      const arr = fItem.split(':')
       scssJson[arr[0]] = arr[1]
     })
   return scssJson
@@ -54,8 +57,8 @@ const dillScssExportToJson = (scssExportJson) => {
 
 //get scss variable
 import scssExportJson from '@/styles/variables-to-js.scss'
-import { ObjTy } from '~/'
-let scssJson = dillScssExportToJson(scssExportJson)
+import { ObjTy } from '~/common'
+const scssJson = dillScssExportToJson(scssExportJson)
 const activeMenu = computed(() => {
   const { meta, fullPath } = route
   // if set path, the sidebar will highlight the path you set

@@ -25,7 +25,7 @@ const switchRoles = computed({
     return roles.value[0]
   },
   set(val) {
-    let roles = [val]
+    const roles = [val]
     localStorage.setItem('roles', JSON.stringify(roles))
     location.reload()
   }

@@ -34,7 +34,7 @@
 import errGif from '@/assets/401_images/401.gif'
 import { getCurrentInstance, toRefs, reactive } from 'vue'
 
-let { proxy }: any = getCurrentInstance()
+const { proxy }: any = getCurrentInstance()
 
 const state = reactive({
   errGif: errGif + '?' + +new Date(),
@@ -50,7 +50,7 @@ const back = () => {
   }
 }
 //导出属性到页面中使用
-let { ewizardClap, dialogVisible } = toRefs(state)
+const { ewizardClap, dialogVisible } = toRefs(state)
 </script>
 
 <style lang="scss" scoped>

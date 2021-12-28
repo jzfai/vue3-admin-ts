@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { getCurrentInstance, onMounted } from 'vue'
-let { proxy }: any = getCurrentInstance()
+const { proxy }: any = getCurrentInstance()
 onMounted(() => {
   //get page pass url data
   console.log(proxy.queryParamsMixin)

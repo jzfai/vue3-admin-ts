@@ -85,5 +85,5 @@ const filterNode = (value: string, data: ObjTy) => {
   return data.label.indexOf(value) !== -1
 }
 //export to page for using
-let { filterText, data2, defaultProps } = toRefs(state)
+const { filterText, data2, defaultProps } = toRefs(state)
 </script>

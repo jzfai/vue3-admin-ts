@@ -27,7 +27,7 @@ const state = reactive({
   logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
 })
 //export to page for
-let { title, logo } = toRefs(state)
+const { title, logo } = toRefs(state)
 </script>
 
 <style lang="scss">

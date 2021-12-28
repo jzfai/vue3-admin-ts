@@ -56,20 +56,20 @@ import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
 import { ObjTy } from '~/common'
-let { proxy }: any = getCurrentInstance()
+const { proxy }: any = getCurrentInstance()
 //form
-let formInline = reactive({
+const formInline = reactive({
   username: 'admin',
   password: '123456'
 })
-let state: ObjTy = reactive({
+const state: ObjTy = reactive({
   otherQuery: {},
   redirect: undefined
 })
 
 /* listen router change  */
 const route = useRoute()
-let getOtherQuery = (query: ObjTy) => {
+const getOtherQuery = (query: ObjTy) => {
   return Object.keys(query).reduce((acc: ObjTy, cur) => {
     if (cur !== 'redirect') {
       acc[cur] = query[cur]
@@ -92,11 +92,11 @@ watch(
 /*
  *  login relative
  * */
-let loading = ref(false)
-let tipMessage = ref('')
+const loading = ref(false)
+const tipMessage = ref('')
 const store = useStore()
-let handleLogin = () => {
-  let refloginForm = ''
+const handleLogin = () => {
+  const refloginForm = ''
   proxy.$refs['refloginForm'].validate((valid: boolean) => {
     if (valid) {
       loginReq()
@@ -105,7 +105,7 @@ let handleLogin = () => {
     }
   })
 }
-let loginReq = () => {
+const loginReq = () => {
   loading.value = true
   store
     .dispatch('user/login', formInline)
@@ -124,9 +124,9 @@ let loginReq = () => {
 /*
  *  password show or hidden
  * */
-let passwordType = ref('password')
+const passwordType = ref('password')
 const refPassword: any = ref(null)
-let showPwd = () => {
+const showPwd = () => {
   if (passwordType.value === 'password') {
     passwordType.value = ''
   } else {
