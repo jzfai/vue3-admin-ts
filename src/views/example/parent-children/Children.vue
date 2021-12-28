@@ -13,17 +13,17 @@ const props = defineProps({
     type: String
   }
 })
-let state = reactive({
+const state = reactive({
   name: 'Children'
 })
 //导出给refs使用
-let childRef = ref('childRef')
-let childMethod = () => {
+const childRef = ref('childRef')
+const childMethod = () => {
   return 'childMethod'
 }
 
 const { proxy }: any = getCurrentInstance()
-let getFatherMethod = () => {
+const getFatherMethod = () => {
   proxy.$parent.fartherMethod()
 }
 //emit
@@ -37,7 +37,7 @@ onMounted(() => {
 })
 defineExpose({ childRef, childMethod })
 //导出属性到页面中使用
-let { name } = toRefs(state)
+const { name } = toRefs(state)
 </script>
 
 <style scoped lang="scss"></style>

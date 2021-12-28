@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { getCurrentInstance } from 'vue'
-let { proxy }: any = getCurrentInstance()
+const { proxy }: any = getCurrentInstance()
 defineProps({
   isActive: {
     type: Boolean,

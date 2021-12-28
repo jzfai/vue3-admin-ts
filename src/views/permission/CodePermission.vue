@@ -21,7 +21,7 @@ const codeArr = computed(() => {
 // const emit = defineEmits(['change'])
 const switchRoles = computed({
   get() {
-    let jsonData: string | null = localStorage.getItem('codeArr')
+    const jsonData: string | null = localStorage.getItem('codeArr')
     if (jsonData) {
       return JSON.parse(jsonData)
     } else {

@@ -6,7 +6,7 @@ import { setToken } from '@/utils/auth'
 import { onBeforeMount, computed } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-let settings = computed(() => {
+const settings = computed(() => {
   return store.state.app.settings
 })
 onBeforeMount(() => {

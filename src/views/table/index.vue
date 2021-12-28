@@ -66,7 +66,7 @@ const fetchData = () => {
   })
 }
 //导出属性到页面中使用
-let { list, listLoading } = toRefs(state)
+const { list, listLoading } = toRefs(state)
 </script>
 
 <style scoped lang="scss"></style>

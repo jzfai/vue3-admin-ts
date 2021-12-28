@@ -49,8 +49,8 @@
 
 <script setup lang="ts">
 import { getCurrentInstance, reactive } from 'vue'
-let { proxy }: any = getCurrentInstance()
-let subform = reactive({
+const { proxy }: any = getCurrentInstance()
+const subform = reactive({
   name: '',
   region: '',
   date1: '',

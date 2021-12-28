@@ -63,7 +63,7 @@ const testChangeSettings = () => {
   store.commit('app/M_settings', { sidebarLogo: !settings.value.sidebarLogo })
 }
 
-let source = ref(false)
+const source = ref(false)
 const sourceFun = () => {
   source.value = !source.value
 }
@@ -76,7 +76,7 @@ const handle = () => {
   })
 }
 
-let flag = ref(null)
+const flag = ref(null)
 
 const consoleErrorFun = () => {
   console.error('console.error')
@@ -85,8 +85,8 @@ const consoleErrorFun = () => {
 const normalError = () => {
   throw new Error(' throw new Error("")\n')
 }
-let { proxy }: any = getCurrentInstance()
-let updateReq = () => {
+const { proxy }: any = getCurrentInstance()
+const updateReq = () => {
   return proxy
     .$axiosReq({
       // baseURL: 'http://8.135.1.141/micro-service-test',

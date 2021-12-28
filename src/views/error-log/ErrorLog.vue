@@ -117,13 +117,13 @@ export default {
 import { Delete } from '@element-plus/icons-vue'
 import { onMounted, getCurrentInstance, ref, reactive, onActivated, onDeactivated } from 'vue'
 import settings from '@/settings'
-let { proxy }: any = getCurrentInstance()
+const { proxy }: any = getCurrentInstance()
 import bus from '@/utils/bus'
 /*
  * 一般根据页面层次来排序 如此页面 表格查询和筛选->table的操作
  * 每个模块按：响应数据定义->公用方法->请求方法->页面按钮操作方法 进行排序
  * */
-let testData = ref('testData')
+const testData = ref('testData')
 onMounted(() => {
   console.log('testData', testData)
 })
@@ -136,20 +136,20 @@ const consoleToPlatform = (err: any) => {
 }
 
 //img loader err test
-let imgShow = ref(false)
+const imgShow = ref(false)
 const errorLogImg = () => {
   imgShow.value = !imgShow.value
 }
 
 /*表格查询和筛选*/
-let usertableData = ref([])
-let searchFormMixin: ObjTy = reactive({
+const usertableData = ref([])
+const searchFormMixin: ObjTy = reactive({
   errorLog: '',
   pageUrl: '8.135.1.141',
   createTime: '',
   id: ''
 })
-let selectPageReq = () => {
+const selectPageReq = () => {
   const data = Object.assign(searchFormMixin, {
     pageNum: pageNum,
     pageSize: pageSize
@@ -157,7 +157,7 @@ let selectPageReq = () => {
   Object.keys(data).forEach((fItem) => {
     if (data[fItem] === '' || data[fItem] === null || data[fItem] === undefined) delete data[fItem]
   })
-  let reqConfig = {
+  const reqConfig = {
     url: '/ty-user/errorCollection/selectPage',
     method: 'get',
     data,
@@ -172,7 +172,7 @@ let selectPageReq = () => {
 }
 import tablePageHook from '@/hooks/useTablePage'
 
-let { pageNum, pageSize, handleCurrentChange, handleSizeChange } = tablePageHook(selectPageReq)
+const { pageNum, pageSize, handleCurrentChange, handleSizeChange } = tablePageHook(selectPageReq)
 const dateTimePacking = (timeArr: Array<string>) => {
   if (timeArr && timeArr.length === 2) {
     searchFormMixin.startTime = timeArr[0]
@@ -195,9 +195,9 @@ const searchBtnClick = () => {
 
 /*添加和修改*/
 /*详情*/
-let detailData: ObjTy = ref({})
+const detailData: ObjTy = ref({})
 /*删除*/
-let deleteByIdReq = (id: number) => {
+const deleteByIdReq = (id: number) => {
   return proxy.$axiosReq({
     url: '/ty-user/errorCollection/deleteById',
     data: { id: id },
@@ -209,7 +209,7 @@ let deleteByIdReq = (id: number) => {
 
 import { ObjTy } from '~/common'
 import { type } from 'node:os'
-let tableDelClick = async (row: ObjTy) => {
+const tableDelClick = async (row: ObjTy) => {
   await proxy
     .elConfirmMixin('确定', `您确定要删除【${row.pageUrl}】吗？`)
     .then(() => {
@@ -223,7 +223,7 @@ let tableDelClick = async (row: ObjTy) => {
 }
 
 /*批量删除*/
-let multipleSelection = ref([])
+const multipleSelection = ref([])
 const handleSelectionChange = (val: any) => {
   multipleSelection.value = val
 }
@@ -239,7 +239,7 @@ const multiDelBtnClick = async () => {
     proxy.elMessageMixin('表格选项不能为空', 'warning')
     return
   }
-  let stringLength = deleteNameTitle.length - 1
+  const stringLength = deleteNameTitle.length - 1
   await proxy.elConfirmMixin('删除', `您确定要删除【${deleteNameTitle.slice(0, stringLength)}】吗`)
   const data = rowDeleteIdArrMixin
   proxy

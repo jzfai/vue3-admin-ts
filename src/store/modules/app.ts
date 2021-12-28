@@ -10,8 +10,15 @@ const state: AppTy = {
   cachedViews: []
 }
 
+/*mutations建议以M_开头*/
 const mutations = {
-  /*mutations建议以M_开头*/
+  /*
+ * data:ObjType
+ * such as {sidebarLogo:false}
+ * */
+  M_settings: (state, data) => {
+    state.settings = { ...state.settings, ...data }
+  },
   M_sidebar_opened: (state: AppTy, data: boolean) => {
     state.sidebar.opened = data
   },

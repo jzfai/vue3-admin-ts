@@ -29,7 +29,7 @@
 import { computed, getCurrentInstance, ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-let settings = computed(() => {
+const settings = computed(() => {
   return store.state.app.settings || {}
 })
 
@@ -45,7 +45,7 @@ const handle = () => {
   })
 }
 
-let flag = ref(null)
+const flag = ref(null)
 
 const consoleErrorFun = () => {
   console.error('console.error')
@@ -55,8 +55,8 @@ const normalError = () => {
   throw new Error(' throw new Error("")\n')
 }
 
-let { proxy }: any = getCurrentInstance()
-let reqCrossOrigin = () => {
+const { proxy }: any = getCurrentInstance()
+const reqCrossOrigin = () => {
   proxy
     .$axiosReq({
       baseURL: 'http://8.135.1.141/micro-service-test',
@@ -71,7 +71,7 @@ let reqCrossOrigin = () => {
 
 import axiosReq from '@/utils/axiosReq'
 import { ObjTy } from '~/common'
-let req404 = () => {
+const req404 = () => {
   axiosReq({
     // baseURL: 'http://8.135.1.141/micro-service-test',
     url: '/ty-user/brand/updateBy1',
@@ -85,7 +85,7 @@ let req404 = () => {
 }
 
 //img loader err test
-let imgShow = ref(false)
+const imgShow = ref(false)
 const errorLogImg = () => {
   imgShow.value = !imgShow.value
 }

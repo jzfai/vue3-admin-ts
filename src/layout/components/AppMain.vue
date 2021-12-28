@@ -21,9 +21,9 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { ObjTy } from '~/common'
-let store = useStore()
-let route = useRoute()
-let settings = computed(() => {
+const store = useStore()
+const route = useRoute()
+const settings = computed(() => {
   return store.state.app.settings
 })
 

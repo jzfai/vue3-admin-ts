@@ -37,7 +37,7 @@ import { RouterTy, RouteItemTy } from '~/router'
 import { ObjTy } from '~/common'
 const store = useStore()
 const router = useRouter()
-let { proxy }: any = getCurrentInstance()
+const { proxy }: any = getCurrentInstance()
 const state: ObjTy = reactive({
   visible: false,
   top: 0,
@@ -199,7 +199,7 @@ const closeMenu = () => {
 // }
 
 //export to page use
-let { visible, top, left, selectedTag } = toRefs(state)
+const { visible, top, left, selectedTag } = toRefs(state)
 </script>
 
 <style lang="scss" scoped>
