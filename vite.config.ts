@@ -18,6 +18,7 @@ export default ({ command, mode }: any) => {
      * "/vue3-admin-plus/" --> config to base is you need
      * http://8.135.1.141 --> if you config "/" , you can visit attached  to http://8.135.1.141
      * */
+    base: setting.viteBasePath,
     //define global var
     define: {
       //fix "path" module issue

@@ -8,7 +8,7 @@
     "test": "vite --mode serve-test --host",
     "build:test": "vite build --mode  build-test",
     "build": "vite build --mode build",
-    "preview": "yarn run build && vite preview ",
+    "preview": "npm run build && vite preview ",
     "lint": "eslint --ext .js,.jsx,.vue,.ts,.tsx src --fix",
     "prepare": "husky install",
     "tsc-check": "tsc"
