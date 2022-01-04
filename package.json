@@ -8,7 +8,7 @@
     "test": "vite --mode serve-test --host",
     "build:test": "vite build --mode  build-test",
     "build": "vite build --mode build",
-    "preview": "yarn run build && vite preview ",
+    "preview": "npm run build && vite preview ",
     "lint": "eslint --ext .js,.jsx,.vue,.ts,.tsx src --fix",
     "prepare": "husky install",
     "tsc-check": "tsc"
@@ -63,12 +63,12 @@
     "vite-plugin-svg-icons": "1.0.5",
     "vue-tsc": "0.28.1"
   },
+   "engines": {
+    "node": ">= 14"
+  },
   "browserslist": [
     "> 1%",
     "not ie 11",
     "not op_mini all"
-  ],
-  "engines": {
-    "node": ">= 14"
-  }
+  ]
 }
