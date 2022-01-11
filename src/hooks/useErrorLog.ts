@@ -6,7 +6,7 @@ import pack from '../../package.json'
 import { ObjTy } from '~/common'
 const errorLogReq = (errLog: string) => {
   request({
-    url: '/ty-user/errorCollection/insert',
+    url: '/integration-front/errorCollection/insert',
     data: {
       pageUrl: window.location.href,
       errorLog: errLog,

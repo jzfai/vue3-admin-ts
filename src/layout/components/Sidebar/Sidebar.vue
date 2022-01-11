@@ -29,7 +29,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 const store = useStore()
-let settings = computed(() => {
+const settings = computed(() => {
   return store.state.app.settings
 })
 

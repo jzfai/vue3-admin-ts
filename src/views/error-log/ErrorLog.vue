@@ -158,7 +158,7 @@ const selectPageReq = () => {
     if (data[fItem] === '' || data[fItem] === null || data[fItem] === undefined) delete data[fItem]
   })
   const reqConfig = {
-    url: '/ty-user/errorCollection/selectPage',
+    url: '/integration-front/errorCollection/selectPage',
     method: 'get',
     data,
     isParams: true,
@@ -199,7 +199,7 @@ const detailData: ObjTy = ref({})
 /*删除*/
 const deleteByIdReq = (id: number) => {
   return proxy.$axiosReq({
-    url: '/ty-user/errorCollection/deleteById',
+    url: '/integration-front/errorCollection/deleteById',
     data: { id: id },
     isParams: true,
     method: 'delete',
@@ -244,7 +244,7 @@ const multiDelBtnClick = async () => {
   const data = rowDeleteIdArrMixin
   proxy
     .$axiosReq({
-      url: `/ty-user/errorCollection/deleteBatchIds`,
+      url: `/integration-front/errorCollection/deleteBatchIds`,
       data,
       method: 'DELETE',
       bfLoading: true

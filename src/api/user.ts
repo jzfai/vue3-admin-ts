@@ -3,7 +3,7 @@ import { ObjTy } from '~/common'
 
 export function loginReq(data: ObjTy) {
   return request({
-    url: '/ty-user/user/loginValid',
+    url: '/integration-front/user/loginValid',
     data,
     method: 'post',
     bfLoading: false,
@@ -14,15 +14,16 @@ export function loginReq(data: ObjTy) {
 
 export function getInfoReq() {
   return request({
-    url: '/ty-user/user/getUserInfo',
+    url: '/integration-front/user/getUserInfo',
     bfLoading: false,
-    method: 'post'
+    method: 'post',
+    isAlertErrorMsg: false
   })
 }
 
 export function logoutReq() {
   return request({
-    url: '/ty-user/user/loginOut',
+    url: '/integration-front/user/loginOut',
     method: 'post'
   })
 }

@@ -48,7 +48,7 @@ import Hamburger from './Hamburger'
 import { computed, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-let settings = computed(() => {
+const settings = computed(() => {
   return store.state.app.settings
 })
 const opened = computed(() => {
