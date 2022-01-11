@@ -18,6 +18,7 @@ export default ({ command, mode }: any) => {
      * "/vue3-admin-plus/" --> config to base is you need
      * http://8.135.1.141 --> if you config "/" , you can visit attached  to http://8.135.1.141
      * */
+    base: setting.viteBasePath,
     //define global var
     define: {
       //fix "path" module issue
@@ -71,7 +72,7 @@ export default ({ command, mode }: any) => {
       })
     ],
     build: {
-      minify: 'terser',
+      // minify: 'terser',
       brotliSize: false,
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 2000,
@@ -109,8 +110,8 @@ export default ({ command, mode }: any) => {
         }
       }
     },
-    optimizeDeps: {
-      include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en']
-    }
+    // optimizeDeps: {
+    //   include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en']
+    // }
   }
 }

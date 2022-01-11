@@ -6,5 +6,6 @@ declare let onlyOneChild: any
 
 //declare import module
 declare module '*/**'
+declare module '*'
 
 

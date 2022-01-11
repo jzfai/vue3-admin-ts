@@ -16,7 +16,7 @@ const mutations = {
  * data:ObjType
  * such as {sidebarLogo:false}
  * */
-  M_settings: (state, data) => {
+  M_settings: (state:AppTy, data:ObjTy) => {
     state.settings = { ...state.settings, ...data }
   },
   M_sidebar_opened: (state: AppTy, data: boolean) => {
