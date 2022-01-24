@@ -50,7 +50,7 @@ export default function () {
           //console.log('errorString', errLog)
           errorLogReq(errLog)
         } else {
-          const errLog = `${error.stack.substr(0, 300)}`
+          const errLog = `${error.stack?.substr(0, 300)}`
           //console.log('errorString', errLog)
           errorLogReq(errLog)
         }
@@ -65,7 +65,7 @@ export default function () {
       if (typeof reason === 'string') {
         errLog = reason
       } else {
-        errLog = `${reason.stack.substr(0, 300)}`
+        errLog = `${reason.stack?.substr(0, 300)}`
       }
       errorLogReq(errLog)
     })

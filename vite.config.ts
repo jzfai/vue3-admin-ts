@@ -48,10 +48,10 @@ export default ({ command, mode }: any) => {
     plugins: [
       vue(),
       vueJsx(),
-      legacy({
-        targets: ['ie >= 11'],
-        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-      }),
+      // legacy({
+      //   targets: ['ie >= 11'],
+      //   additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      // }),
       viteSvgIcons({
         // config svg dir that can config multi
         iconDirs: [path.resolve(process.cwd(), 'src/icons/common'), path.resolve(process.cwd(), 'src/icons/nav-bar')],
@@ -109,7 +109,7 @@ export default ({ command, mode }: any) => {
           additionalData: `@import "@/styles/variables.scss";`
         }
       }
-    },
+    }
     // optimizeDeps: {
     //   include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en']
     // }
