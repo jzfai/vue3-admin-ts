@@ -16,16 +16,16 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue'
-const { proxy }: any = getCurrentInstance()
 defineProps({
   isActive: {
     type: Boolean,
     default: false
   }
 })
+
+const emit = defineEmits(['toggleClick'])
 const toggleClick = () => {
-  proxy.$emit('toggleClick')
+  emit('toggleClick')
 }
 </script>
 

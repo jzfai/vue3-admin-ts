@@ -1,11 +1,12 @@
 <template>
-  <div>{{ name }}</div>
-  <el-button @click="emitFather">emitFather</el-button>
-  <el-button @click="getFatherMethod">getFatherMethod</el-button>
+  <div>
+    <div>{{ name }}</div>
+    <el-button @click="emitFather">emitFather</el-button>
+    <el-button @click="getFatherMethod">getFatherMethod</el-button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, onMounted, reactive, ref, toRefs } from 'vue'
 const props = defineProps({
   fatherName: {
     require: true,
@@ -13,18 +14,17 @@ const props = defineProps({
     type: String
   }
 })
-const state = reactive({
+let state = reactive({
   name: 'Children'
 })
 //导出给refs使用
-const childRef = ref('childRef')
-const childMethod = () => {
+let childRef = ref('childRef')
+let childMethod = () => {
   return 'childMethod'
 }
-
-const { proxy }: any = getCurrentInstance()
-const getFatherMethod = () => {
-  proxy.$parent.fartherMethod()
+const parentDom: any = parent
+let getFatherMethod = () => {
+  parentDom.fartherMethod()
 }
 //emit
 // 定义emit事件
@@ -36,8 +36,8 @@ onMounted(() => {
   console.log('得到父元素的prop', props.fatherName)
 })
 defineExpose({ childRef, childMethod })
-//导出属性到页面中使用
-const { name } = toRefs(state)
+//export to page for use
+let { name } = toRefs(state)
 </script>
 
 <style scoped lang="scss"></style>

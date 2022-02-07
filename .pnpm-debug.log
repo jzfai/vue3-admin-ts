@@ -1,0 +1,23 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 info pnpm": {
+    "err": {
+      "name": "Error",
+      "message": "not found: io",
+      "code": "ENOENT",
+      "stack": "Error: not found: io\n    at getNotFoundError (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:41440:51)\n    at Function.whichSync [as sync] (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:41517:13)\n    at getCommandAbsolutePathSync (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:43082:44)\n    at default_1 (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:43091:32)\n    at D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:179675:39"
+    }
+  },
+  "2 error pnpm": {
+    "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
+    "prefix": "D:\\construct\\vue3-admin-ts",
+    "err": {
+      "name": "pnpm",
+      "message": "not found: io",
+      "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
+      "stack": "Error: not found: io\n    at getNotFoundError (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:41440:51)\n    at Function.whichSync [as sync] (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:41517:13)\n    at getCommandAbsolutePathSync (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:43082:44)\n    at default_1 (D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:43091:32)\n    at D:\\nodejs\\v16\\node_modules\\pnpm\\dist\\pnpm.cjs:179675:39"
+    }
+  }
+}

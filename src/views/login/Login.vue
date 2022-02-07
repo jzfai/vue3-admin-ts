@@ -1,10 +1,11 @@
+<!--suppress ALL -->
 <template>
   <div class="login-container columnCC">
-    <el-form ref="refloginForm" size="medium" class="login-form" :model="formInline" :rules="formRulesMixin">
+    <el-form ref="refloginForm" class="login-form" :model="formInline" :rules="formRules">
       <div class="title-container">
         <h3 class="title text-center">{{ settings.title }}</h3>
       </div>
-      <el-form-item prop="username" :rules="formRulesMixin.isNotNull">
+      <el-form-item prop="username" :rules="formRules.isNotNull">
         <div class="rowSC">
           <span class="svg-container">
             <svg-icon icon-class="user" />
@@ -14,8 +15,8 @@
           <div class="show-pwd" />
         </div>
       </el-form-item>
-      <!--<el-form-item prop="password" :rules="formRulesMixin.passwordValid">-->
-      <el-form-item prop="password" :rules="formRulesMixin.isNotNull">
+      <!--<el-form-item prop="password" :rules="formRules.passwordValid">-->
+      <el-form-item prop="password" :rules="formRules.isNotNull">
         <div class="rowSC flex-1">
           <span class="svg-container">
             <svg-icon icon-class="password" />
@@ -26,8 +27,8 @@
             v-model="formInline.password"
             :type="passwordType"
             name="password"
-            placeholder="password(123456)"
             @keyup.enter="handleLogin"
+            placeholder="password(123456)"
           />
           <span class="show-pwd" @click="showPwd">
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -35,42 +36,35 @@
         </div>
       </el-form-item>
       <div class="tip-message">{{ tipMessage }}</div>
-      <el-button :loading="loading" type="primary" class="login-btn" size="medium" @click.prevent="handleLogin">
+      <el-button :loading="loading" type="primary" class="login-btn" size="default" @click.prevent="handleLogin">
         Login
       </el-button>
     </el-form>
   </div>
 </template>
 
-<script lang="ts">
-/*可以设置默认的名字*/
-export default {
-  name: 'Login'
-}
-</script>
-
 <script setup lang="ts">
-import { reactive, getCurrentInstance, watch, ref } from 'vue'
 import settings from '@/settings'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
 import { ObjTy } from '~/common'
-const { proxy }: any = getCurrentInstance()
+//element valid
+const formRules = useElement().formRules
 //form
-const formInline = reactive({
+let formInline = reactive({
   username: 'admin',
   password: '123456'
 })
-const state: ObjTy = reactive({
+let state: ObjTy = reactive({
   otherQuery: {},
   redirect: undefined
 })
 
 /* listen router change  */
 const route = useRoute()
-const getOtherQuery = (query: ObjTy) => {
-  return Object.keys(query).reduce((acc: ObjTy, cur) => {
+let getOtherQuery = (query: any) => {
+  return Object.keys(query).reduce((acc: any, cur: any) => {
     if (cur !== 'redirect') {
       acc[cur] = query[cur]
     }
@@ -89,15 +83,16 @@ watch(
   },
   { immediate: true }
 )
+
 /*
  *  login relative
  * */
-const loading = ref(false)
-const tipMessage = ref('')
+let loading = ref(false)
+let tipMessage = ref('')
 const store = useStore()
-const handleLogin = () => {
-  const refloginForm = ''
-  proxy.$refs['refloginForm'].validate((valid: boolean) => {
+const refloginForm: any = ref(null)
+let handleLogin = () => {
+  refloginForm.value.validate((valid: any) => {
     if (valid) {
       loginReq()
     } else {
@@ -105,34 +100,38 @@ const handleLogin = () => {
     }
   })
 }
-const loginReq = () => {
+
+//use the auto import from vite.config.js of AutoImport
+const router = useRouter()
+let loginReq = () => {
   loading.value = true
   store
     .dispatch('user/login', formInline)
     .then(() => {
       ElMessage({ message: '登录成功', type: 'success' })
-      proxy.$router.push({ path: state.redirect || '/', query: state.otherQuery })
+      router.push({ path: state.redirect || '/', query: state.otherQuery })
     })
     .catch((res) => {
       tipMessage.value = res.msg
-      proxy.sleepMixin(30).then(() => {
-        loading.value = false
-      })
+      useCommon()
+        .sleep(30)
+        .then(() => {
+          loading.value = false
+        })
     })
 }
-
 /*
  *  password show or hidden
  * */
-const passwordType = ref('password')
+let passwordType = ref('password')
 const refPassword: any = ref(null)
-const showPwd = () => {
+let showPwd = () => {
   if (passwordType.value === 'password') {
     passwordType.value = ''
   } else {
     passwordType.value = 'password'
   }
-  proxy.$nextTick(() => {
+  nextTick(() => {
     refPassword.value.focus()
   })
 }
@@ -154,7 +153,7 @@ $light_gray: #eee;
     .title {
       font-size: 22px;
       color: #eee;
-      margin: 0 auto 25px auto;
+      margin: 0px auto 25px auto;
       text-align: center;
       font-weight: bold;
     }

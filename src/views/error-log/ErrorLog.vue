@@ -11,24 +11,24 @@
         <span style="vertical-align: middle">删除</span>
       </el-button>
       <!--条件搜索-->
-      <el-form ref="refsearchFormMixin" :inline="true" class="demo-searchFormMixin ml-2">
+      <el-form ref="refsearchForm" :inline="true" class="demo-searchForm ml-2">
         <el-form-item label-width="0px" label="" prop="errorLog" label-position="left">
-          <el-input v-model="searchFormMixin.errorLog" class="widthPx-150" placeholder="错误日志" />
+          <el-input v-model="searchForm.errorLog" class="widthPx-150" placeholder="错误日志" />
         </el-form-item>
         <el-form-item label-width="0px" label="" prop="pageUrl" label-position="left">
-          <el-input v-model="searchFormMixin.pageUrl" class="widthPx-150" placeholder="页面路径" />
+          <el-input v-model="searchForm.pageUrl" class="widthPx-150" placeholder="页面路径" />
         </el-form-item>
         <el-form-item label-width="0px" label="" prop="createTime" label-position="left">
           <el-date-picker
-            v-model="startEndArrMixin"
+            v-model="startEndArr"
             type="datetimerange"
             format="YYYY-MM-DD"
             value-format="YYYY-MM-DD HH:mm:ss"
+            @change="dateTimePacking"
             class="widthPx-250"
             range-separator="-"
             start-placeholder="开始日期"
             end-placeholder="结束日期"
-            @change="dateTimePacking"
           />
         </el-form-item>
       </el-form>
@@ -41,8 +41,8 @@
       ref="refuserTable"
       :height="`calc(100vh - ${settings.delWindowHeight})`"
       border
-      :data="usertableData"
       @selection-change="handleSelectionChange"
+      :data="usertableData"
     >
       <el-table-column type="selection" align="center" width="50" />
       <el-table-column align="center" prop="errorLog" label="错误日志" width="450">
@@ -71,16 +71,16 @@
         :page-sizes="[10, 20, 50, 100]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="pageTotalMixin"
+        :total="totalPage"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
     </div>
     <!--详情-->
     <el-dialog
-      v-if="detailDialogMixin"
-      v-model="detailDialogMixin"
-      :title="dialogTitleMixin"
+      v-if="detailDialog"
+      :title="dialogTitle"
+      v-model="detailDialog"
       width="40vw"
       :close-on-click-modal="false"
     >
@@ -88,15 +88,15 @@
         <div class="detail-container-item">DBC文件名：{{ detailData.username }}</div>
       </div>
       <div class="detail-container rowBC elODialogModalBodyH60vh">
-        <div v-if="detailData.status === 1" class="detail-container-item" style="color: green">状态： 启用</div>
-        <div v-else class="detail-container-item">状态： 停用</div>
+        <div class="detail-container-item" style="color: green" v-if="detailData.status === 1">状态： 启用</div>
+        <div class="detail-container-item" v-else>状态： 停用</div>
       </div>
       <div class="detail-container rowBC elODialogModalBodyH60vh">
         <div class="detail-container-item">说明：{{ detailData.remark }}</div>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <el-button type="primary" @click="detailDialogMixin = false">确 定</el-button>
+          <el-button type="primary" @click="detailDialog = false">确 定</el-button>
         </span>
       </template>
     </el-dialog>
@@ -105,24 +105,16 @@
   </div>
 </template>
 
-<script lang="ts">
-//@ts-ignore
-export default {
-  name: 'ErrorLog'
-}
-</script>
-
 <script setup lang="ts">
 import { Delete } from '@element-plus/icons-vue'
-import { onMounted, getCurrentInstance, ref, reactive, onActivated, onDeactivated } from 'vue'
 import settings from '@/settings'
-const { proxy }: any = getCurrentInstance()
 import bus from '@/utils/bus'
 /*
  * 一般根据页面层次来排序 如此页面 表格查询和筛选->table的操作
  * 每个模块按：响应数据定义->公用方法->请求方法->页面按钮操作方法 进行排序
  * */
-const testData = ref('testData')
+
+let testData = ref('testData')
 onMounted(() => {
   console.log('testData', testData)
 })
@@ -135,28 +127,30 @@ const consoleToPlatform = (err: any) => {
 }
 
 //img loader err test
-const imgShow = ref(false)
+let imgShow = ref(false)
 const errorLogImg = () => {
   imgShow.value = !imgShow.value
 }
 
 /*表格查询和筛选*/
-const usertableData = ref([])
-const searchFormMixin: ObjTy = reactive({
+let usertableData = ref([])
+let searchForm: ObjTy = reactive({
   errorLog: '',
   pageUrl: '8.135.1.141',
   createTime: '',
   id: ''
 })
-const selectPageReq = () => {
-  const data = Object.assign(searchFormMixin, {
+
+let { totalPage, startEndArr, dialogTitle, detailDialog } = useCommon()
+let selectPageReq = () => {
+  const data = Object.assign(searchForm, {
     pageNum: pageNum,
     pageSize: pageSize
   })
   Object.keys(data).forEach((fItem) => {
     if (data[fItem] === '' || data[fItem] === null || data[fItem] === undefined) delete data[fItem]
   })
-  const reqConfig = {
+  let reqConfig = {
     url: '/integration-front/errorCollection/selectPage',
     method: 'get',
     data,
@@ -164,21 +158,21 @@ const selectPageReq = () => {
     bfLoading: false,
     isAlertErrorMsg: false
   }
-  proxy.$axiosReq(reqConfig).then((resData: any) => {
+  axiosReq(reqConfig).then((resData: any) => {
     usertableData.value = resData.data?.records
-    proxy.pageTotalMixin = resData.data?.total
+    totalPage.value = resData.data?.total
   })
 }
 import tablePageHook from '@/hooks/useTablePage'
-
-const { pageNum, pageSize, handleCurrentChange, handleSizeChange } = tablePageHook(selectPageReq)
-const dateTimePacking = (timeArr: Array<string>) => {
+import { ObjTy } from '~/common'
+let { pageNum, pageSize, handleCurrentChange, handleSizeChange } = tablePageHook(selectPageReq)
+const dateTimePacking = (timeArr: any) => {
   if (timeArr && timeArr.length === 2) {
-    searchFormMixin.startTime = timeArr[0]
-    searchFormMixin.endTime = timeArr[1]
+    searchForm.startTime = timeArr[0]
+    searchForm.endTime = timeArr[1]
   } else {
-    searchFormMixin.startTime = ''
-    searchFormMixin.endTime = ''
+    searchForm.startTime = ''
+    searchForm.endTime = ''
   }
 }
 onMounted(() => {
@@ -194,10 +188,11 @@ const searchBtnClick = () => {
 
 /*添加和修改*/
 /*详情*/
-const detailData: ObjTy = ref({})
+let detailData = ref({})
 /*删除*/
-const deleteByIdReq = (id: number) => {
-  return proxy.$axiosReq({
+let { elConfirm, elMessage } = useElement()
+let deleteByIdReq = (id: any) => {
+  return axiosReq({
     url: '/integration-front/errorCollection/deleteById',
     data: { id: id },
     isParams: true,
@@ -205,16 +200,12 @@ const deleteByIdReq = (id: number) => {
     bfLoading: true
   })
 }
-
-import { ObjTy } from '~/common'
-import { type } from 'node:os'
-const tableDelClick = async (row: ObjTy) => {
-  await proxy
-    .elConfirmMixin('确定', `您确定要删除【${row.pageUrl}】吗？`)
+let tableDelClick = async (row: any) => {
+  await elConfirm('确定', `您确定要删除【${row.pageUrl}】吗？`)
     .then(() => {
       deleteByIdReq(row.id).then(() => {
         selectPageReq()
-        proxy.elMessageMixin(`【${row.pageUrl}】删除成功`)
+        elMessage(`【${row.pageUrl}】删除成功`)
       })
     })
     //不写catch会报错
@@ -222,36 +213,33 @@ const tableDelClick = async (row: ObjTy) => {
 }
 
 /*批量删除*/
-const multipleSelection = ref([])
+let multipleSelection = ref([])
 const handleSelectionChange = (val: any) => {
   multipleSelection.value = val
 }
 const multiDelBtnClick = async () => {
-  let rowDeleteIdArrMixin: Array<any> = []
-  // let selectionArr = proxy.$refs.refuserTable //--c
+  let rowDeleteIdArr = []
   let deleteNameTitle = ''
-  rowDeleteIdArrMixin = multipleSelection.value.map((mItem: any) => {
+  rowDeleteIdArr = multipleSelection.value.map((mItem: any) => {
     deleteNameTitle = deleteNameTitle + mItem.pageUrl + ','
     return mItem.id
   })
-  if (rowDeleteIdArrMixin.length === 0) {
-    proxy.elMessageMixin('表格选项不能为空', 'warning')
+  if (rowDeleteIdArr.length === 0) {
+    elMessage('表格选项不能为空', 'warning')
     return
   }
-  const stringLength = deleteNameTitle.length - 1
-  await proxy.elConfirmMixin('删除', `您确定要删除【${deleteNameTitle.slice(0, stringLength)}】吗`)
-  const data = rowDeleteIdArrMixin
-  proxy
-    .$axiosReq({
-      url: `/integration-front/errorCollection/deleteBatchIds`,
-      data,
-      method: 'DELETE',
-      bfLoading: true
-    })
-    .then(() => {
-      proxy.elMessageMixin('删除成功')
-      selectPageReq()
-    })
+  let stringLength = deleteNameTitle.length - 1
+  await elConfirm('删除', `您确定要删除【${deleteNameTitle.slice(0, stringLength)}】吗`)
+  const data = rowDeleteIdArr
+  axiosReq({
+    url: `/integration-front/errorCollection/deleteBatchIds`,
+    data,
+    method: 'DELETE',
+    bfLoading: true
+  }).then(() => {
+    elMessage('删除成功')
+    selectPageReq()
+  })
 }
 </script>
 

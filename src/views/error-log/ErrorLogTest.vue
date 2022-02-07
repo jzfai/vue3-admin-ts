@@ -26,10 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance, ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-const settings = computed(() => {
+let settings = computed(() => {
   return store.state.app.settings || {}
 })
 
@@ -45,7 +44,7 @@ const handle = () => {
   })
 }
 
-const flag = ref(null)
+let flag = ref(null)
 
 const consoleErrorFun = () => {
   console.error('console.error')
@@ -54,24 +53,19 @@ const consoleErrorFun = () => {
 const normalError = () => {
   throw new Error(' throw new Error("")\n')
 }
-
-const { proxy }: any = getCurrentInstance()
-const reqCrossOrigin = () => {
-  proxy
-    .$axiosReq({
-      baseURL: 'http://8.135.1.141/micro-service-test',
-      url: '/integration-front/brand/updateBy',
-      data: { id: 'fai' },
-      method: 'put',
-      isParams: true,
-      bfLoading: true
-    })
-    .then(() => {})
+let reqCrossOrigin = () => {
+  axiosReq({
+    baseURL: 'http://8.135.1.141/micro-service-test',
+    url: '/integration-front/brand/updateBy',
+    data: { id: 'fai' },
+    method: 'put',
+    isParams: true,
+    bfLoading: true
+  }).then(() => {})
 }
 
 import axiosReq from '@/utils/axiosReq'
-import { ObjTy } from '~/common'
-const req404 = () => {
+let req404 = () => {
   axiosReq({
     // baseURL: 'http://8.135.1.141/micro-service-test',
     url: '/integration-front/brand/updateBy1',
@@ -79,13 +73,13 @@ const req404 = () => {
     method: 'put',
     isParams: true,
     bfLoading: true
-  }).then((res: ObjTy) => {})
+  }).then((res: any) => {})
   //the error will collection to unhandledrejection if you  no catch
   // .catch((err) => {})
 }
 
 //img loader err test
-const imgShow = ref(false)
+let imgShow = ref(false)
 const errorLogImg = () => {
   imgShow.value = !imgShow.value
 }
