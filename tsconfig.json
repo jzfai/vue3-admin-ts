@@ -43,7 +43,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "~/*": ["typings/*"],
+      "~/*": ["typings/*"]
     },
     //指定默认读取的目录
     //"typeRoots": ["./node_modules/@types/", "./types"],
@@ -51,7 +51,7 @@
   },
   //"files": [],
   //include包含文件夹会被ts进行读取
-  "include": ["src", "typings"]
+  "include": ["src", "typings", "auto-imports.d.ts"]
   //exclude 可以去除include中指定的文件，不能去除file指定的文件
   //  "exclude": [
   ////    "src/src1.ts"

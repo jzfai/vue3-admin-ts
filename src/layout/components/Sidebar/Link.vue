@@ -7,15 +7,15 @@
 <script setup lang="ts">
 import { isExternal } from '@/utils/validate'
 import { onMounted, computed, getCurrentInstance, reactive } from 'vue'
-const { proxy }: any = getCurrentInstance()
 const props = defineProps({
   to: {
     type: String,
     required: true
   }
 })
+
 const isExternalValid = computed(() => {
-  return isExternal(proxy.to)
+  return isExternal(props.to)
 })
 const type = computed(() => {
   if (isExternalValid.value) {

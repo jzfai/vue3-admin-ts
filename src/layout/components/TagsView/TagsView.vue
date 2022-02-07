@@ -31,13 +31,12 @@ import path from 'path'
 import { Close } from '@element-plus/icons-vue'
 import { onMounted, getCurrentInstance, watch, toRefs, reactive, computed } from 'vue'
 //获取store和router
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { RouterTy, RouteItemTy } from '~/router'
 import { ObjTy } from '~/common'
 const store = useStore()
 const router = useRouter()
-const { proxy }: any = getCurrentInstance()
 const state: ObjTy = reactive({
   visible: false,
   top: 0,
@@ -53,8 +52,10 @@ const routes = computed(() => {
   return store.state.permission.routes
 })
 
+const route = useRoute()
+
 watch(
-  () => proxy.$route,
+  () => route,
   () => {
     addTags()
     // tag remove has issue
@@ -89,7 +90,7 @@ onMounted(() => {
 })
 
 const isActive = (route: RouteItemTy) => {
-  return route.path === proxy.$route.path
+  return route.path === route.path
 }
 const isAffix = (tag: RouteItemTy) => {
   return tag.meta && tag.meta.affix
@@ -127,16 +128,16 @@ const initTags = () => {
 }
 
 const addTags = () => {
-  const { name } = proxy.$route
+  const { name } = route
   if (name) {
-    store.dispatch('tagsView/addView', proxy.$route)
+    store.dispatch('tagsView/addView', route)
   }
   return false
 }
 const refreshSelectedTag = (view: RouteItemTy) => {
   const { fullPath } = view
-  proxy.$nextTick(() => {
-    proxy.$router.replace({
+  nextTick(() => {
+    router.replace({
       path: '/redirect' + fullPath
     })
   })
@@ -149,7 +150,7 @@ const closeSelectedTag = (view: RouteItemTy) => {
   })
 }
 const closeOthersTags = () => {
-  proxy.$router.push(state.selectedTag)
+  router.push(state.selectedTag)
   store.dispatch('tagsView/delOthersViews', state.selectedTag)
 }
 const closeAllTags = (view: RouteItemTy) => {
@@ -175,6 +176,8 @@ const toLastView = (visitedViews: RouterTy, view: RouteItemTy) => {
     }
   }
 }
+
+const { proxy }: any = getCurrentInstance()
 const openMenu = (tag: RouteItemTy, e: any) => {
   const menuMinWidth = 105
   const offsetLeft = proxy.$el.getBoundingClientRect().left // container margin left

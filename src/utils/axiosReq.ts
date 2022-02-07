@@ -58,7 +58,7 @@ service.interceptors.response.use(
       setToken(updateToken)
     }
     const successCode = '0,200,20000'
-    if (successCode.indexOf(code)!==-1) {
+    if (successCode.indexOf(code) !== -1) {
       return res.data
     } else {
       if (code === 403) {
@@ -107,7 +107,7 @@ service.interceptors.response.use(
   }
 )
 
-export default function khReqMethod({
+export function axiosReq({
   url,
   data,
   method,
@@ -134,3 +134,5 @@ export default function khReqMethod({
     timeout: timeout ?? 15000
   })
 }
+
+export default axiosReq

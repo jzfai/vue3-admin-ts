@@ -15,10 +15,17 @@ module.exports = {
     GLOBAL_VAR: true,
     window: true,
     defineProps: true,
-    defineExpose: true
+    defineExpose: true,
+    $ref: true
   },
   plugins: ['@typescript-eslint', 'prettier', 'import'],
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:vue/vue3-recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
+    'prettier',
+    './.eslintrc-auto-import.json'
+  ],
   parserOptions: {
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
@@ -28,8 +35,7 @@ module.exports = {
     }
   },
   rules: {
-    'no-undef': [1],
-    'prefer-const': [1],
+    //close lf error
     'import/no-unresolved': [0],
     'vue/multi-word-component-names': 'off',
     'vue/no-deprecated-router-link-tag-prop': 'off',

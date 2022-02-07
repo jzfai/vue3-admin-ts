@@ -32,8 +32,7 @@ import Item from './Item'
 import { isExternal } from '@/utils/validate'
 import path from 'path'
 import { RouteItemTy } from '~/router'
-const { proxy }: any = getCurrentInstance()
-defineProps({
+const props = defineProps({
   //每一个router Item
   item: {
     type: Object,
@@ -55,14 +54,14 @@ onMounted(() => {
   // console.log(proxy.item);
 })
 //显示sidebarItem 的情况
-proxy.onlyOneChild = null
+let onlyOneChild = ref(null)
 const showSidebarItem = (children = [], parent: RouteItemTy) => {
   const showingChildren = children.filter((item: RouteItemTy) => {
     if (item.hidden) {
       return false
     } else {
       // Temp set(will be used if only has one showing child)
-      proxy.onlyOneChild = item
+      onlyOneChild.value = item
       return true
     }
   })
@@ -70,7 +69,7 @@ const showSidebarItem = (children = [], parent: RouteItemTy) => {
     return true
   }
   if (showingChildren.length === 0) {
-    proxy.onlyOneChild = { ...parent, path: '', noChildren: true }
+    onlyOneChild.value = { ...parent, path: '', noChildren: true }
     return true
   }
   return false
@@ -79,10 +78,10 @@ const resolvePath = (routePath: string) => {
   if (isExternal(routePath)) {
     return routePath
   }
-  if (isExternal(proxy.basePath)) {
-    return proxy.basePath
+  if (isExternal(props.basePath)) {
+    return props.basePath
   }
-  return path.resolve(proxy.basePath, routePath)
+  return path.resolve(props.basePath, routePath)
 }
 </script>
 
