@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup lang="ts">
-let { searchForm }: any = useCommon()
+let { searchForm } = useCommon()
 onMounted(() => {
   //get page pass url data
   console.log(useVueRouter().getQueryParam())
