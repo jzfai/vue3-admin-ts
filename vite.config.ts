@@ -145,9 +145,9 @@ export default ({ command, mode }: any) => {
           additionalData: `@import "@/styles/variables.scss";`
         }
       }
+    },
+    optimizeDeps: {
+      include: ['moment-mini']
     }
-    // optimizeDeps: {
-    //   include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en']
-    // }
   }
 }

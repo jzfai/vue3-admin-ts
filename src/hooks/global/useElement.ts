@@ -117,7 +117,7 @@ const useElementExample = () => {
    * type：通知类型
    * duration：通知显示时长（ms）
    * */
-  const elMessage = (message: string, type: any) => {
+  const elMessage = (message?: string, type?: any) => {
     ElMessage({
       showClose: true,
       message: message || '成功',
@@ -129,7 +129,7 @@ const useElementExample = () => {
    * loading加载框
    * 调用后通过 loadingId.close() 进行关闭
    * */
-  let loadingId = null
+  let loadingId: any = null
   const elLoading = () => {
     loadingId = ElLoading.service({
       lock: true,
@@ -145,7 +145,7 @@ const useElementExample = () => {
    * title：提示标题
    * duration：提示时长（ms）
    * */
-  const elNotify = (message: string, type: any, title: string, duration: number) => {
+  const elNotify = (message?: string, type?: any, title?: string, duration?: number) => {
     ElNotification({
       title: title || '提示',
       type: type || 'success',
@@ -161,7 +161,7 @@ const useElementExample = () => {
   * message:提示的内容
   * return Promise
   * */
-  const elConfirmNoCancelBtn = (title: string, message: string) => {
+  const elConfirmNoCancelBtn = (title?: string, message?: string) => {
     return ElMessageBox({
       message: message || '你确定要删除吗',
       title: title || '确认框',
@@ -177,7 +177,7 @@ const useElementExample = () => {
    * message:提示的内容
    * return Promise
    * */
-  const elConfirm = (title: string, message: string) => {
+  const elConfirm = (title?: string, message?: string) => {
     return ElMessageBox({
       message: message || '你确定要删除吗',
       title: title || '确认框',

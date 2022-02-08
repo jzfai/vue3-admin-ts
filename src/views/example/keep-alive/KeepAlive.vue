@@ -19,7 +19,7 @@
 2.在路由配置处设置cachePage：即可缓存
 -->
 <script setup name="KeepAlive" lang="ts">
-let { searchForm } = useCommon()
+let { searchForm }: any = useCommon()
 //$ref(experimental)
 //let testRef = $ref(1)
 let testRef = ref(1)
