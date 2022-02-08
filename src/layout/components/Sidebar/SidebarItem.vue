@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 /*初始化参数比如引入组件，proxy,state等*/
-import { getCurrentInstance, onMounted } from 'vue'
 import Link from './Link.vue'
 import Item from './Item'
 import { isExternal } from '@/utils/validate'
@@ -54,7 +53,7 @@ onMounted(() => {
   // console.log(proxy.item);
 })
 //显示sidebarItem 的情况
-let onlyOneChild = ref(null)
+let onlyOneChild: any = ref(null)
 const showSidebarItem = (children = [], parent: RouteItemTy) => {
   const showingChildren = children.filter((item: RouteItemTy) => {
     if (item.hidden) {

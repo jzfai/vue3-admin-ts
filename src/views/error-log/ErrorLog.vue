@@ -141,7 +141,7 @@ let searchForm: ObjTy = reactive({
   id: ''
 })
 
-let { totalPage, startEndArr, dialogTitle, detailDialog } = useCommon()
+let { totalPage, startEndArr, dialogTitle, detailDialog }: any = useCommon()
 let selectPageReq = () => {
   const data = Object.assign(searchForm, {
     pageNum: pageNum,
@@ -188,7 +188,7 @@ const searchBtnClick = () => {
 
 /*添加和修改*/
 /*详情*/
-let detailData = ref({})
+let detailData: any = ref({})
 /*删除*/
 let { elConfirm, elMessage } = useElement()
 let deleteByIdReq = (id: any) => {
@@ -218,7 +218,7 @@ const handleSelectionChange = (val: any) => {
   multipleSelection.value = val
 }
 const multiDelBtnClick = async () => {
-  let rowDeleteIdArr = []
+  let rowDeleteIdArr: Array<any> = []
   let deleteNameTitle = ''
   rowDeleteIdArr = multipleSelection.value.map((mItem: any) => {
     deleteNameTitle = deleteNameTitle + mItem.pageUrl + ','

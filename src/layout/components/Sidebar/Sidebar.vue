@@ -42,13 +42,13 @@ const isCollapse = computed(() => {
 })
 
 //change  scss variable to js
-const dillScssExportToJson = (scssExportJson) => {
+const dillScssExportToJson = (scssExportJson: any) => {
   const jsonString = scssExportJson.replace(/:export\s*/, '').replace(/[\s+\r\n]/g, '')
   const scssJson: ObjTy = {}
   jsonString
     .slice(1, jsonString.length - 2)
     .split(';')
-    .forEach((fItem) => {
+    .forEach((fItem: any) => {
       const arr = fItem.split(':')
       scssJson[arr[0]] = arr[1]
     })

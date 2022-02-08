@@ -38,8 +38,8 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const getBreadcrumb = () => {
   // only show routes with meta.title
-  let matched = route.matched.filter((item: RouteItemTy) => item.meta && item.meta.title)
-  const first = matched[0]
+  let matched: any = route.matched.filter((item) => item.meta && item.meta.title)
+  const first: any = matched[0]
   if (!isDashboard(first)) {
     //it can replace the first page if not exits
     matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched)
