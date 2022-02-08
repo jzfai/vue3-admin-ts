@@ -1,7 +1,31 @@
 import { getToken } from '@/utils/auth'
 import momentMini from 'moment-mini'
+import { ObjTy } from '~/common'
+
+type stateTy = {
+  totalPage: number
+  searchForm: ObjTy
+  /* 文件上传相关*/
+  fileList: Array<any>
+  chooseFileName: string
+  /* 多环境配置及token信息*/
+  commonValue: string
+  modalShowTitle: string
+  VITE_APP_IMAGE_URL_PRE: string // 图片前缀地址
+  VITE_APP_BASE_URL: string // 请求的url地址
+  VITE_APP_BASE_WS_URL: string // 请求的url地址
+  accessToken: string // 请求头的token
+  userBaseInfo: ObjTy // 用户信息
+  /* 时间点相关*/
+  todayTime: string
+  currentTime: string
+  todayTimeLast: string
+  yesterdayTime: string
+  beforeThreeDateTime: string
+}
+
 export const useCommonExample = () => {
-  const state = reactive({
+  const state = reactive<stateTy>({
     totalPage: 0,
     searchForm: {},
     /* 文件上传相关*/
