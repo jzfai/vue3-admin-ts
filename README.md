@@ -2,7 +2,7 @@
 
 **English** | [中文](./README-zh_CN.md)
 
-> vue3 admin plus provides enterprise-level development demo
+> > A minimal vue3 admin template with Element-Plus UI & axios & permission control & lint & hook
 
 A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plus ，It's fast!
 
