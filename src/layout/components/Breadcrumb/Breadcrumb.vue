@@ -73,7 +73,7 @@ const handleLink = (item: RouteItemTy) => {
   }
 }
 watch(
-  () => route,
+  () => route.path,
   () => {
     getBreadcrumb()
   },
