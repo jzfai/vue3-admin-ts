@@ -62,19 +62,17 @@ service.interceptors.response.use(
       return res.data
     } else {
       if (code === 403) {
-        if (!location.href.includes('/login')) {
-          ElMessageBox.confirm('请重新登录', {
-            confirmButtonText: '重新登录',
-            cancelButtonText: '取消',
-            type: 'warning'
-          }).then(() => {
-            store.dispatch('user/resetToken').then(() => {
-              location.reload()
-              //direct return
-              return Promise.reject(res.data)
-            })
+        ElMessageBox.confirm('请重新登录', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          store.dispatch('user/resetToken').then(() => {
+            location.reload()
+            //direct return
+            return Promise.reject(res.data)
           })
-        }
+        })
       }
       if (reqConfig.isAlertErrorMsg) {
         ElMessage({
