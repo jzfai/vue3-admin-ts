@@ -16,6 +16,7 @@ type stateTy = {
   VITE_APP_BASE_WS_URL: string // 请求的url地址
   accessToken: string // 请求头的token
   userBaseInfo: ObjTy // 用户信息
+  startEndArr: ObjTy // 用户信息
   /* 时间点相关*/
   todayTime: string
   currentTime: string
@@ -39,6 +40,7 @@ export const useCommonExample = () => {
     VITE_APP_BASE_WS_URL: '', // 请求的url地址
     accessToken: '', // 请求头的token
     userBaseInfo: {}, // 用户信息
+    startEndArr: [],
     /* 时间点相关*/
     todayTime: '',
     currentTime: '',
