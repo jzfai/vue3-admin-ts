@@ -20,6 +20,7 @@ export interface AppTy {
   device: string
   settings: ObjTy
   cachedViews: Array<string>
+  cachedViewsDeep: Array<string>
 }
 export interface PermissionTy {
   isGetUserInfo: boolean //是否已经设置了权限
