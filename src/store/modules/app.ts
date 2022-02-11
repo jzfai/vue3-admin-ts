@@ -7,16 +7,17 @@ const state: AppTy = {
   },
   device: 'desktop',
   settings: defaultSettings,
-  cachedViews: []
+  cachedViews: [],
+  cachedViewsDeep: []
 }
 
 /*mutations建议以M_开头*/
 const mutations = {
   /*
- * data:ObjType
- * such as {sidebarLogo:false}
- * */
-  M_settings: (state:AppTy, data:ObjTy) => {
+   * data:ObjType
+   * such as {sidebarLogo:false}
+   * */
+  M_settings: (state: AppTy, data: ObjTy) => {
     state.settings = { ...state.settings, ...data }
   },
   M_sidebar_opened: (state: AppTy, data: boolean) => {
@@ -38,6 +39,18 @@ const mutations = {
   },
   M_RESET_CACHED_VIEW: (state: AppTy) => {
     state.cachedViews = []
+  },
+  /*third  keepAlive*/
+  M_ADD_CACHED_VIEW_DEEP: (state, view) => {
+    if (state.cachedViewsDeep.includes(view)) return
+    state.cachedViewsDeep.push(view)
+  },
+  M_DEL_CACHED_VIEW_DEEP: (state, view) => {
+    const index = state.cachedViewsDeep.indexOf(view)
+    index > -1 && state.cachedViewsDeep.splice(index, 1)
+  },
+  M_RESET_CACHED_VIEW_DEEP: (state) => {
+    state.cachedViewsDeep = []
   }
 }
 const actions = {
