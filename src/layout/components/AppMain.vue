@@ -31,6 +31,12 @@ const settings = computed(() => {
 // leaveRmCachePage: is true, keep-alive remote when page leave
 let oldRoute: ObjTy = {}
 let deepOldRouter: ObjTy | null = null
+
+const removeDeepChildren = (deepOldRouter) => {
+  deepOldRouter.children?.forEach((fItem) => {
+    store.commit('app/M_DEL_CACHED_VIEW_DEEP', fItem.name)
+  })
+}
 const key = computed({
   get() {
     const routerLevel = route.matched.length
@@ -39,6 +45,8 @@ const key = computed({
       if (deepOldRouter?.name) {
         if (deepOldRouter.meta?.leaveRmCachePage && deepOldRouter.meta?.cachePage) {
           store.commit('app/M_DEL_CACHED_VIEW', deepOldRouter.name)
+          //remove the deepOldRouter‘s children component
+          removeDeepChildren(deepOldRouter)
         }
       } else {
         if (oldRoute?.name) {
@@ -63,6 +71,8 @@ const key = computed({
       if (deepOldRouter?.name && deepOldRouter.name !== parentRoute.name) {
         if (deepOldRouter.meta?.leaveRmCachePage && deepOldRouter.meta?.cachePage) {
           store.commit('app/M_DEL_CACHED_VIEW', deepOldRouter.name)
+          //remove the deepOldRouter‘s children component
+          removeDeepChildren(deepOldRouter)
         }
       } else {
         //否则走正常两级路由处理流程
