@@ -44,7 +44,7 @@ export default ({ command, mode }: any) => {
     server: {
       hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
       // 服务配置
-      port: 5001, // 类型： number 指定服务器端口;
+      port: 5003, // 类型： number 指定服务器端口;
       open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
       cors: true // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
       //proxy look for https://vitejs.cn/config/#server-proxy
@@ -108,10 +108,10 @@ export default ({ command, mode }: any) => {
       // })
     ],
     build: {
-      // minify: 'terser',
+      minify: 'terser',
       brotliSize: false,
       // 消除打包大小超过500kb警告
-      chunkSizeWarningLimit: 2000,
+      chunkSizeWarningLimit: 5000,
       //remote console.log in prod
       terserOptions: {
         //detail to look https://terser.org/docs/api-reference#compress-options
@@ -139,6 +139,21 @@ export default ({ command, mode }: any) => {
       // extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs']
     },
     css: {
+      postcss: {
+        //remove build charset warning
+        plugins: [
+          {
+            postcssPlugin: 'internal:charset-removal',
+            AtRule: {
+              charset: (atRule) => {
+                if (atRule.name === 'charset') {
+                  atRule.remove();
+                }
+              }
+            }
+          }
+        ]
+      },
       preprocessorOptions: {
         //define global scss variable
         scss: {

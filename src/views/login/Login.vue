@@ -45,8 +45,7 @@
 
 <script setup lang="ts">
 import settings from '@/settings'
-import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+
 import { ElMessage } from 'element-plus'
 import { ObjTy } from '~/common'
 //element valid

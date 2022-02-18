@@ -1,4 +1,3 @@
-import { onMounted, ref } from 'vue'
 export default function () {
   const ref1 = ref<string>('hook数据')
   const ref2 = ref<string>('hook数据ref2')

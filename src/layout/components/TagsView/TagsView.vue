@@ -29,10 +29,8 @@
 // import ScrollPane from './ScrollPane'
 import path from 'path'
 import { Close } from '@element-plus/icons-vue'
-import { onMounted, getCurrentInstance, watch, toRefs, reactive, computed } from 'vue'
 //获取store和router
-import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+
 import { RouterTy, RouteItemTy } from '~/router'
 import { ObjTy } from '~/common'
 const store = useStore()
@@ -142,10 +140,20 @@ const refreshSelectedTag = (view: RouteItemTy) => {
     })
   })
 }
-const closeSelectedTag = (view: RouteItemTy) => {
+const closeSelectedTag = (view: RouteItemTy|any) => {
   store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
     if (isActive(view)) {
       toLastView(visitedViews, view)
+    }
+    //remove keep-alive by the closeTabRmCache
+    if(view.meta?.closeTabRmCache){
+      const routerLevel = view.matched.length
+      if(routerLevel===2){
+        store.commit('app/M_DEL_CACHED_VIEW', view.name)
+      }
+      if(routerLevel===3){
+        store.commit('app/M_DEL_CACHED_VIEW_DEEP', view.name)
+      }
     }
   })
 }

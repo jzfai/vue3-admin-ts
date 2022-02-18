@@ -39,6 +39,12 @@ directive(app)
 //import router  intercept
 import './permission'
 
+//element svg icon
+import ElSvgIcon from "@/components/ElSvgIcon.vue"
+app.component("ElSvgIcon",ElSvgIcon)
+
+
+
 //error log  collection
 import errorLog from '@/hooks/useErrorLog'
 errorLog()

@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, getCurrentInstance, watch, ref, computed } from 'vue'
 import { compile } from 'path-to-regexp'
 const levelList: any = ref(null)
 
@@ -34,7 +33,6 @@ const settings = computed(() => {
 })
 
 import { RouteItemTy } from '~/router'
-import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const getBreadcrumb = () => {
   // only show routes with meta.title

@@ -1,4 +1,3 @@
-import { onBeforeMount, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
 const { body } = document
 const WIDTH = 992

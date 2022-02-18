@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { isExternal } from '@/utils/validate'
-import { onMounted, computed, getCurrentInstance, reactive } from 'vue'
 const props = defineProps({
   to: {
     type: String,
