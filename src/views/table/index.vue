@@ -38,7 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs, reactive, onBeforeMount } from 'vue'
 import { getList } from '@/api/table'
 import { ObjTy } from '~/common'
 const statusFilter = (status: string) => {

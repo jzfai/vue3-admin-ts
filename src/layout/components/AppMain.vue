@@ -17,8 +17,6 @@
 
 <script setup lang="ts">
 import setting from '@/settings'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { ObjTy } from '~/common'
 const store = useStore()
@@ -27,6 +25,14 @@ const settings = computed(() => {
   return store.state.app.settings
 })
 
+
+const key = computed(()=>route.path)
+
+const cachedViews = computed(() => {
+  return store.state.app.cachedViews
+})
+
+/*listen the component name changing, then to keep-alive the page*/
 // cachePage: is true, keep-alive this Page
 // leaveRmCachePage: is true, keep-alive remote when page leave
 let oldRoute: ObjTy = {}
@@ -37,10 +43,13 @@ const removeDeepChildren = (deepOldRouter) => {
     store.commit('app/M_DEL_CACHED_VIEW_DEEP', fItem.name)
   })
 }
-const key = computed({
-  get() {
+
+watch(
+  () => route.name,
+  () => {
     const routerLevel = route.matched.length
-    console.log('routerLevel', routerLevel)
+
+    //二级路由处理
     if (routerLevel === 2) {
       if (deepOldRouter?.name) {
         if (deepOldRouter.meta?.leaveRmCachePage && deepOldRouter.meta?.cachePage) {
@@ -62,8 +71,10 @@ const key = computed({
         }
       }
       deepOldRouter = null
-    } else if (routerLevel === 3) {
-      //如果路由等级为3级处理流程
+    }
+
+    //三级路由处理
+    if (routerLevel === 3) {
       //三级时存储当前路由对象的上一级
       const parentRoute = route.matched[1]
       //deepOldRouter不为空，且deepOldRouter不是当前路由的父对象，则需要清除deepOldRouter缓存
@@ -83,7 +94,6 @@ const key = computed({
         }
       }
 
-      //缓存移除逻辑
       if (route.name) {
         if (route.meta?.cachePage) {
           deepOldRouter = parentRoute
@@ -94,14 +104,9 @@ const key = computed({
       }
     }
     oldRoute = JSON.parse(JSON.stringify({ name: route.name, meta: route.meta }))
-    return route.path
   },
-  set() {}
-})
-
-const cachedViews = computed(() => {
-  return store.state.app.cachedViews
-})
+  { immediate: true }
+)
 </script>
 
 <style scoped lang="scss">

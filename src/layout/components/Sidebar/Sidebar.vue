@@ -24,10 +24,8 @@
 <script setup lang="ts">
 import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
-import { computed } from 'vue'
 //导入配置文件
-import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+
 const store = useStore()
 const settings = computed(() => {
   return store.state.app.settings

@@ -72,7 +72,7 @@ export default function () {
       const unhandledCode = '403, 401'
       //此处可添加不捕捉string
       const unhandledString = 'cancel'
-      if (!unhandledCode.includes(reason?.code) && !unhandledString.includes(unhandledString)) {
+      if (!unhandledCode.includes(reason?.code) && !reason.includes(unhandledString)) {
         errorLogReq(errLog)
       }
     })

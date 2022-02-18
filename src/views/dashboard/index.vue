@@ -6,11 +6,10 @@
     <div>update element-plus to 1.2.+, add svg icon, icon-font is abandoned</div>
     <i class="el-icon-add-location">abandoned</i>
     <div>update element-plus version to 2.0.1 release version the size options change to "large default small"</div>
-    <div>
-      <el-icon>
-        <Svg.Edit></Svg.Edit>
-      </el-icon>
-    </div>
+
+    <div class="mt-2">global element svg icon</div>
+    <ElSvgIcon name="Edit" :size="30" color="red"/>
+
     <div class="mt-2">this is var from vite.config.js define</div>
     <div>{{ showObj }},{{ showObjString }}</div>
 
@@ -24,10 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import * as Svg from '@element-plus/icons-vue'
-import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-
 const store = useStore()
 const username = computed(() => {
   return store.state.user.username

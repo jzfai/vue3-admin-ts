@@ -1,5 +1,4 @@
 /*使用vue3.0 jsx语法书写*/
-import { defineComponent } from 'vue'
 import ElSvgItem from './ElSvgItem.vue'
 export default defineComponent({
   props: {

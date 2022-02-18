@@ -19,6 +19,7 @@ export interface RouteItemTy {
     code?: number
     cachePage?: boolean
     leaveRmCachePage?: boolean
+    closeTabRmCache?: boolean
   }
   children?: RouterTy
   redirect?: string

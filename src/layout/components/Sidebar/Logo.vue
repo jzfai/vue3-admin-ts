@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs, reactive } from 'vue'
 import setting from '@/settings'
 defineProps({
   collapse: {

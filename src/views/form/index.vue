@@ -48,7 +48,6 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, reactive } from 'vue'
 const { proxy }: any = getCurrentInstance()
 const subform = reactive({
   name: '',
