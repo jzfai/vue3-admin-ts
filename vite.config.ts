@@ -56,6 +56,11 @@ export default ({ command, mode }: any) => {
       //   }
       // }
     },
+    preview: {
+      port: 5003,
+      host: '0.0.0.0',
+      strictPort: true
+    },
     plugins: [
       vue(),
       vueJsx(),
@@ -147,7 +152,7 @@ export default ({ command, mode }: any) => {
             AtRule: {
               charset: (atRule) => {
                 if (atRule.name === 'charset') {
-                  atRule.remove();
+                  atRule.remove()
                 }
               }
             }
