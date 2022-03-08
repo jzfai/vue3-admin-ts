@@ -328,13 +328,12 @@ export const asyncRoutes: RouterTy = [
           title: 'Code Page',
           code: 1
         }
-      },
-
-      // 404 page must be placed at the end !!!
-      // using pathMatch install of "*" in vue-router 4.0
-      { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
+      }
     ]
-  }
+  },
+  // 404 page must be placed at the end !!!
+  // using pathMatch install of "*" in vue-router 4.0
+  { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
 ]
 
 const router: Router = createRouter({
