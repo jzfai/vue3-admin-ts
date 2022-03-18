@@ -1,6 +1,6 @@
 {
   "name": "vue3-admin-ts",
-  "version": "1.4.1",
+  "version": "1.4.5",
   "license": "ISC",
   "author": "kuanghua(869653722@qq.com)",
   "scripts": {
@@ -20,7 +20,7 @@
     "@element-plus/icons-vue": "0.2.4",
     "axios": "0.21.3",
     "echarts": "4.2.1",
-    "element-plus": "2.0.5",
+    "element-plus": "2.1.4",
     "mitt": "3.0.0",
     "moment-mini": "^2.22.1",
     "nprogress": "0.2.0",
