@@ -1,5 +1,6 @@
 import store from '@/store'
 import axios from 'axios'
+import router from '@/router'
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 import { getToken, setToken } from '@/utils/auth'
 import { AxiosConfigTy, AxiosReqTy, ObjTy } from '~/common'
@@ -67,10 +68,8 @@ service.interceptors.response.use(
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-            //direct return
-            return Promise.reject(res.data)
+          store.dispatch('user/resetState').then(() => {
+            router.push({ path: '/login' })
           })
         })
       }
