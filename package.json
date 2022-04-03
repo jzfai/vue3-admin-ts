@@ -28,7 +28,7 @@
     "path-to-regexp": "^6.2.0",
     "tinymce": "4.9.11",
     "vue": "3.2.31",
-    "vue-router": "4.0.12",
+    "vue-router": "4.0.14",
     "vuex": "4.0.2"
   },
   "devDependencies": {
