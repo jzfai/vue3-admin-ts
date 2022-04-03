@@ -13,10 +13,12 @@
 
 <script setup lang="ts">
 //获取store和router
-import { useStore } from 'vuex'
-const store = useStore()
+
+import { useUserStore } from '@/store/user'
+
+const userStore = useUserStore()
 const roles = computed(() => {
-  return store.state.user.roles
+  return userStore.roles
 })
 // const emit = defineEmits(['change'])
 const switchRoles = computed({

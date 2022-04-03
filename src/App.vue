@@ -3,10 +3,11 @@
 </template>
 <script setup lang="ts">
 import { setToken } from '@/utils/auth'
+import { useAppStore } from '@/store/app'
 
-const store = useStore()
+const appStore = useAppStore()
 const settings = computed(() => {
-  return store.state.app.settings
+  return appStore.settings
 })
 onBeforeMount(() => {
   //set tmp token when setting isNeedLogin false

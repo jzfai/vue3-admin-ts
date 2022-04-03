@@ -20,13 +20,14 @@ export default {
 
 <script setup lang="ts">
 import { Sidebar, Navbar, AppMain, TagsView } from './components'
-const store = useStore()
+
+const appStore = useAppStore()
 const opened = computed(() => {
-  return store.state.app.sidebar.opened
+  return appStore.sidebar.opened
 })
-import { useStore } from 'vuex'
+
 const settings = computed(() => {
-  return store.state.app.settings
+  return appStore.settings
 })
 const classObj = computed(() => {
   return {
@@ -36,6 +37,7 @@ const classObj = computed(() => {
 })
 //import ResizeHook to   listen  page size that   open or close
 import ResizeHook from './hook/ResizeHandler'
+import { useAppStore } from '@/store/app'
 ResizeHook()
 </script>
 

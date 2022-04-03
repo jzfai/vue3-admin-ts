@@ -45,15 +45,15 @@ import { CaretBottom } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import Breadcrumb from './Breadcrumb'
 import Hamburger from './Hamburger'
-import { useStore } from 'vuex'
-import { useAppStore } from '@/pinia/app'
-import { useUserStore } from '@/pinia/user'
-const store = useStore()
+
+import { useAppStore } from '@/store/app'
+import { useUserStore } from '@/store/user'
+
 const settings = computed(() => {
-  return store.state.app.settings
+  return appStore.settings
 })
 const opened = computed(() => {
-  return store.state.app.sidebar.opened
+  return appStore.sidebar.opened
 })
 const appStore = useAppStore()
 const toggleSideBar = () => {

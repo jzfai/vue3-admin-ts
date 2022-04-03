@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus'
 import { AxiosReqTy } from '~/common'
 
 // create an axios instance
-const service= axios.create({
+const service = axios.create({
   baseURL: '', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 8000 // request timeout
@@ -11,7 +11,7 @@ const service= axios.create({
 
 // request interceptor
 service.interceptors.request.use(
-  (config:AxiosReqTy) => {
+  (config: AxiosReqTy) => {
     return config
   },
   (error) => {

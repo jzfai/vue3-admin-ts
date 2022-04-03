@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { RouteItemTy, RouterRowTy, RouterTy } from '~/router'
-import { PermissionTy } from '~/store'
 import { asyncRoutes, constantRoutes } from '@/router'
 import settings from '@/settings'
+import { PermissionTy } from '~/store'
 
 /**
  * Use meta.code to determine if the current user has permission

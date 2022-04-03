@@ -19,7 +19,7 @@
 2.在路由配置处设置cachePage：即可缓存
 -->
 <script setup name="KeepAlive" lang="ts">
-import { useAppStore } from '@/pinia/app'
+import { useAppStore } from '@/store/app'
 
 let { searchForm } = useCommon()
 //$ref(experimental)
@@ -37,7 +37,6 @@ onDeactivated(() => {
 })
 
 const $route = useRoute()
-const $store = useStore()
 // cacheGroup为缓存分组  KeepAlive->routerDemoF->routerDemoS
 let cacheGroup = ['KeepAlive', 'routerDemoF', 'routerDemoS']
 const appStore = useAppStore()
