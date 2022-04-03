@@ -17,19 +17,19 @@
 
 <script setup lang="ts">
 import setting from '@/settings'
-import { useStore } from 'vuex'
+
 import { ObjTy } from '~/common'
-import { useAppStore } from '@/pinia/app'
-const store = useStore()
+import { useAppStore } from '@/store/app'
+
 const route = useRoute()
 const settings = computed(() => {
-  return store.state.app.settings
+  return appStore.settings
 })
 
 const key = computed(() => route.path)
 
 const cachedViews = computed(() => {
-  return store.state.app.cachedViews
+  return appStore.cachedViews
 })
 
 /*listen the component name changing, then to keep-alive the page*/
@@ -55,7 +55,6 @@ watch(
       if (deepOldRouter?.name) {
         if (deepOldRouter.meta?.leaveRmCachePage && deepOldRouter.meta?.cachePage) {
           appStore.M_DEL_CACHED_VIEW(deepOldRouter.name)
-          // store.commit('app/M_DEL_CACHED_VIEW', deepOldRouter.name)
           //remove the deepOldRouter‘s children component
           removeDeepChildren(deepOldRouter)
         }
@@ -63,7 +62,6 @@ watch(
         if (oldRoute?.name) {
           if (oldRoute.meta?.leaveRmCachePage && oldRoute.meta?.cachePage) {
             appStore.M_DEL_CACHED_VIEW(oldRoute.name)
-            //store.commit('app/M_DEL_CACHED_VIEW', oldRoute.name)
           }
         }
       }
@@ -71,7 +69,6 @@ watch(
       if (route.name) {
         if (route.meta?.cachePage) {
           appStore.M_ADD_CACHED_VIEW(route.name)
-          //store.commit('app/M_ADD_CACHED_VIEW', route.name)
         }
       }
       deepOldRouter = null
@@ -86,7 +83,6 @@ watch(
       if (deepOldRouter?.name && deepOldRouter.name !== parentRoute.name) {
         if (deepOldRouter.meta?.leaveRmCachePage && deepOldRouter.meta?.cachePage) {
           appStore.M_DEL_CACHED_VIEW(deepOldRouter.name)
-          //store.commit('app/M_DEL_CACHED_VIEW', deepOldRouter.name)
           //remove the deepOldRouter‘s children component
           removeDeepChildren(deepOldRouter)
         }
@@ -95,7 +91,6 @@ watch(
         if (oldRoute?.name) {
           if (oldRoute.meta?.leaveRmCachePage && oldRoute.meta?.cachePage) {
             appStore.M_DEL_CACHED_VIEW_DEEP(oldRoute.name)
-            //store.commit('app/M_DEL_CACHED_VIEW_DEEP', oldRoute.name)
           }
         }
       }
@@ -106,8 +101,6 @@ watch(
           //取的是第二级的name和第三级的name进行缓存
           appStore.M_ADD_CACHED_VIEW(deepOldRouter.name)
           appStore.M_ADD_CACHED_VIEW_DEEP(route.name)
-          // store.commit('app/M_ADD_CACHED_VIEW', deepOldRouter.name)
-          // store.commit('app/M_ADD_CACHED_VIEW_DEEP', route.name)
         }
       }
     }

@@ -33,10 +33,10 @@ import { Close } from '@element-plus/icons-vue'
 
 import { RouterTy, RouteItemTy } from '~/router'
 import { ObjTy } from '~/common'
-import { useAppStore } from '@/pinia/app'
-import { useTagsViewStore } from '@/pinia/tagsView'
-import { usePermissionStore } from '@/pinia/permission'
-const store = useStore()
+import { useAppStore } from '@/store/app'
+import { useTagsViewStore } from '@/store/tagsView'
+import { usePermissionStore } from '@/store/permission'
+
 const $route = useRoute()
 const $router = useRouter()
 
@@ -125,7 +125,6 @@ const initTags = () => {
     // Must have tag name
     if (tag.name) {
       tagsViewStore.addVisitedView(tag)
-      // store.dispatch('tagsView/addVisitedView', tag)
     }
   }
 }
@@ -134,7 +133,6 @@ const addTags = () => {
   const { name } = $route
   if (name) {
     tagsViewStore.addView($route)
-    //store.dispatch('tagsView/addView', $route)
   }
   return false
 }
@@ -157,11 +155,9 @@ const closeSelectedTag = (view: RouteItemTy | any) => {
       const routerLevel = view.matched.length
       if (routerLevel === 2) {
         appStore.M_DEL_CACHED_VIEW(view.name)
-        // store.commit('app/M_DEL_CACHED_VIEW', view.name)
       }
       if (routerLevel === 3) {
         appStore.M_DEL_CACHED_VIEW_DEEP(view.name)
-        // store.commit('app/M_DEL_CACHED_VIEW_DEEP', view.name)
       }
     }
   })
@@ -169,7 +165,6 @@ const closeSelectedTag = (view: RouteItemTy | any) => {
 const closeOthersTags = () => {
   $router.push(state.selectedTag)
   tagsViewStore.delOthersViews(state.selectedTag)
-  //store.dispatch('tagsView/delOthersViews', state.selectedTag)
 }
 const closeAllTags = (view: RouteItemTy) => {
   tagsViewStore.delAllViews().then(({ visitedViews }: any) => {

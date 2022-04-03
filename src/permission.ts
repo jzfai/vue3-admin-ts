@@ -1,14 +1,13 @@
 import router, { asyncRoutes } from '@/router'
-import store from './store'
 import settings from './settings'
 import { getToken, setToken } from '@/utils/auth'
 import NProgress from 'nprogress'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 import 'nprogress/nprogress.css'
 import getPageTitle from '@/utils/getPageTitle'
-import { RouterRowTy, RouterTy } from '~/router'
-import { useUserStore } from '@/pinia/user'
-import { usePermissionStore } from '@/pinia/permission'
+import { RouterRowTy } from '~/router'
+import { useUserStore } from '@/store/user'
+import { usePermissionStore } from '@/store/permission'
 
 const whiteList = ['/login', '/404', '/401'] // no redirect whitelist
 router.beforeEach(async (to: any, from, next: any) => {
@@ -27,7 +26,7 @@ router.beforeEach(async (to: any, from, next: any) => {
       next({ path: '/' })
     } else {
       //judge isGetUserInfo
-      const isGetUserInfo: boolean = store.state.permission.isGetUserInfo
+      const isGetUserInfo: boolean = permissionStore.isGetUserInfo
       if (isGetUserInfo) {
         next()
       } else {
@@ -44,7 +43,6 @@ router.beforeEach(async (to: any, from, next: any) => {
           }
           // setting constRouters and accessRoutes to vuex , in order to sideBar for using
           permissionStore.M_routes(accessRoutes)
-          // store.commit('permission/M_routes', accessRoutes)
           // dynamically add accessible routes
           //router4 addRoutes destroyed
           accessRoutes.forEach((route: RouterRowTy) => {
@@ -52,13 +50,11 @@ router.beforeEach(async (to: any, from, next: any) => {
           })
           //already get userInfo
           permissionStore.M_isGetUserInfo(true)
-          //store.commit('permission/M_isGetUserInfo', true)
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
         } catch (err) {
           await userStore.resetState()
-          // await store.dispatch('user/resetState')
           next(`/login?redirect=${to.path}`)
           if (settings.isNeedNprogress) NProgress.done()
         }

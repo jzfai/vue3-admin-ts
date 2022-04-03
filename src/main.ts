@@ -3,10 +3,6 @@ import App from './App.vue'
 const app = createApp(App)
 import router from './router'
 import '@/styles/index.scss' // global css
-//import vuex
-import store from './store'
-app.use(store)
-
 //import element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'

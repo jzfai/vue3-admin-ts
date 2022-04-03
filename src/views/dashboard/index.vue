@@ -8,7 +8,7 @@
     <div>update element-plus version to 2.0.1 release version the size options change to "large default small"</div>
 
     <div class="mt-2">global element svg icon</div>
-    <ElSvgIcon name="Edit" :size="30" color="red"/>
+    <ElSvgIcon name="Edit" :size="30" color="red" />
 
     <div class="mt-2">this is var from vite.config.js define</div>
     <div>{{ showObj }},{{ showObjString }}</div>
@@ -23,10 +23,11 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex'
-const store = useStore()
+import { useUserStore } from '@/store/user'
+
+const userStore = useUserStore()
 const username = computed(() => {
-  return store.state.user.username
+  return userStore.username
 })
 
 const showObj = ref(GLOBAL_VAR)

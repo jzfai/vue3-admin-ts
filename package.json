@@ -1,6 +1,6 @@
 {
   "name": "vue3-admin-ts",
-  "version": "1.4.5",
+  "version": "1.5.0",
   "license": "ISC",
   "author": "kuanghua(869653722@qq.com)",
   "scripts": {
@@ -19,18 +19,17 @@
   "dependencies": {
     "@element-plus/icons-vue": "1.1.4",
     "axios": "0.21.3",
-    "echarts": "4.2.1",
+    "echarts": "5.3.2",
     "element-plus": "2.1.7",
     "mitt": "3.0.0",
     "moment-mini": "^2.22.1",
     "nprogress": "0.2.0",
     "path": "0.12.7",
     "path-to-regexp": "^6.2.0",
-    "pinia": "2.0.13",
-    "tinymce": "4.9.11",
+    "tinymce": "6.0.1",
     "vue": "3.2.31",
-    "vue-router": "4.0.12",
-    "vuex": "4.0.2"
+    "vue-router": "4.0.14",
+    "pinia": "2.0.13"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.16.3",
