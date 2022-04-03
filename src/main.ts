@@ -13,7 +13,7 @@ import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 app.use(ElementPlus, { size: 'small', locale: zhCn })
 
-//global mixin
+// global mixin
 // import elementMixin from '@/mixins/elementMixin'
 // app.mixin(elementMixin)
 // import commonMixin from '@/mixins/commonMixin'
@@ -40,13 +40,16 @@ directive(app)
 import './permission'
 
 //element svg icon
-import ElSvgIcon from "@/components/ElSvgIcon.vue"
-app.component("ElSvgIcon",ElSvgIcon)
-
-
+import ElSvgIcon from '@/components/ElSvgIcon.vue'
+app.component('ElSvgIcon', ElSvgIcon)
 
 //error log  collection
 import errorLog from '@/hooks/useErrorLog'
 errorLog()
+
+//pinia
+import { createPinia } from 'pinia'
+
+app.use(createPinia())
 
 app.use(router).mount('#app')

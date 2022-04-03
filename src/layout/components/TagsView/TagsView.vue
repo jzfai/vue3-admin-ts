@@ -33,6 +33,9 @@ import { Close } from '@element-plus/icons-vue'
 
 import { RouterTy, RouteItemTy } from '~/router'
 import { ObjTy } from '~/common'
+import { useAppStore } from '@/pinia/app'
+import { useTagsViewStore } from '@/pinia/tagsView'
+import { usePermissionStore } from '@/pinia/permission'
 const store = useStore()
 const $route = useRoute()
 const $router = useRouter()
@@ -46,12 +49,12 @@ const state: ObjTy = reactive({
 })
 
 const visitedViews = computed(() => {
-  return store.state.tagsView.visitedViews
+  return tagsViewStore.visitedViews
 })
+const permissionStore = usePermissionStore()
 const routes = computed(() => {
-  return store.state.permission.routes
+  return permissionStore.routes
 })
-
 watch(
   () => $route.path,
   () => {
@@ -115,12 +118,14 @@ const filterAffixTags = (routes: RouterTy, basePath = '/') => {
   })
   return tags
 }
+const tagsViewStore = useTagsViewStore()
 const initTags = () => {
   const affixTags = (state.affixTags = filterAffixTags(routes.value))
   for (const tag of affixTags) {
     // Must have tag name
     if (tag.name) {
-      store.dispatch('tagsView/addVisitedView', tag)
+      tagsViewStore.addVisitedView(tag)
+      // store.dispatch('tagsView/addVisitedView', tag)
     }
   }
 }
@@ -128,7 +133,8 @@ const initTags = () => {
 const addTags = () => {
   const { name } = $route
   if (name) {
-    store.dispatch('tagsView/addView', $route)
+    tagsViewStore.addView($route)
+    //store.dispatch('tagsView/addView', $route)
   }
   return false
 }
@@ -140,29 +146,33 @@ const refreshSelectedTag = (view: RouteItemTy) => {
     })
   })
 }
-const closeSelectedTag = (view: RouteItemTy|any) => {
-  store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
+const appStore = useAppStore()
+const closeSelectedTag = (view: RouteItemTy | any) => {
+  tagsViewStore.delView(view).then(({ visitedViews }: any) => {
     if (isActive(view)) {
       toLastView(visitedViews, view)
     }
     //remove keep-alive by the closeTabRmCache
-    if(view.meta?.closeTabRmCache){
+    if (view.meta?.closeTabRmCache) {
       const routerLevel = view.matched.length
-      if(routerLevel===2){
-        store.commit('app/M_DEL_CACHED_VIEW', view.name)
+      if (routerLevel === 2) {
+        appStore.M_DEL_CACHED_VIEW(view.name)
+        // store.commit('app/M_DEL_CACHED_VIEW', view.name)
       }
-      if(routerLevel===3){
-        store.commit('app/M_DEL_CACHED_VIEW_DEEP', view.name)
+      if (routerLevel === 3) {
+        appStore.M_DEL_CACHED_VIEW_DEEP(view.name)
+        // store.commit('app/M_DEL_CACHED_VIEW_DEEP', view.name)
       }
     }
   })
 }
 const closeOthersTags = () => {
   $router.push(state.selectedTag)
-  store.dispatch('tagsView/delOthersViews', state.selectedTag)
+  tagsViewStore.delOthersViews(state.selectedTag)
+  //store.dispatch('tagsView/delOthersViews', state.selectedTag)
 }
 const closeAllTags = (view: RouteItemTy) => {
-  store.dispatch('tagsView/delAllViews').then(({ visitedViews }) => {
+  tagsViewStore.delAllViews().then(({ visitedViews }: any) => {
     if (state.affixTags.some((tag: RouteItemTy) => tag.path === view.path)) {
       return
     }

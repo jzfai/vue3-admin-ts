@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex'
+import { useAppStore } from '@/pinia/app'
 const store = useStore()
 /*getter*/
 const getterValue = ref(null)
@@ -22,18 +23,24 @@ const getterFunc = () => {
 
 /*mutations*/
 /*建议commit用M_开头 action用A_开头*/
+const appStore = useAppStore()
+
 const c_openSideBar = () => {
-  store.commit('app/M_sidebar_opened', true)
+  appStore.M_sidebar_opened(true)
+  //store.commit('app/M_sidebar_opened', true)
 }
 const c_closeSideBar = () => {
-  store.commit('app/M_sidebar_opened', false)
+  appStore.M_sidebar_opened(false)
+  //store.commit('app/M_sidebar_opened', false)
 }
 /*actions*/
 const openSideBar = () => {
-  store.dispatch('app/A_sidebar_opened', true)
+  appStore.A_sidebar_opened(true)
+  //store.dispatch('app/A_sidebar_opened', true)
 }
 const closeSideBar = () => {
-  store.dispatch('app/A_sidebar_opened', false)
+  appStore.A_sidebar_opened(false)
+  //store.dispatch('app/A_sidebar_opened', false)
 }
 </script>
 

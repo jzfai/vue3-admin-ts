@@ -53,20 +53,21 @@
 
 <script lang="ts" setup>
 import { useStore } from 'vuex'
+import { useAppStore } from '@/pinia/app'
 const store = useStore()
 const settings = computed(() => {
   return store.state.app.settings || {}
 })
 
+const appStore = useAppStore()
 const testChangeSettings = () => {
-  store.commit('app/M_settings', { sidebarLogo: !settings.value.sidebarLogo })
+  appStore.M_settings({ sidebarLogo: !settings.value.sidebarLogo })
 }
 
 const source = ref(false)
 const sourceFun = () => {
   source.value = !source.value
 }
-
 const handle = () => {
   new Promise((resolve, reject) => {
     reject('reject promise')
