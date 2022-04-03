@@ -14,7 +14,7 @@
     "tsc-check": "tsc"
   },
   "peerDependencies": {
-    "vue": "3.2.26"
+    "vue": "^3.2.26"
   },
   "dependencies": {
     "@element-plus/icons-vue": "1.1.4",
@@ -26,6 +26,7 @@
     "nprogress": "0.2.0",
     "path": "0.12.7",
     "path-to-regexp": "^6.2.0",
+    "pinia": "2.0.13",
     "tinymce": "4.9.11",
     "vue": "3.2.31",
     "vue-router": "4.0.12",

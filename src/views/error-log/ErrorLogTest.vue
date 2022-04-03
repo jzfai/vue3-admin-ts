@@ -32,10 +32,6 @@ let settings = computed(() => {
   return store.state.app.settings || {}
 })
 
-const testChangeSettings = () => {
-  store.commit('app/M_settings', { sidebarLogo: !settings.value.sidebarLogo })
-}
-
 const handle = () => {
   new Promise((resolve, reject) => {
     reject('reject promise')

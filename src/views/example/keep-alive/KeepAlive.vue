@@ -19,6 +19,8 @@
 2.在路由配置处设置cachePage：即可缓存
 -->
 <script setup name="KeepAlive" lang="ts">
+import { useAppStore } from '@/pinia/app'
+
 let { searchForm } = useCommon()
 //$ref(experimental)
 //let testRef = $ref(1)
@@ -38,6 +40,7 @@ const $route = useRoute()
 const $store = useStore()
 // cacheGroup为缓存分组  KeepAlive->routerDemoF->routerDemoS
 let cacheGroup = ['KeepAlive', 'routerDemoF', 'routerDemoS']
+const appStore = useAppStore()
 const unWatch = watch(
   () => $route.name,
   () => {
@@ -45,7 +48,7 @@ const unWatch = watch(
       useCommon()
         .sleep(300)
         .then(() => {
-          cacheGroup.forEach((fItem) => $store.commit('app/M_DEL_CACHED_VIEW', fItem))
+          cacheGroup.forEach((fItem) => appStore.M_DEL_CACHED_VIEW(fItem))
         })
       //remove watch
       unWatch()
