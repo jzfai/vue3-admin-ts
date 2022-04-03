@@ -26,10 +26,10 @@
     "nprogress": "0.2.0",
     "path": "0.12.7",
     "path-to-regexp": "^6.2.0",
+    "pinia": "2.0.13",
     "tinymce": "6.0.1",
     "vue": "3.2.31",
-    "vue-router": "4.0.14",
-    "pinia": "2.0.13"
+    "vue-router": "4.0.14"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.16.3",
@@ -57,6 +57,7 @@
     "unplugin-auto-import": "^0.5.11",
     "unplugin-vue-components": "^0.17.14",
     "vite": "2.9.1",
+    "vite-plugin-html": "^3.2.0",
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-style-import": "1.2.1",
     "vite-plugin-svg-icons": "1.0.5",
