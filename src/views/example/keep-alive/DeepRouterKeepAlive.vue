@@ -19,6 +19,10 @@ const appStore = useAppStore()
 const cachedViewsDeep = computed(() => {
   return appStore.cachedViewsDeep
 })
+
+onMounted(() => {
+  console.log('DeepRouterKeepAlive')
+})
 </script>
 
 <style scoped lang="scss"></style>
