@@ -122,7 +122,9 @@ export default ({ command, mode }: any) => {
       //   resolvers: [ElementPlusResolver()]
       // })
     ],
+    logLevel: 'error',
     build: {
+      //target: 'es2015',
       minify: 'terser',
       brotliSize: false,
       // 消除打包大小超过500kb警告
