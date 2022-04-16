@@ -16,8 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import setting from '@/settings'
-
 import { ObjTy } from '~/common'
 import { useAppStore } from '@/store/app'
 
@@ -49,7 +47,6 @@ watch(
   () => route.name,
   () => {
     const routerLevel = route.matched.length
-
     //二级路由处理
     if (routerLevel === 2) {
       if (deepOldRouter?.name) {
@@ -95,12 +92,15 @@ watch(
         }
       }
 
-      if (route.name) {
-        if (route.meta?.cachePage) {
-          deepOldRouter = parentRoute
-          //取的是第二级的name和第三级的name进行缓存
-          appStore.M_ADD_CACHED_VIEW(deepOldRouter.name)
-          appStore.M_ADD_CACHED_VIEW_DEEP(route.name)
+      //取的是第二级的name
+      if (parentRoute.name && parentRoute.meta?.cachePage) {
+        deepOldRouter = parentRoute
+        appStore.M_ADD_CACHED_VIEW(deepOldRouter.name)
+        if (route.name) {
+          if (route.meta?.cachePage) {
+            //和第三级的name进行缓存
+            appStore.M_ADD_CACHED_VIEW_DEEP(route.name)
+          }
         }
       }
     }
