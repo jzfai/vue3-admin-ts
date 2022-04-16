@@ -122,7 +122,7 @@ export default ({ command, mode }: any) => {
       //   resolvers: [ElementPlusResolver()]
       // })
     ],
-    logLevel: 'error',
+    // logLevel: 'error',
     build: {
       //target: 'es2015',
       minify: 'terser',
