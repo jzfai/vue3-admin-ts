@@ -13,6 +13,6 @@
 #npm run
 # test:unit || echo exit
 sleep 2
-exit
+echo -1
 #测试提交有问题阻断
 #echo exit;;
