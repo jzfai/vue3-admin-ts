@@ -12,7 +12,7 @@
 ##推送之前运行单元测试检查
 #npm run
 # test:unit || echo exit
-sleep 2
-echo -1
 #测试提交有问题阻断
 #echo exit;;
+
+exit 255 || echo "退出了"
