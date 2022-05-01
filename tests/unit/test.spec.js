@@ -8,6 +8,6 @@
 describe('分组', () => {
   it('', () => {
     expect(2 + 2).toBe(4)
-    expect('true111111').toBe('true111111')
+    expect(2 + 1).toBe(4)
   })
 })

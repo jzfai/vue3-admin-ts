@@ -16,10 +16,7 @@ module.exports = {
     window: true,
     defineProps: true,
     defineExpose: true,
-    $ref: true,
-    describe: true,
-    expect: true,
-    it: true
+    $ref: true
   },
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   extends: [
@@ -27,7 +24,8 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
     'prettier',
-    './.eslintrc-auto-import.json'
+    './.eslintrc-auto-import.json',
+    './tests/.eslintrc-unit-test.json'
   ],
   parserOptions: {
     parser: '@typescript-eslint/parser',
