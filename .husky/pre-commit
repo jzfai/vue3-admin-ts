@@ -4,15 +4,21 @@
 #npx --no-install commitlint --edit "$1"
 #npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 #推送之前运行eslint检查
-#npm  run lint || echo exit
+#npm  run lint || exitFunc
 #
 ##推送之前运行tsc检查
-#npm run tsc-check || echo exit
+#npm run tsc-check || exitFunc
 #
 ##推送之前运行单元测试检查
-#npm run
-# test:unit || echo exit
+npm run  test:unit || exitFunc
+
+sleep 5
 #测试提交有问题阻断
 #echo exit;;
 
-exit 255 || echo "退出了"
+
+
+exitFunc(){
+echo "检测不通过退出了"
+exit 255
+}
