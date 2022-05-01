@@ -10,8 +10,9 @@
 #npm run tsc-check || echo exit
 #
 ##推送之前运行单元测试检查
-#npm run test:unit || echo exit
-sleep(10)
-exit;
+#npm run
+# test:unit || echo exit
+sleep 2
+exit
 #测试提交有问题阻断
 #echo exit;;
