@@ -1,13 +1,14 @@
-import store from '@/store'
 import axios from 'axios'
 import router from '@/router'
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 import { getToken, setToken } from '@/utils/auth'
 import { AxiosConfigTy, AxiosReqTy, ObjTy } from '~/common'
+import { useUserStore } from '@/store/user'
 let reqConfig: any
 let loadingE: any
 
 const service: any = axios.create()
+
 // 请求拦截
 service.interceptors.request.use(
   (request: AxiosReqTy) => {
@@ -68,7 +69,8 @@ service.interceptors.response.use(
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          store.dispatch('user/resetState').then(() => {
+          const userStore = useUserStore()
+          userStore.resetState().then(() => {
             router.push({ path: '/login' })
           })
         })

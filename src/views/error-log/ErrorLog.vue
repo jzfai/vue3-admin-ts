@@ -134,7 +134,7 @@ const errorLogImg = () => {
 
 /*表格查询和筛选*/
 let usertableData = ref([])
-import packages from  "/package.json"
+import packages from '/package.json'
 let searchForm: ObjTy = reactive({
   errorLog: '',
   pageUrl: `8.135.1.141/${packages.name}`,

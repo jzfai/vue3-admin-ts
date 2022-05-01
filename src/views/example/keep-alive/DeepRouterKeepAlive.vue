@@ -12,10 +12,16 @@
 </template>
 
 <script setup name="DeepRouterKeepAlive" lang="ts">
+import { useAppStore } from '@/store/app'
+
 let testInput = ref('')
-const $store = useStore()
+const appStore = useAppStore()
 const cachedViewsDeep = computed(() => {
-  return $store.state.app.cachedViewsDeep
+  return appStore.cachedViewsDeep
+})
+
+onMounted(() => {
+  console.log('DeepRouterKeepAlive')
 })
 </script>
 

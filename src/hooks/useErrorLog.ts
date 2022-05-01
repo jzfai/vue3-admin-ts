@@ -4,6 +4,7 @@ import setting from '@/settings'
 import bus from '@/utils/bus'
 import pack from '../../package.json'
 import { ObjTy } from '~/common'
+import { jsErrorCollection } from 'js-errorlog-collection'
 const errorLogReq = (errLog: string) => {
   request({
     url: '/integration-front/errorCollection/insert',
@@ -40,54 +41,8 @@ export default function () {
     return false
   }
   if (checkNeed()) {
-    //JS运行时错误和资源加载错误
-    window.addEventListener(
-      'error',
-      ({ error, target }: ObjTy) => {
-        if (target.outerHTML) {
-          //img error collection
-          const errLog = `${JSON.stringify(target.outerHTML)}`
-          //console.log('errorString', errLog)
-          errorLogReq(errLog)
-        } else {
-          const errLog = `${error?.stack?.substr(0, 300)}`
-          //console.log('errorString', errLog)
-          errorLogReq(errLog)
-        }
-      },
-      //use Event capture  to collection  img error
-      true
-    )
-    //promise被reject并且错误信息没有被处理的时候，会抛出一个unhandledrejection
-    //接口错误处理，cross origin , 404,401
-    window.addEventListener('unhandledrejection', ({ reason }) => {
-      let errLog = ''
-      if (typeof reason === 'string') {
-        errLog = reason
-      } else {
-        errLog = `${reason?.stack?.substr(0, 300)}`
-      }
-      //未授权和取消不捕捉
-      //此处可添加不捕捉状态码
-      const unhandledCode = '403, 401'
-      //此处可添加不捕捉string
-      const unhandledString = 'cancel'
-      if (!unhandledCode.includes(reason?.code) && !reason.includes(unhandledString)) {
-        errorLogReq(errLog)
-      }
+    jsErrorCollection({ runtimeError: true, rejectError: true, consoleError: true }, (errLog) => {
+      errorLogReq(errLog)
     })
-
-    //些特殊情况下，还需要捕获处理console.error，捕获方式就是重写window.console.error
-    const _oldConsoleError = window.console.error
-    window.console.error = function () {
-      // eslint-disable-next-line prefer-rest-params
-      const errLog = Object.values(arguments).join(',')
-      if (errLog.indexOf('custom') === -1) {
-        errorLogReq(errLog)
-      }
-      // @ts-ignore
-      // eslint-disable-next-line prefer-rest-params
-      _oldConsoleError && _oldConsoleError.apply(window, arguments)
-    }
   }
 }

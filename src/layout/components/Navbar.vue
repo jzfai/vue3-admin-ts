@@ -45,16 +45,19 @@ import { CaretBottom } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import Breadcrumb from './Breadcrumb'
 import Hamburger from './Hamburger'
-import { useStore } from 'vuex'
-const store = useStore()
+
+import { useAppStore } from '@/store/app'
+import { useUserStore } from '@/store/user'
+
 const settings = computed(() => {
-  return store.state.app.settings
+  return appStore.settings
 })
 const opened = computed(() => {
-  return store.state.app.sidebar.opened
+  return appStore.sidebar.opened
 })
+const appStore = useAppStore()
 const toggleSideBar = () => {
-  store.commit('app/M_toggleSideBar')
+  appStore.M_toggleSideBar()
 }
 /*
  * 退出登录
@@ -62,7 +65,8 @@ const toggleSideBar = () => {
 const router = useRouter()
 const route = useRoute()
 const loginOut = () => {
-  store.dispatch('user/logout').then(() => {
+  const userStore = useUserStore()
+  userStore.logout().then(() => {
     ElMessage({ message: '退出登录成功', type: 'success' })
     router.push(`/login?redirect=/`)
   })

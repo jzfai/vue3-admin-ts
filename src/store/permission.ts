@@ -1,8 +1,8 @@
-import { constantRoutes, asyncRoutes } from '@/router'
+import { defineStore } from 'pinia'
+import { RouteItemTy, RouterRowTy, RouterTy } from '~/router'
+import { asyncRoutes, constantRoutes } from '@/router'
 import settings from '@/settings'
 import { PermissionTy } from '~/store'
-import { RouteItemTy, RouterRowTy, RouterTy } from '~/router'
-import { ObjTy } from '~/common'
 
 /**
  * Use meta.code to determine if the current user has permission
@@ -69,54 +69,59 @@ export function filterAsyncRoutes(routes: RouterTy, roles: Array<string>) {
   return res
 }
 
-const state: PermissionTy = {
-  isGetUserInfo: false, // get userInfo
-  routes: [], //将过滤后的异步路由和静态路由集合
-  addRoutes: [] //过滤后的异步路由
-}
-
-const actions = {
-  generateRoutes({ commit }: ObjTy, roles: Array<string>) {
-    return new Promise(async (resolve) => {
-      let accessedRoutes
-      if (settings.permissionMode === 'roles') {
-        //filter by role
-        if (roles.includes('admin')) {
-          accessedRoutes = asyncRoutes || []
-        } else {
-          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-        }
-      } else {
-        //filter by codeArr
-        //req code arr
-        let codeArr: any = localStorage.getItem('codeArr')
-        if (codeArr) {
-          codeArr = JSON.parse(codeArr)
-        } else {
-          localStorage.setItem('codeArr', JSON.stringify([1]))
-          codeArr = localStorage.getItem('codeArr')
-        }
-        accessedRoutes = await filterRouterByCodeArr(codeArr, asyncRoutes)
-      }
-      // commit('M_routes', accessedRoutes)
-      resolve(accessedRoutes)
-    })
-  }
-}
-
-const mutations = {
-  M_routes: (state: PermissionTy, routes: RouterTy) => {
-    state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
+export const usePermissionStore = defineStore('permission', {
+  /***
+   *类似于组件的 data数据的 ,用来存储全局状态的
+   * 1、必须是箭头函数
+   */
+  state: () => {
+    return {
+      isGetUserInfo: false, // get userInfo
+      routes: [], //将过滤后的异步路由和静态路由集合
+      addRoutes: [] //过滤后的异步路由
+    } as PermissionTy
   },
-  M_isGetUserInfo: (state: PermissionTy, data: boolean) => {
-    state.isGetUserInfo = data
-  }
-}
 
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
-}
+  /***
+   *封装处理数据的函数（业务逻辑)：修改数据
+   */
+  actions: {
+    M_routes(routes: RouterTy) {
+      this.$patch((state) => {
+        state.addRoutes = routes
+        state.routes = constantRoutes.concat(routes)
+      })
+    },
+    M_isGetUserInfo(data: boolean) {
+      this.$patch((state) => {
+        state.isGetUserInfo = data
+      })
+    },
+    generateRoutes(roles: Array<string>) {
+      return new Promise(async (resolve) => {
+        let accessedRoutes
+        if (settings.permissionMode === 'roles') {
+          //filter by role
+          if (roles.includes('admin')) {
+            accessedRoutes = asyncRoutes || []
+          } else {
+            accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
+          }
+        } else {
+          //filter by codeArr
+          //req code arr
+          let codeArr: any = localStorage.getItem('codeArr')
+          if (codeArr) {
+            codeArr = JSON.parse(codeArr)
+          } else {
+            localStorage.setItem('codeArr', JSON.stringify([1]))
+            codeArr = localStorage.getItem('codeArr')
+          }
+          accessedRoutes = await filterRouterByCodeArr(codeArr, asyncRoutes)
+        }
+        // commit('M_routes', accessedRoutes)
+        resolve(accessedRoutes)
+      })
+    }
+  }
+})

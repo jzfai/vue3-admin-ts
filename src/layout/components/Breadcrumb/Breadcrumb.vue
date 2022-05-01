@@ -26,10 +26,11 @@ import { compile } from 'path-to-regexp'
 const levelList: any = ref(null)
 
 //Whether close the animation fo breadcrumb
-import { useStore } from 'vuex'
-const store = useStore()
+
+import { useAppStore } from '@/store/app'
+const appStore = useAppStore()
 const settings = computed(() => {
-  return store.state.app.settings
+  return appStore.settings
 })
 
 import { RouteItemTy } from '~/router'

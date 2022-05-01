@@ -6,31 +6,31 @@
         page layout related
         <div class="mt-2">
           sidebarLogo：
-          <el-switch v-model="store.state.app.settings.sidebarLogo" />
+          <el-switch v-model="appStore.settings.sidebarLogo" />
         </div>
         <div class="mt-3">
           showNavbarTitle：
-          <el-switch v-model="store.state.app.settings.showNavbarTitle" />
+          <el-switch v-model="appStore.settings.showNavbarTitle" />
         </div>
         <div class="mt-3">
           ShowDropDown：
-          <el-switch v-model="store.state.app.settings.ShowDropDown" />
+          <el-switch v-model="appStore.settings.ShowDropDown" />
         </div>
         <div class="mt-3">
           showHamburger：
-          <el-switch v-model="store.state.app.settings.showHamburger" />
+          <el-switch v-model="appStore.settings.showHamburger" />
         </div>
         <div class="mt-3">
           showLeftMenu：
-          <el-switch v-model="store.state.app.settings.showLeftMenu" />
+          <el-switch v-model="appStore.settings.showLeftMenu" />
         </div>
         <div class="mt-3">
           showTagsView：
-          <el-switch v-model="store.state.app.settings.showTagsView" />
+          <el-switch v-model="appStore.settings.showTagsView" />
         </div>
         <div class="mt-3">
           showTopNavbar：
-          <el-switch v-model="store.state.app.settings.showTopNavbar" />
+          <el-switch v-model="appStore.settings.showTopNavbar" />
         </div>
       </div>
 
@@ -38,11 +38,11 @@
         page animation related
         <div class="mt-2">
           mainNeedAnimation：places to "settings file" for setting
-          <!-- <el-switch v-model="store.state.app.settings.mainNeedAnimation" />-->
+          <!-- <el-switch v-model="appStore.settings.mainNeedAnimation" />-->
         </div>
         <div class="mt-3">
           isNeedNprogress：
-          <el-switch v-model="store.state.app.settings.isNeedNprogress" />
+          <el-switch v-model="appStore.settings.isNeedNprogress" />
         </div>
       </div>
     </div>
@@ -52,21 +52,21 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from 'vuex'
-const store = useStore()
+import { useAppStore } from '@/store/app'
+
 const settings = computed(() => {
-  return store.state.app.settings || {}
+  return appStore.settings || {}
 })
 
+const appStore = useAppStore()
 const testChangeSettings = () => {
-  store.commit('app/M_settings', { sidebarLogo: !settings.value.sidebarLogo })
+  appStore.M_settings({ sidebarLogo: !settings.value.sidebarLogo })
 }
 
 const source = ref(false)
 const sourceFun = () => {
   source.value = !source.value
 }
-
 const handle = () => {
   new Promise((resolve, reject) => {
     reject('reject promise')

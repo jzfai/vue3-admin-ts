@@ -26,17 +26,18 @@ import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
 //导入配置文件
 
-const store = useStore()
+const appStore = useAppStore()
 const settings = computed(() => {
-  return store.state.app.settings
+  return appStore.settings
 })
 
 const route = useRoute()
+const permissionStore = usePermissionStore()
 const routes = computed(() => {
-  return store.state.permission.routes
+  return permissionStore.routes
 })
 const isCollapse = computed(() => {
-  return store.state.app.sidebar.opened
+  return appStore.sidebar.opened
 })
 
 //change  scss variable to js
@@ -56,6 +57,8 @@ const dillScssExportToJson = (scssExportJson: any) => {
 //get scss variable
 import scssExportJson from '@/styles/variables-to-js.scss'
 import { ObjTy } from '~/common'
+import { useAppStore } from '@/store/app'
+import { usePermissionStore } from '@/store/permission'
 const scssJson = dillScssExportToJson(scssExportJson)
 const activeMenu = computed(() => {
   const { meta, fullPath } = route
