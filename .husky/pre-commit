@@ -11,6 +11,6 @@
 #
 ##推送之前运行单元测试检查
 #npm run test:unit || echo exit
-echo exit;
+exit;
 #测试提交有问题阻断
 #echo exit;;
