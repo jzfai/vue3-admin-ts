@@ -8,7 +8,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 //inject title
 import { createHtmlPlugin } from 'vite-plugin-html'
 //setup name
-import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
 
 //auto import element-plus has some issue
 // import Components from 'unplugin-vue-components/vite'
@@ -65,10 +65,10 @@ export default ({ command, mode }: any) => {
     plugins: [
       vue(),
       vueJsx(),
-      // legacy({
-      //   targets: ['ie >= 11'],
-      //   additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-      // }),
+      legacy({
+        targets: ['ie >= 11'],
+        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      }),
       viteSvgIcons({
         // config svg dir that can config multi
         iconDirs: [path.resolve(process.cwd(), 'src/icons/common'), path.resolve(process.cwd(), 'src/icons/nav-bar')],
