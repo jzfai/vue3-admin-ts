@@ -9,15 +9,12 @@ A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plu
 Use eslint+prettier+gitHooks format and verification code to improve code standardization and development efficiency
 
 
-## Update log
-
---- to look the doc
-
-- [真香定律！带你用vue3+vite2撸后台（系列文章入口）](https://juejin.cn/post/7036302298435289095)
-
 ## Documents
 
-- [真香定律！带你用vue3+vite2撸后台（系列文章入口）](https://juejin.cn/post/7036302298435289095)
+- [Official Documentation](https://github.jzfai.top/vue3-admin-doc/)
+
+- [中文官网](https://github.jzfai.top/vue3-admin-doc/zh/)
+
 
 ## Online experience
 
