@@ -8,3 +8,4 @@ dist-ssr
 yarn*
 ts-out-dir
 pnpm*
+coverage
