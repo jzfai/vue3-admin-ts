@@ -107,7 +107,7 @@ const setting: SettingTy = {
    * vite.config.js base config
    * such as
    * */
-  viteBasePath: '/vue3-admin-ts/'
+  viteBasePath: './'
 }
 
 export default setting

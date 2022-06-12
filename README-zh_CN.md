@@ -19,9 +19,9 @@ update element-plus vite2 vue3 version ,add func of element-svg icon for side me
 add domo of 'import export download template' in CRUD
 //11-26
 update vue3 version and so on;
-add keep-alive use demo and router using  demo ，look for "http://8.135.1.141/vue3-admin-template/#/writing-demo/keep-alive"
+add keep-alive use demo and router using  demo ，look for "https://github.jzfai.top/vue3-admin-template/#/writing-demo/keep-alive"
 add the param cachePage and leaveRmCachePage to route for keep-alive,look for https://github.com/jzfai/vue3-admin-template/blob/master/src/router/index.js
-add collection the error log of img loading fail,look for "http://8.135.1.141/vue3-admin-template/#/error-log/log"
+add collection the error log of img loading fail,look for "https://github.jzfai.top/vue3-admin-template/#/error-log/log"
 in router page you need add root element,such as div, but is not necessary for children component
 fix some issue
 ```
@@ -30,20 +30,20 @@ fix some issue
 
 [github address](https://github.com/jzfai/vue3-admin-ts.git)
 
-[Access address](http://8.135.1.141/vue3-admin-ts)
+[Access address](https://github.jzfai.top/vue3-admin-ts)
 
 github 地址：  https://github.com/jzfai/vue3-admin-ts.git
 
-国内体验地址：http://8.135.1.141/vue3-admin-ts
+国内体验地址：https://github.jzfai.top/vue3-admin-ts
 
 
 ## 例子
 
  ---- 我们先看看加载速度和构建后的包大小：
 
-![template-speed-analysis](http://8.135.1.141/file/images/template-speed-analysis.png)
+![template-speed-analysis](https://github.jzfai.top/file/images/template-speed-analysis.png)
 
-![template-demo](http://8.135.1.141/file/images/plus-demo.png)
+![template-demo](https://github.jzfai.top/file/images/plus-demo.png)
 
 ## 相关项目
 
@@ -92,7 +92,7 @@ git clone https://github.com/jzfai/vue3-admin-ts.git
 cd  vue3-admin-ts
 
 # 安装依赖(建议用pnpm)
-# 你可以运行npm i -g pnpm 去安装pnpm
+# 你可以运行npm i -g pnpm@6.32.3 去安装pnpm
 pnpm
 
 # 启动服务
@@ -207,7 +207,7 @@ Modern browsers and Internet Explorer 11+.
 |Edge| last 2 versions| last 2 versions| last 2 versions
 
 ## 讨论和交流(含vue3+ts视频教程)
-[WeChat group](http://8.135.1.141/file/images/wx-groud.png)
+[WeChat group](https://github.jzfai.top/file/images/wx-groud.png)
 
 ## 版本
 
