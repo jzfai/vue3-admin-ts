@@ -4,7 +4,7 @@ import setting from '@/settings'
 import bus from '@/utils/bus'
 import pack from '../../package.json'
 import { ObjTy } from '~/common'
-import { jsErrorCollection } from 'js-errorlog-collection'
+import { jsErrorCollection } from 'js-error-collection'
 const errorLogReq = (errLog: string) => {
   request({
     url: '/integration-front/errorCollection/insert',

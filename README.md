@@ -20,9 +20,9 @@ Use eslint+prettier+gitHooks format and verification code to improve code standa
 
 [github address](https://github.com/jzfai/vue3-admin-ts.git)
 
-[Access address](http://8.135.1.141/vue3-admin-ts)
+[Access address](https://github.jzfai.top/vue3-admin-ts)
 
-国内体验地址：http://8.135.1.141/vue3-admin-ts
+国内体验地址：https://github.jzfai.top/vue3-admin-ts
 
 github 地址：  https://github.com/jzfai/vue3-admin-ts.git
 
@@ -30,9 +30,9 @@ github 地址：  https://github.com/jzfai/vue3-admin-ts.git
 
  ---- Let's look at the loading speed and the size of the built package first.：
 
-![template-speed-analysis](http://8.135.1.141/file/images/template-speed-analysis.png)
+![template-speed-analysis](https://github.jzfai.top/file/images/template-speed-analysis.png)
 
-![template-demo](http://8.135.1.141/file/images/plus-demo.png)
+![template-demo](https://github.jzfai.top/file/images/plus-demo.png)
 
 
 ## Related items
@@ -71,7 +71,7 @@ git clone https://github.com/jzfai/vue3-admin-ts.git
 cd vue3-admin-ts
 
 # install dependency(Recommend use pnpm)
-#you can run npm i -g pnpm to install it  
+#you can run npm i -g pnpm@6.32.3 to install it  
 pnpm
 
 # develop
@@ -117,7 +117,7 @@ Modern browsers and Internet Explorer 11+.
 |Edge| last 2 versions| last 2 versions| last 2 versions
 
 ## Discussion and Communication
-[WeChat group](http://8.135.1.141/file/images/wx-groud.png)
+[WeChat group](https://github.jzfai.top/file/images/wx-groud.png)
 
 ## License
 
