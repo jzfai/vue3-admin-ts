@@ -1,13 +1,19 @@
 import { loginReq, logoutReq, getInfoReq } from '@/api/user'
 import { setToken, removeToken } from '@/utils/auth'
 import { ObjTy } from '~/common'
+import type { RouteRecordName } from 'vue-router'
 import router, { constantRoutes, asyncRoutes } from '@/router'
 import { defineStore } from 'pinia'
 import { usePermissionStore } from '@/store/permission'
 import { useTagsViewStore } from '@/store/tagsView'
 
 const resetRouter = () => {
-  const asyncRouterNameArr: Array<any> = asyncRoutes.map((mItem) => mItem.name)
+  const asyncRouterNameArr: Array<RouteRecordName> = []
+  for (const route of asyncRoutes) {
+    if (route.name)
+      asyncRouterNameArr.push(route.name)
+  }
+
   asyncRouterNameArr.forEach((name) => {
     if (router.hasRoute(name)) {
       router.removeRoute(name)
