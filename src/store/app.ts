@@ -21,19 +21,13 @@ export const useAppStore = defineStore('app', {
    */
   actions: {
     M_settings(data) {
-      this.$patch((state) => {
-        state.settings = { ...state.settings, ...data }
-      })
+      this.settings = { ...this.settings, ...data }
     },
     M_sidebar_opened(data: boolean) {
-      this.$patch((state) => {
-        state.sidebar.opened = data
-      })
+      this.sidebar.opened = data
     },
     M_toggleSideBar() {
-      this.$patch((state) => {
-        state.sidebar.opened = !state.sidebar.opened
-      })
+      this.sidebar.opened = !this.sidebar.opened
     },
 
     /*keepAlive缓存*/
