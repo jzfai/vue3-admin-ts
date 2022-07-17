@@ -35,7 +35,6 @@ export const useAppStore = defineStore('app', {
         state.sidebar.opened = !state.sidebar.opened
       })
     },
-
     /*keepAlive缓存*/
     M_ADD_CACHED_VIEW(view) {
       this.$patch((state) => {
@@ -50,11 +49,6 @@ export const useAppStore = defineStore('app', {
         index > -1 && state.cachedViews.splice(index, 1)
       })
     },
-    M_RESET_CACHED_VIEW() {
-      this.$patch((state) => {
-        state.cachedViews = []
-      })
-    },
     /*third  keepAlive*/
     M_ADD_CACHED_VIEW_DEEP(view) {
       this.$patch((state) => {
@@ -66,11 +60,6 @@ export const useAppStore = defineStore('app', {
       this.$patch((state) => {
         const index = state.cachedViewsDeep.indexOf(view)
         index > -1 && state.cachedViewsDeep.splice(index, 1)
-      })
-    },
-    M_RESET_CACHED_VIEW_DEEP() {
-      this.$patch((state) => {
-        state.cachedViewsDeep = []
       })
     },
 

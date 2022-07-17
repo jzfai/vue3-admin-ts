@@ -1,4 +1,4 @@
-import path, { resolve } from 'path'
+import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -11,25 +11,22 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
 
 //auto import element-plus has some issue
-// import Components from 'unplugin-vue-components/vite'
-// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 //auto import vue https://www.npmjs.com/package/unplugin-auto-import
 import AutoImport from 'unplugin-auto-import/vite'
 
 import setting from './src/settings'
+
 const prodMock = setting.openProdMock
 // import packageJson from './package.json'
 // import { loadEnv } from 'vite'
+import { optimizeDepsArr } from './optimize-include'
+const pathSrc = path.resolve(__dirname, 'src')
 export default ({ command, mode }: any) => {
   return {
-    /*
-     * "/vue3-admin-plus" nginx deploy folder
-     * detail to look https://vitejs.cn/config/#base
-     * how to config, such as https://github.jzfai.top/vue3-admin-plus/#/dashboard
-     * "/vue3-admin-plus/" --> config to base is you need
-     * https://github.jzfai.top --> if you config "/" , you can visit attached  to https://github.jzfai.top
-     * */
+    //detail to look https://vitejs.cn/config/#base
     base: setting.viteBasePath,
     //define global var
     define: {
@@ -63,12 +60,19 @@ export default ({ command, mode }: any) => {
       strictPort: true
     },
     plugins: [
-      vue(),
-      vueJsx(),
-      legacy({
-        targets: ['ie >= 11'],
-        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      vue({ reactivityTransform: true }),
+      Components({
+        // resolvers: [
+        //   ElementPlusResolver({
+        //     importStyle: 'sass'
+        //   })
+        // ]
       }),
+      vueJsx(),
+      // legacy({
+      //   targets: ['ie >= 11'],
+      //   additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      // }),
       viteSvgIcons({
         // config svg dir that can config multi
         iconDirs: [path.resolve(process.cwd(), 'src/icons/common'), path.resolve(process.cwd(), 'src/icons/nav-bar')],
@@ -118,9 +122,6 @@ export default ({ command, mode }: any) => {
           }
         }
       })
-      // Components({
-      //   resolvers: [ElementPlusResolver()]
-      // })
     ],
     // logLevel: 'error',
     build: {
@@ -150,36 +151,37 @@ export default ({ command, mode }: any) => {
     },
     resolve: {
       alias: {
-        '@': resolve(__dirname, 'src')
+        '~/': `${pathSrc}/`,
+        '@/': `${pathSrc}/`
       }
       //why remove it , look for https://github.com/vitejs/vite/issues/6026
       // extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs']
     },
     css: {
-      postcss: {
-        //remove build charset warning
-        plugins: [
-          {
-            postcssPlugin: 'internal:charset-removal',
-            AtRule: {
-              charset: (atRule) => {
-                if (atRule.name === 'charset') {
-                  atRule.remove()
-                }
-              }
-            }
-          }
-        ]
-      },
+      // postcss: {
+      //   //remove build charset warning
+      //   plugins: [
+      //     {
+      //       postcssPlugin: 'internal:charset-removal',
+      //       AtRule: {
+      //         charset: (atRule) => {
+      //           if (atRule.name === 'charset') {
+      //             atRule.remove()
+      //           }
+      //         }
+      //       }
+      //     }
+      //   ]
+      // },
       preprocessorOptions: {
         //define global scss variable
         scss: {
-          additionalData: `@import "@/styles/variables.scss";`
+          additionalData: `@use '@/theme/index.scss' as * ;`
         }
       }
     },
     optimizeDeps: {
-      include: ['moment-mini']
+      include: ['element-plus/es', 'moment-mini', ...optimizeDepsArr()]
     }
   }
 }
