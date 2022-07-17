@@ -64,22 +64,17 @@ export const useTagsViewStore = defineStore('tagsView', {
       })
     },
 
-    UPDATE_VISITED_VIEW(view) {
-      this.$patch((state) => {
-        for (let v of state.visitedViews) {
-          if (v.path === view.path) {
-            v = Object.assign(v, view)
-            break
-          }
-        }
-      })
-    },
-
-    //action
+    // UPDATE_VISITED_VIEW(view) {
+    //   this.$patch((state) => {
+    //     for (let v of state.visitedViews) {
+    //       if (v.path === view.path) {
+    //         v = Object.assign(v, view)
+    //         break
+    //       }
+    //     }
+    //   })
+    // },
     addView(view) {
-      this.addVisitedView(view)
-    },
-    addVisitedView(view) {
       this.ADD_VISITED_VIEW(view)
     },
 
@@ -138,9 +133,9 @@ export const useTagsViewStore = defineStore('tagsView', {
           resolve([...state.visitedViews])
         })
       })
-    },
-    updateVisitedView(view: RouteItemTy) {
-      this.UPDATE_VISITED_VIEW(view)
     }
+    // updateVisitedView(view: RouteItemTy) {
+    //   this.UPDATE_VISITED_VIEW(view)
+    // }
   }
 })
