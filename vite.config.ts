@@ -181,7 +181,7 @@ export default ({ command, mode }: any) => {
       }
     },
     optimizeDeps: {
-      include: ['element-plus/es', 'moment-mini', ...optimizeDepsArr()]
+      include: ['moment-mini']
     }
   }
 }
