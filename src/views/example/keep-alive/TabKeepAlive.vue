@@ -10,7 +10,11 @@
 1.设置name（必须）
 2.在路由配置处设置cachePage：即可缓存
 -->
-<script setup lang="ts" name="TabKeepAlive">
+<script setup lang="ts">
+defineOptions({
+  name: 'TabKeepAlive',
+})
+
 let { searchForm } = useCommon()
 //$ref(experimental)
 //let testRef = $ref(1)

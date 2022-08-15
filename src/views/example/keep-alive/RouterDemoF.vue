@@ -13,7 +13,9 @@
     <el-button type="primary" @click="routerBack">返回</el-button>
   </div>
 </template>
+
 <script setup lang="ts">
+defineOptions({name: 'routerDemoF'})
 let { searchForm } = useCommon()
 onMounted(() => {
   //get page pass url data

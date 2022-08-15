@@ -18,7 +18,10 @@
 1.设置name（必须）
 2.在路由配置处设置cachePage：即可缓存
 -->
-<script setup name="KeepAlive" lang="ts">
+<script setup  lang="ts">
+
+defineOptions({name: 'KeepAlive'})
+
 import { useAppStore } from '@/store/app'
 
 let { searchForm } = useCommon()

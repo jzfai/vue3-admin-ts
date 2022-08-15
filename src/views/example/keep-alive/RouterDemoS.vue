@@ -14,6 +14,9 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({
+  name: 'RouterDemoS',
+})
 let searchForm = useCommon().searchForm
 let { routerBack, routerPush, getQueryParam } = useVueRouter()
 onMounted(() => {

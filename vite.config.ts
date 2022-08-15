@@ -8,12 +8,20 @@ import { viteMockServe } from 'vite-plugin-mock'
 //inject title
 import { createHtmlPlugin } from 'vite-plugin-html'
 //setup name
-import VueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
+// import VueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
 
 //auto import element-plus has some issue
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+
+// import Icons from 'unplugin-icons/vite'
+// import IconsResolver from 'unplugin-icons/resolver'
+import UnoCSS from 'unocss/vite'
+import {presetAttributify, presetIcons, presetUno } from 'unocss'
+
+import mkcert from 'vite-plugin-mkcert'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 //auto import vue https://www.npmjs.com/package/unplugin-auto-import
 import AutoImport from 'unplugin-auto-import/vite'
 
@@ -22,7 +30,7 @@ import setting from './src/settings'
 const prodMock = setting.openProdMock
 // import packageJson from './package.json'
 // import { loadEnv } from 'vite'
-import { optimizeDepsArr } from './optimize-include'
+import { optimizeDependencies, optimizeElementPlus } from './optimize-include'
 const pathSrc = path.resolve(__dirname, 'src')
 export default ({ command, mode }: any) => {
   return {
@@ -41,10 +49,11 @@ export default ({ command, mode }: any) => {
     clearScreen: false,
     server: {
       hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
-      // 服务配置
       port: 5003, // 类型： number 指定服务器端口;
       open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
-      cors: true // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
+      cors: true,// 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
+      host: true,
+      https:false, //whether open https 开启https首次运行比较慢 且有个输入密码过程
       //proxy look for https://vitejs.cn/config/#server-proxy
       // proxy: {
       //   '/api': {
@@ -56,23 +65,25 @@ export default ({ command, mode }: any) => {
     },
     preview: {
       port: 5003,
-      host: '0.0.0.0',
+      host: true,
       strictPort: true
     },
     plugins: [
       vue({ reactivityTransform: true }),
-      Components({
-        // resolvers: [
-        //   ElementPlusResolver({
-        //     importStyle: 'sass'
-        //   })
-        // ]
+      // Icons({
+      //   autoInstall: true,
+      // }),
+      UnoCSS({
+        presets: [presetUno(), presetAttributify(), presetIcons()],
       }),
       vueJsx(),
-      // legacy({
-      //   targets: ['ie >= 11'],
-      //   additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-      // }),
+      DefineOptions(),
+      mkcert(),
+      //compatible with old browsers
+      legacy({
+        targets: ['chrome 52'],
+        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      }),
       viteSvgIcons({
         // config svg dir that can config multi
         iconDirs: [path.resolve(process.cwd(), 'src/icons/common'), path.resolve(process.cwd(), 'src/icons/nav-bar')],
@@ -91,8 +102,19 @@ export default ({ command, mode }: any) => {
         `,
         logger: true
       }),
-      VueSetupExtend(),
+      // VueSetupExtend(),using  DefineOptions instant of it
       //https://github.com/antfu/unplugin-auto-import/blob/HEAD/src/types.ts
+      Components({
+        resolvers: [
+          // on-demand element-plus has some issue
+          //  ElementPlusResolver({
+          //    importStyle: 'sass'
+          //  })
+          // import icons
+          // https://github.com/antfu/unplugin-icons
+          // IconsResolver(),
+        ]
+      }),
       AutoImport({
         // resolvers: [ElementPlusResolver()],
         imports: [
@@ -173,15 +195,16 @@ export default ({ command, mode }: any) => {
       //     }
       //   ]
       // },
-      preprocessorOptions: {
-        //define global scss variable
-        scss: {
-          additionalData: `@use '@/theme/index.scss' as * ;`
-        }
-      }
+      // preprocessorOptions: {
+        //define global scss variable  import
+        // scss: {
+        //   additionalData: `@use '@/theme/index.scss' as * ;`
+        // }
+      // }
     },
     optimizeDeps: {
-      include: ['moment-mini']
+      //include: [...optimizeDependencies,...optimizeElementPlus] //on-demand element-plus use this
+      include: [...optimizeDependencies]
     }
   }
 }

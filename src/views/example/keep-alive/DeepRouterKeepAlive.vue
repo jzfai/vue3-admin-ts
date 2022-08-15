@@ -11,7 +11,11 @@
   </div>
 </template>
 
-<script setup name="DeepRouterKeepAlive" lang="ts">
+<script setup  lang="ts">
+defineOptions({
+  name: 'DeepRouterKeepAlive',
+})
+
 import { useAppStore } from '@/store/app'
 
 let testInput = ref('')

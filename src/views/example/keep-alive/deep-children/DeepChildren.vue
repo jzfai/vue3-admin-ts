@@ -3,7 +3,8 @@
   <el-input v-model="testInput" placeholder="input test keepAlive(DeepChildren)" class="widthPx-300" />
 </template>
 
-<script setup name="DeepChildren" lang="ts">
+<script setup lang="ts">
+defineOptions({name: 'DeepChildren'})
 import { useAppStore } from '@/store/app'
 
 let testInput = ref('')
