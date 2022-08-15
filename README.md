@@ -2,7 +2,7 @@
 
 **English** | [中文](./README-zh_CN.md)
 
-> > A minimal vue3 admin template with Element-Plus UI & axios & permission control & lint & hook
+> A minimal vue3 admin template with Element-Plus UI & axios & permission control & lint & hook
 
 A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plus ，It's fast!
 
@@ -110,18 +110,8 @@ Architecture development is not easy. If you feel good, please give me a **start
 
 Note: Vue3 is not supported the Internet Explorer
 
-Modern browsers and Internet Explorer 11+.
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-|Edge| last 2 versions| last 2 versions| last 2 versions
 
 ## Discussion and Communication
 [WeChat group](https://github.jzfai.top/file/images/wx-groud.png)
 
-## License
-
-[MIT](https://github.com/jzfai/vue3-admin-ts/blob/master/LICENSE) license.
-
-Copyright (c) 2021-present  kuanghua
 

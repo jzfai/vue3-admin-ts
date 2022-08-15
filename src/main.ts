@@ -37,10 +37,9 @@ directive(app)
 import './permission'
 
 //import theme
-import "./theme/index.scss"
-
+import './theme/index.scss'
 //import unocss
-import "uno.css"
+import 'uno.css'
 
 //element svg icon(unplugin-vue-components auto scan)
 // import ElSvgIcon from '@/components/ElSvgIcon.vue'

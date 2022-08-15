@@ -1,3 +1,4 @@
+// @ts-ignore
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy'
@@ -14,11 +15,10 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import Components from 'unplugin-vue-components/vite'
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-
 // import Icons from 'unplugin-icons/vite'
 // import IconsResolver from 'unplugin-icons/resolver'
 import UnoCSS from 'unocss/vite'
-import {presetAttributify, presetIcons, presetUno } from 'unocss'
+import { presetAttributify, presetIcons, presetUno } from 'unocss'
 
 import mkcert from 'vite-plugin-mkcert'
 import DefineOptions from 'unplugin-vue-define-options/vite'
@@ -51,9 +51,9 @@ export default ({ command, mode }: any) => {
       hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
       port: 5003, // 类型： number 指定服务器端口;
       open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
-      cors: true,// 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
+      cors: true, // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
       host: true,
-      https:false, //whether open https 开启https首次运行比较慢 且有个输入密码过程
+      https: false //whether open https 开启https首次运行比较慢 且有个输入密码过程
       //proxy look for https://vitejs.cn/config/#server-proxy
       // proxy: {
       //   '/api': {
@@ -73,17 +73,18 @@ export default ({ command, mode }: any) => {
       // Icons({
       //   autoInstall: true,
       // }),
-      UnoCSS({
-        presets: [presetUno(), presetAttributify(), presetIcons()],
-      }),
       vueJsx(),
+      UnoCSS({
+        presets: [presetUno(), presetAttributify(), presetIcons()]
+      }),
+
       DefineOptions(),
       mkcert(),
       //compatible with old browsers
-      legacy({
-        targets: ['chrome 52'],
-        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-      }),
+      // legacy({
+      //   targets: ['chrome 52'],
+      //   additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      // }),
       viteSvgIcons({
         // config svg dir that can config multi
         iconDirs: [path.resolve(process.cwd(), 'src/icons/common'), path.resolve(process.cwd(), 'src/icons/nav-bar')],
@@ -196,15 +197,16 @@ export default ({ command, mode }: any) => {
       //   ]
       // },
       // preprocessorOptions: {
-        //define global scss variable  import
-        // scss: {
-        //   additionalData: `@use '@/theme/index.scss' as * ;`
-        // }
+      //define global scss variable  import
+      // scss: {
+      //   additionalData: `@use '@/theme/index.scss' as * ;`
+      // }
       // }
     },
     optimizeDeps: {
       //include: [...optimizeDependencies,...optimizeElementPlus] //on-demand element-plus use this
-      include: [...optimizeDependencies]
+      // include: [...optimizeDependencies]
+      include: ['moment-mini']
     }
   }
 }

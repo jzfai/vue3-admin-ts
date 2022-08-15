@@ -11,20 +11,6 @@
 
 使用 eslint+prettier+gitHooks 格式和校验代码,提高代码规范性和开发效率
 
-## 更新日志
-
-```javascript
-//11-11
-update element-plus vite2 vue3 version ,add func of element-svg icon for side menu
-add domo of 'import export download template' in CRUD
-//11-26
-update vue3 version and so on;
-add keep-alive use demo and router using  demo ，look for "https://github.jzfai.top/vue3-admin-template/#/writing-demo/keep-alive"
-add the param cachePage and leaveRmCachePage to route for keep-alive,look for https://github.com/jzfai/vue3-admin-template/blob/master/src/router/index.js
-add collection the error log of img loading fail,look for "https://github.jzfai.top/vue3-admin-template/#/error-log/log"
-in router page you need add root element,such as div, but is not necessary for children component
-fix some issue
-```
 
 ## 线上体验
 
@@ -202,18 +188,11 @@ pnpm run lint
 注意：vue3不在支持IE浏览器
 Modern browsers and Internet Explorer 11+.
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-|Edge| last 2 versions| last 2 versions| last 2 versions
 
 ## 讨论和交流(含vue3+ts视频教程)
 [WeChat group](https://github.jzfai.top/file/images/wx-groud.png)
 
-## 版本
 
-[MIT](https://github.com/jzfai/vue3-admin-ts/blob/master/LICENSE) license.
-
-Copyright (c) 2021-present  kuanghua
 
 
 
