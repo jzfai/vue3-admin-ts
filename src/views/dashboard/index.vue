@@ -36,12 +36,16 @@
     <!--    <div>update element-plus to 1.2.+, add svg icon, icon-font is abandoned</div>-->
     <!--    <i class="el-icon-add-location">abandoned</i>-->
     <!--    <div>update element-plus version to 2.0.1 release version the size options change to "large default small"</div>-->
-
     <!--    <div class="mt-2">global element svg icon</div>-->
     <!--    <ElSvgIcon name="Edit" :size="30" color="red" />-->
-
     <!--    <div class="mt-2">this is var from vite.config.js define</div>-->
     <!--    <div>{{ showObj }},{{ showObjString }}</div>-->
+    <div class="mt5 mb5 text-size-[20px]" color-red>
+      import unocss demo
+    </div>
+
+
+    <el-icon><User /></el-icon>
 
     <div class="mt-3 mb-1">
       <div class="mb-1">### How to migrate</div>

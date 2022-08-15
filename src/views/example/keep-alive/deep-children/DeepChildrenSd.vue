@@ -3,7 +3,11 @@
   <el-input v-model="testInput" placeholder="input test keepAlive(DeepChildren)" class="widthPx-300" />
 </template>
 
-<script setup name="DeepChildrenSd" lang="ts">
+<script setup  lang="ts">
+defineOptions({
+  name: 'DeepChildrenSd',
+})
+
 let testInput = ref('')
 </script>
 
