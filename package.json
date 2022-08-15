@@ -1,11 +1,10 @@
 {
   "name": "vue3-admin-ts",
   "version": "1.8.1",
-  "license": "ISC",
+  "license": "MIT",
   "author": "kuanghua(869653722@qq.com)",
-  "packageManager": "pnpm@6.32.3",
+  "packageManager": "pnpm@7.9.0",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "vite --mode serve-dev",
     "test": "vite --mode serve-test",
     "build:test": "vite build --mode  build-test",
@@ -28,14 +27,14 @@
     "axios": "0.21.3",
     "echarts": "5.3.2",
     "element-plus": "^2.2.9",
-    "mitt": "3.0.0",
+    "mitt": "^3.0.0",
     "moment-mini": "2.22.1",
     "nprogress": "0.2.0",
     "path": "0.12.7",
     "path-to-regexp": "6.2.0",
     "pinia": "^2.0.16",
     "tinymce": "4.9.11",
-    "vue": "3.2.37",
+    "vue": "^3.2.37",
     "vue-router": "4.0.14"
   },
   "devDependencies": {
@@ -87,14 +86,20 @@
     "vue-tsc": "^0.34.16",
     "vite-plugin-mkcert": "^1.7.2",
     "unplugin-vue-define-options": "^0.6.1",
-    "unplugin-icons": "^0.14.6",
-    "unocss": "0.33.5"
+    "unocss": "^0.33.5"
   },
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
         "vite",
-        "*"
+        "@babel/*",
+        "@eslint/*",
+        "vite-plugin-mock",
+        "unplugin-auto-import",
+        "unplugin-vue-components",
+        "@vue/*",
+        "@vitejs/*",
+        "unocss"
       ]
     }
   },

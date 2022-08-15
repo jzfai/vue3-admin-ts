@@ -1,7 +1,7 @@
 <template>
   <div class="scroll-y">
-    <div class="mb-3">TabKeepAlive.vue</div>
-    <el-input v-model="searchForm.pageUrl" class="widthPx-300" placeholder="input to test TabKeepAlive" />
+    <div class="mb3">TabKeepAlive.vue</div>
+    <el-input v-model="searchForm.pageUrl" class="w300" placeholder="input to test TabKeepAlive" />
   </div>
 </template>
 
@@ -12,7 +12,7 @@
 -->
 <script setup lang="ts">
 defineOptions({
-  name: 'TabKeepAlive',
+  name: 'TabKeepAlive'
 })
 
 let { searchForm } = useCommon()

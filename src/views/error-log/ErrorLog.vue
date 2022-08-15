@@ -1,7 +1,7 @@
 <template>
   <div class="errorLogContainer">
     <!--操作-->
-    <div class="mr-3 rowSS">
+    <div class="mr3 rowSS">
       <el-button type="primary" @click="errorLogProd">错误日志测试</el-button>
       <el-button type="primary" @click="multiDelBtnClick">
         <!-- 感觉写法复杂了-->
@@ -11,12 +11,12 @@
         <span style="vertical-align: middle">删除</span>
       </el-button>
       <!--条件搜索-->
-      <el-form ref="refsearchForm" :inline="true" class="demo-searchForm ml-2">
+      <el-form ref="refsearchForm" :inline="true" class="demo-searchForm ml2">
         <el-form-item label-width="0px" label="" prop="errorLog" label-position="left">
-          <el-input v-model="searchForm.errorLog" class="widthPx-150" placeholder="错误日志" />
+          <el-input v-model="searchForm.errorLog" class="w150" placeholder="错误日志" />
         </el-form-item>
         <el-form-item label-width="0px" label="" prop="pageUrl" label-position="left">
-          <el-input v-model="searchForm.pageUrl" class="widthPx-200" placeholder="页面路径" />
+          <el-input v-model="searchForm.pageUrl" class="w200" placeholder="页面路径" />
         </el-form-item>
         <el-form-item label-width="0px" label="" prop="createTime" label-position="left">
           <el-date-picker
@@ -24,7 +24,7 @@
             type="datetimerange"
             format="YYYY-MM-DD"
             value-format="YYYY-MM-DD HH:mm:ss"
-            class="widthPx-250"
+            class="w250"
             range-separator="-"
             start-placeholder="开始日期"
             end-placeholder="结束日期"
@@ -65,7 +65,7 @@
       </el-table-column>
     </el-table>
     <!--分页-->
-    <div class="block columnCC mt-2">
+    <div class="block columnCC mt2">
       <el-pagination
         :current-page="pageNum"
         :page-sizes="[10, 20, 50, 100]"

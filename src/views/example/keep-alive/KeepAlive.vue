@@ -1,12 +1,12 @@
 <template>
   <div class="scroll-y">
     <div>KeepAlive.vue</div>
-    <el-form ref="refsearchForm" :inline="true" class="mt-2">
+    <el-form ref="refsearchForm" :inline="true" class="mt2">
       <el-form-item label-width="0px" label="" prop="errorLog" label-position="left">
-        <el-input v-model="searchForm.errorLog" class="widthPx-150" placeholder="input to test keepAlive" />
+        <el-input v-model="searchForm.errorLog" class="w150" placeholder="input to test keepAlive" />
       </el-form-item>
       <el-form-item label-width="0px" label="" prop="pageUrl" label-position="left">
-        <el-input v-model="searchForm.pageUrl" class="widthPx-150" placeholder="input to test keepAlive" />
+        <el-input v-model="searchForm.pageUrl" class="w150" placeholder="input to test keepAlive" />
       </el-form-item>
     </el-form>
     <el-button type="primary" @click="routerDemoF">to routerDemoF.vue</el-button>
@@ -18,9 +18,8 @@
 1.设置name（必须）
 2.在路由配置处设置cachePage：即可缓存
 -->
-<script setup  lang="ts">
-
-defineOptions({name: 'KeepAlive'})
+<script setup lang="ts">
+defineOptions({ name: 'KeepAlive' })
 
 import { useAppStore } from '@/store/app'
 
