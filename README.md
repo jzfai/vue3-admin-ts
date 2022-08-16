@@ -8,6 +8,7 @@ A new  generation admin  construct   using  vue3(setup-script)+vite2+element-plu
 
 Use eslint+prettier+gitHooks format and verification code to improve code standardization and development efficiency
 
+suggestion the Node.js >= 16.0.0。
 
 ## Documents
 
@@ -26,14 +27,6 @@ Use eslint+prettier+gitHooks format and verification code to improve code standa
 
 github 地址：  https://github.com/jzfai/vue3-admin-ts.git
 
-## Demo
-
- ---- Let's look at the loading speed and the size of the built package first.：
-
-![template-speed-analysis](https://github.jzfai.top/file/images/template-speed-analysis.png)
-
-![template-demo](https://github.jzfai.top/file/images/plus-demo.png)
-
 
 ## Related items
 
@@ -46,20 +39,6 @@ The framework is available in js, ts and plus versions
 > development and  experience：two words  Really fragrant！！！！！
 
 
-#### Comparison of performance between vue3 and vue2
-
-- 41% reduction in package size
-
-- The initial rendering is 55% faster, the update rendering is 133% faster
-
-- Memory reduction 54%
-
-- **Use Proxy instead of defineProperty to implement data responsiveness**
-
-- **Rewrite the implementation of virtual DOM and Tree-Shaking**
-
-
-[Comparison of packaging speed between vite2 and webpack](https://github.com/jzfai/vue3-admin-temlate/issues/2)
 
 ## Build Setup
 
