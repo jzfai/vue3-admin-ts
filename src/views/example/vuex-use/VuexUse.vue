@@ -15,7 +15,7 @@
 import { useAppStore } from '@/store/app'
 const appStore = useAppStore()
 /*getter*/
-const getterValue = ref(null)
+const getterValue = ref()
 const getterFunc = () => {
   getterValue.value = appStore.cachedViews
 }
