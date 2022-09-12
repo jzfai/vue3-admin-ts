@@ -64,7 +64,7 @@ export default ({ command, mode }: any) => {
       // }
     },
     preview: {
-      port: 5003,
+      port: 5008,
       host: true,
       strictPort: true
     },

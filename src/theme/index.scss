@@ -2,9 +2,10 @@
 //@forward "element-plus/theme-chalk/src/mixins/config.scss" with (
 //  $namespace: "el"
 //);
-//注意主题色过多会影响，开发时首次加载的速度,请不要过多的配置,或者按需配置
+
 //base-theme
 @use "./base";
 //theme style such as dark-theme lighting
 @use "./dark";
 @use "./lighting";
+@use "./china-red";
