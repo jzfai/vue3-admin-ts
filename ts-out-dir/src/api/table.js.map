@@ -1,0 +1,1 @@
+{"version":3,"file":"table.js","sourceRoot":"","sources":["../../../src/api/table.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,OAAO,CAAA;AAG3B,MAAM,UAAU,OAAO,CAAC,MAAa;IACnC,OAAO,OAAO,CAAC;QACb,GAAG,EAAE,iCAAiC;QACtC,MAAM,EAAE,KAAK;QACb,IAAI,EAAE,MAAM;KACb,CAAC,CAAA;AACJ,CAAC"}

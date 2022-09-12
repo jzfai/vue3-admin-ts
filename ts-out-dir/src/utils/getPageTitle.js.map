@@ -1,0 +1,1 @@
+{"version":3,"file":"getPageTitle.js","sourceRoot":"","sources":["../../../src/utils/getPageTitle.ts"],"names":[],"mappings":"AAAA,OAAO,eAAe,MAAM,YAAY,CAAA;AAExC,MAAM,KAAK,GAAG,eAAe,CAAC,KAAK,IAAI,qBAAqB,CAAA;AAE5D,MAAM,CAAC,OAAO,UAAU,YAAY,CAAC,SAAiB;IACpD,IAAI,SAAS,EAAE;QACb,OAAO,GAAG,SAAS,MAAM,KAAK,EAAE,CAAA;KACjC;IACD,OAAO,GAAG,KAAK,EAAE,CAAA;AACnB,CAAC"}

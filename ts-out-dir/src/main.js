@@ -1,0 +1,22 @@
+import { createApp } from 'vue';
+import App from './App.vue';
+const app = createApp(App);
+import router from './router';
+import '@/styles/index.scss';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
+app.use(ElementPlus);
+import 'virtual:svg-icons-register';
+import svgIcon from '@/icons/SvgIcon.vue';
+app.component('SvgIcon', svgIcon);
+import directive from '@/directives';
+directive(app);
+import './permission';
+import './theme/index.scss';
+import 'uno.css';
+import errorLog from '@/hooks/useErrorLog';
+errorLog();
+import { createPinia } from 'pinia';
+app.use(createPinia());
+app.use(router).mount('#app');
+//# sourceMappingURL=main.js.map
