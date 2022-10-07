@@ -5,7 +5,7 @@
 
 #lock
 pnpm-lock.yaml
-
+ts-out-dir
 # Logs
 logs
 *.log

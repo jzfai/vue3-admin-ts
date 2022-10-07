@@ -39,22 +39,22 @@ const getBreadcrumb = () => {
   // only show routes with meta.title
   let matched: any = route.matched.filter((item) => item.meta && item.meta.title)
   const first: any = matched[0]
-  if (!isDashboard(first)) {
-    //it can replace the first page if not exits
-    matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched)
-  }
+  // if (!isDashboard(first)) {
+  //   //it can replace the first page if not exits
+  //   matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched)
+  // }
   levelList.value = matched.filter(
     (item: RouteItemTy) => item.meta && item.meta.title && item.meta.breadcrumb !== false
   )
 }
 
-const isDashboard = (route: RouteItemTy) => {
-  const name = route?.name
-  if (!name) {
-    return false
-  }
-  return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
-}
+// const isDashboard = (route: RouteItemTy) => {
+//   const name = route?.name
+//   if (!name) {
+//     return false
+//   }
+//   return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+// }
 const pathCompile = (path: string) => {
   const { params } = route
   const toPath = compile(path)

@@ -60,17 +60,14 @@ export const useCommonExample = () => {
   state.beforeThreeDateTime = momentMini().add(-3, 'days').format('YYYY-MM-DD HH:mm:ss')
   state.yesterdayTime = momentMini().add(-1, 'days').format('YYYY-MM-DD HH:mm:ss')
 
-  /*
-   * 清空空的参数项
-   * objParam：传入的参数
-   * */
-  // const clearParamsIsNull = (objParam: ObjTy) => {
-  //   const obj = Object.keys(objParam)
-  //   obj.forEach((fItem) => {
-  //     if (objParam[fItem] === '' || objParam[fItem] === null || objParam[fItem] === undefined) delete objParam[fItem]
-  //   })
-  //   return objParam
-  // }
+  //生成唯一的uuid
+  const guid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = (Math.random() * 16) | 0
+      const v = c === 'x' ? r : (r & 0x3) | 0x8
+      return v.toString(16)
+    })
+  }
 
   const sleep = (time: number): Promise<null> => {
     return new Promise((resolve) => {
@@ -81,7 +78,18 @@ export const useCommonExample = () => {
     })
   }
 
+  const downLoadTemp = (res) => {
+    //得到主键key
+    const url = window.URL.createObjectURL(new Blob([res.data]))
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', decodeURI(res.headers?.exportfilename))
+    document.body.appendChild(link)
+    link.click()
+  }
   return {
+    downLoadTemp,
+    guid,
     sleep,
     ...toRefs(state)
   }

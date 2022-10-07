@@ -34,7 +34,7 @@ service.interceptors.request.use(
     /*
      *params会拼接到url上
      * */
-    if (request.isParams) {
+    if (request.isParams || 'get'.includes(request.method as string)) {
       request.params = request.data
       request.data = {}
     }

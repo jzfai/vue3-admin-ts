@@ -162,6 +162,27 @@ flex布局 第一个字母为主轴
   align-items: flex-end;
 }
 
+//end
+.rowES {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.rowEC {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.rowEE {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
 /*col*/
 //start
 .columnSS {

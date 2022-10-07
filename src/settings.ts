@@ -20,7 +20,7 @@ interface SettingTy {
 }
 
 const setting: SettingTy = {
-  title: 'Vue3 Admin Ts',
+  title: '前后端低代码平台',
   /**
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
@@ -50,7 +50,7 @@ const setting: SettingTy = {
    * @type {boolean} true | false
    * @description Whether show TagsView
    */
-  showTagsView: true,
+  showTagsView: false,
   /**
    * @description TagsView show number
    */
@@ -65,7 +65,7 @@ const setting: SettingTy = {
    * @type {boolean} true | false
    * @description Whether need animation of main area
    */
-  mainNeedAnimation: true,
+  mainNeedAnimation: false,
   /**
    * @type {boolean} true | false
    * @description Whether need nprogress

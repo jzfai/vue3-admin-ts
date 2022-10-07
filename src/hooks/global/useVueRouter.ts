@@ -5,10 +5,12 @@ const useVueRouterExample = function () {
   const getQueryParam = () => {
     if (route.value?.query.params) {
       return JSON.parse(route.value.query.params)
+    } else {
+      return {}
     }
   }
   // vue router
-  const routerPush = (name: string, params: ObjTy) => {
+  const routerPush = (name: string, params?: ObjTy) => {
     let data = {}
     if (params) {
       data = {
@@ -22,7 +24,7 @@ const useVueRouterExample = function () {
       query: data
     })
   }
-  const routerReplace = (name: string, params: ObjTy) => {
+  const routerReplace = (name: string, params?: ObjTy) => {
     let data = {}
     if (params) {
       data = {

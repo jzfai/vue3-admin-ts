@@ -87,7 +87,11 @@ export default ({ command, mode }: any) => {
       // }),
       viteSvgIcons({
         // config svg dir that can config multi
-        iconDirs: [path.resolve(process.cwd(), 'src/icons/common'), path.resolve(process.cwd(), 'src/icons/nav-bar')],
+        iconDirs: [
+          path.resolve(process.cwd(), 'src/icons/common'),
+          path.resolve(process.cwd(), 'src/icons/nav-bar'),
+          path.resolve(process.cwd(), 'src/icons/generator')
+        ],
         // appoint svg icon using mode
         symbolId: 'icon-[dir]-[name]'
       }),
