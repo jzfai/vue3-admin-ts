@@ -46,7 +46,6 @@
         />
       </template>
     </el-table-column>
-
     <el-table-column align="center" label="select/selectApi额外配置" min-width="170">
       <template #default="{ row }">
         <el-input
@@ -86,7 +85,7 @@
       </template>
     </el-table-column>
 
-    <el-table-column prop="width" align="center" label="操作" width="70">
+    <el-table-column prop="width" align="center" label="操作" width="90">
       <template #default="{ row, $index }">
         <el-button text type="danger" @click="deleteSearchItem(row, $index)">删除</el-button>
       </template>

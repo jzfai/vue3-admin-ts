@@ -17,6 +17,11 @@
         <el-input v-model="row.originField" placeholder="字段名" />
       </template>
     </el-table-column>
+    <el-table-column prop="frontField" label="前端字段名" align="center" width="120">
+      <template #default="{ row }">
+        <el-input v-model="row.frontField" placeholder="前端字段名" />
+      </template>
+    </el-table-column>
     <el-table-column prop="desc" label="字段描述" min-width="120">
       <template #default="{ row }">
         <el-input v-model="row.desc" placeholder="字段描述" />
@@ -83,13 +88,22 @@ import {
   changeDashToCaseAndFirstWord
 } from './generatorUtis'
 import commonUtil from '@/utils/commonUtil'
+const findArrObjByKey = (arrObj, objKey, value, preItem) => {
+  const findItem = arrObj[arrObj.findIndex((item) => item[objKey] == value)]
+  if (findItem?.tableName === preItem.tableName) {
+    return true
+  }
+  return false
+}
 const setSearchTableData = (checkColumnArr) => {
   checkColumnArr.forEach((fItem) => {
-    const hasKey = commonUtil.findArrObjByKey(searchTableData, 'columnName', fItem.columnName)
+    const hasKey = findArrObjByKey(searchTableData, 'columnName', fItem.columnName, fItem)
+    console.log(hasKey)
     if (!hasKey) {
       fItem.field = changeDashToCase(fItem.columnName) //_转驼峰
       fItem.fieldCase = changeDashToCaseAndFirstWord(fItem.columnName)
       fItem.originField = fItem.columnName
+      fItem.frontField = fItem.columnName
       fItem.tbName = fItem.columnName
 
       fItem.type = tbTypeMapping(fItem.dataType) //数据库和java中的类型做映射
@@ -98,7 +112,7 @@ const setSearchTableData = (checkColumnArr) => {
       fItem.value = 'value'
       fItem.label = 'label'
       fItem.children = 'children'
-      fItem.isNotShowSwagger = 'true'
+      fItem.isNotShowSwagger = 'false'
       fItem.isNeedInput = 'false'
       fItem.desc = splitDescReturnDesc(fItem.columnComment)
       fItem.optionData = splitDescReturnOptionData(fItem.columnComment)

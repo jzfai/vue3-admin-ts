@@ -26,17 +26,6 @@
             :value="item.label"
           />
         </el-select>
-
-        <!--        <el-radio-group v-model="row.componentType">-->
-        <!--          <el-radio-->
-        <!--            v-for="(item, index) in searchTableComponentTypeArr"-->
-        <!--            :key="index"-->
-        <!--            :label="item.label"-->
-        <!--            @click="chooseRowHandle(row)"-->
-        <!--          >-->
-        <!--            {{ item.title }}-->
-        <!--          </el-radio>-->
-        <!--        </el-radio-group>-->
       </template>
     </el-table-column>
     <el-table-column prop="width" align="center" label="宽度" width="80">
@@ -96,7 +85,7 @@
       </template>
     </el-table-column>
 
-    <el-table-column prop="width" align="center" label="操作" width="70">
+    <el-table-column prop="width" align="center" label="操作" width="90">
       <template #default="{ row, $index }">
         <el-button text type="danger" @click="deleteSearchItem(row, $index)">删除</el-button>
       </template>

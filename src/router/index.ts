@@ -68,6 +68,12 @@ export const constantRoutes: RouterTy = [
         name: 'MybatisPlus',
         component: () => import('@/views/mybatis-plus'),
         meta: { title: '基础生成' }
+      },
+      {
+        path: 'query',
+        name: 'MybatisPlusQuery',
+        component: () => import('@/views/mybatis-plus-query'),
+        meta: { title: '多表查询' }
       }
       // {
       //   path: 'code-generator-config',

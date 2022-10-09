@@ -83,9 +83,17 @@ import {
   changeDashToCaseAndFirstWord
 } from './generatorUtis'
 import commonUtil from '@/utils/commonUtil'
+const findArrObjByKey = (arrObj, objKey, value, preItem) => {
+  console.log(arrObj, objKey, value, preItem)
+  const findItem = arrObj[arrObj.findIndex((item) => item[objKey] == value)]
+  if (findItem && findItem.tbName === preItem.tbName) {
+    return true
+  }
+  return false
+}
 const setSearchTableData = (checkColumnArr) => {
   checkColumnArr.forEach((fItem) => {
-    const hasKey = commonUtil.findArrObjByKey(searchTableData, 'columnName', fItem.columnName)
+    const hasKey = findArrObjByKey(searchTableData, 'columnName', fItem.columnName, fItem)
     if (!hasKey) {
       fItem.field = changeDashToCase(fItem.columnName) //_转驼峰
       fItem.fieldCase = changeDashToCaseAndFirstWord(fItem.columnName)

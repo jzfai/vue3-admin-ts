@@ -110,7 +110,6 @@
         <div v-if="checkColumnArr.length" class="mt-20px">
           <el-button type="primary" @click="generatorToSearch">同步到查询</el-button>
           <el-button type="primary" @click="generatorToTable">同步到表格</el-button>
-          <el-button type="primary" @click="generatorToForm">同步到表单</el-button>
         </div>
       </div>
     </FoldingCard>
@@ -149,8 +148,8 @@
       <div class="mt-30px mb-10px">表格显示字段</div>
       <ListTableConfig ref="refListTableConfig" />
       <!--  提交from表单配置  -->
-      <div class="mt-30px mb-10px">新增和修改字段</div>
-      <FormTableConfig ref="refFormTableConfig" />
+      <!--      <div class="mt-30px mb-10px">新增和修改字段</div>-->
+      <!--      <FormTableConfig ref="refFormTableConfig" />-->
     </FoldingCard>
 
     <FoldingCard title="配置保存和模版生成">
@@ -345,12 +344,12 @@ const generatorToTable = () => {
   refListTableConfig.setListTableData(checkColumnArr)
 }
 //Form
-import FormTableConfig from './FormTableConfig.vue'
+// import FormTableConfig from './FormTableConfig.vue'
 import momentMini from 'moment-mini'
-const refFormTableConfig = $ref(null)
-const generatorToForm = () => {
-  refFormTableConfig.setFormTableData(checkColumnArr)
-}
+// const refFormTableConfig = $ref(null)
+// const generatorToForm = () => {
+//   refFormTableConfig.setFormTableData(checkColumnArr)
+// }
 
 //生成模板
 const generatorSubData = () => {
@@ -359,7 +358,7 @@ const generatorSubData = () => {
     const searchTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
     const listTableConfig = refListTableConfig.getListTableData()
     const listTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
-    const formTableConfig = refFormTableConfig.getFormTableData()
+    // const formTableConfig = refFormTableConfig.getFormTableData()
     const formTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
 
     //多表数据处理
@@ -395,7 +394,7 @@ const generatorSubData = () => {
       dbTableConfig,
       queryConfig: searchTableConfig,
       tableConfig: listTableConfig,
-      formConfig: formTableConfig,
+      // formConfig: formTableConfig,
 
       //此处保存的数据主要用于回显
       dataBaseUrl,
@@ -421,7 +420,7 @@ const copyJson = async () => {
 
 //保存模板
 let saveFileName = $ref('')
-const saveName = 'mybatis-plus-basic'
+const saveName = 'mybatis-plus-query'
 const saveTmp = async () => {
   const subData = await generatorSubData()
   let reqConfig = {
@@ -467,7 +466,7 @@ const reshowData = (fItem) => {
   let generatorConfig = JSON.parse(fItem.generatorConfig)
   refSearchTableConfig.reshowSearchTableData(generatorConfig.queryConfig)
   refListTableConfig.reshowListTableData(generatorConfig.tableConfig)
-  refFormTableConfig.reshowFormTableData(generatorConfig.formConfig)
+  // refFormTableConfig.reshowFormTableData(generatorConfig.formConfig)
 
   dataBaseUrl = generatorConfig.dataBaseUrl
   dbRadio = generatorConfig.dbRadio

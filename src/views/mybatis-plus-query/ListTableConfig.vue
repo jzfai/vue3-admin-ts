@@ -17,11 +17,11 @@
         <el-input v-model="row.field" placeholder="字段名" />
       </template>
     </el-table-column>
-    <!--    <el-table-column prop="frontField" label="前端字段名" align="center" width="120">-->
-    <!--      <template #default="{ row }">-->
-    <!--        <el-input v-model="row.frontField" placeholder="前端字段名" />-->
-    <!--      </template>-->
-    <!--    </el-table-column>-->
+    <el-table-column prop="frontField" label="前端字段名" align="center" width="120">
+      <template #default="{ row }">
+        <el-input v-model="row.frontField" placeholder="前端字段名" />
+      </template>
+    </el-table-column>
     <el-table-column prop="desc" label="字段描述" min-width="120">
       <template #default="{ row }">
         <el-input v-model="row.desc" placeholder="字段描述" />
@@ -130,9 +130,16 @@ import {
   listTableComponentTypeMapping
 } from './generatorUtis'
 import commonUtil from '@/utils/commonUtil'
+const findArrObjByKey = (arrObj, objKey, value, preItem) => {
+  const findItem = arrObj[arrObj.findIndex((item) => item[objKey] == value)]
+  if (findItem?.tableName === preItem.tableName) {
+    return true
+  }
+  return false
+}
 const setListTableData = (checkColumnArr) => {
   checkColumnArr.forEach((fItem) => {
-    const hasKey = commonUtil.findArrObjByKey(listTableData, 'columnName', fItem.columnName)
+    const hasKey = findArrObjByKey(listTableData, 'columnName', fItem.columnName, fItem)
     if (!hasKey) {
       fItem.field = changeDashToCase(fItem.columnName) //_转驼峰
       fItem.frontField = changeDashToCase(fItem.columnName) //_转驼峰

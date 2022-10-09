@@ -107,7 +107,7 @@
       </template>
     </el-table-column>
 
-    <el-table-column prop="width" align="center" label="操作" width="70">
+    <el-table-column prop="width" align="center" label="操作" width="90">
       <template #default="{ row, $index }">
         <el-button text type="danger" @click="deleteSearchItem(row, $index)">删除</el-button>
       </template>
