@@ -114,22 +114,32 @@
       </div>
     </FoldingCard>
     <FoldingCard title="表字段关系配置">
-      <!--      <div class="mb-10px rowSS">-->
-      <!--        <el-input v-model="multiTableName" placeholder="多表实体类名" class="w-150px mr-2" />-->
-      <!--        <el-input v-model="multiTableDesc" placeholder="多表相关注释" class="w-150px" />-->
-      <!--      </div>-->
+      <div class="mt-20px mb-10px">
+        <div class="mb-6px">关联关系配置</div>
+
+        <el-radio-group v-model="associationType">
+          <el-radio key="0" label="一对一">一对一</el-radio>
+          <el-radio key="1" label="一对多">一对多</el-radio>
+          <el-radio key="2" label="多对多">多对多</el-radio>
+        </el-radio-group>
+      </div>
+      <div class="mb-20px rowSS">
+        <el-input v-model="multiTableName" placeholder="多表实体类名" class="w-150px mr-2" />
+        <el-input v-model="multiTableDesc" placeholder="多表相关注释" class="w-150px" />
+      </div>
       <div v-for="(item, index) in multiTableConfig" :key="index" class="rowSC">
         <div class="mr-10px">{{ item.originTableName }}：</div>
-        <el-radio-group v-model="item.orgAssociationKey">
-          <el-radio
+
+        <el-checkbox-group v-model="item.orgAssociationKey">
+          <el-checkbox
             v-for="(pkaItem, pkaIndex) in item.priKeyArr"
             :key="pkaIndex"
             :label="pkaItem"
             @click="pkaRadioClick(item, pkaItem)"
           >
             {{ pkaItem }}
-          </el-radio>
-        </el-radio-group>
+          </el-checkbox>
+        </el-checkbox-group>
         <ElSvgIcon
           class="ml-10px"
           name="CircleClose"
@@ -148,8 +158,8 @@
       <div class="mt-30px mb-10px">表格显示字段</div>
       <ListTableConfig ref="refListTableConfig" />
       <!--  提交from表单配置  -->
-      <!--      <div class="mt-30px mb-10px">新增和修改字段</div>-->
-      <!--      <FormTableConfig ref="refFormTableConfig" />-->
+      <div class="mt-30px mb-10px">新增和修改字段</div>
+      <FormTableConfig ref="refFormTableConfig" />
     </FoldingCard>
 
     <FoldingCard title="配置保存和模版生成">
@@ -298,7 +308,7 @@ const searchDbTable = () => {
         uniKeyType: tbTypeMapping(priKeyArrItemFirst.dataType),
         priKeyArr,
         priKeyItemArr,
-        orgAssociationKey: priKeyArrLast,
+        orgAssociationKey: [priKeyArrLast],
         associationKey: changeDashToCase(priKeyArrLast),
         associationKeyCase: changeTheFirstWordToCase(changeDashToCase(priKeyArrLast)),
         associationKeyType: tbTypeMapping(priKeyArrItemLast.dataType)
@@ -309,6 +319,8 @@ const searchDbTable = () => {
 }
 //多表关系配置
 let multiTableName = $ref(null)
+//表联合类型
+let associationType = $ref('一对一')
 let multiTableDesc = $ref('')
 const pkaRadioClick = (item, pkaItem) => {
   item.associationKey = changeDashToCase(pkaItem)
@@ -344,12 +356,12 @@ const generatorToTable = () => {
   refListTableConfig.setListTableData(checkColumnArr)
 }
 //Form
-// import FormTableConfig from './FormTableConfig.vue'
+import FormTableConfig from './FormTableConfig.vue'
 import momentMini from 'moment-mini'
-// const refFormTableConfig = $ref(null)
-// const generatorToForm = () => {
-//   refFormTableConfig.setFormTableData(checkColumnArr)
-// }
+const refFormTableConfig = $ref(null)
+const generatorToForm = () => {
+  refFormTableConfig.setFormTableData(checkColumnArr)
+}
 
 //生成模板
 const generatorSubData = () => {
@@ -358,7 +370,7 @@ const generatorSubData = () => {
     const searchTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
     const listTableConfig = refListTableConfig.getListTableData()
     const listTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
-    // const formTableConfig = refFormTableConfig.getFormTableData()
+    const formTableConfig = refFormTableConfig.getFormTableData()
     const formTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
 
     //多表数据处理
@@ -378,7 +390,8 @@ const generatorSubData = () => {
     let dbTableConfig = {
       multiTableName,
       multiTableNameCase: changeTheFirstWordToCase(multiTableName),
-      multiTableDesc: multiTableDesc,
+      multiTableDesc,
+      associationType,
       ...multiTableFistItem
     }
     // let reqApiPre = ''
@@ -466,7 +479,7 @@ const reshowData = (fItem) => {
   let generatorConfig = JSON.parse(fItem.generatorConfig)
   refSearchTableConfig.reshowSearchTableData(generatorConfig.queryConfig)
   refListTableConfig.reshowListTableData(generatorConfig.tableConfig)
-  // refFormTableConfig.reshowFormTableData(generatorConfig.formConfig)
+  refFormTableConfig.reshowFormTableData(generatorConfig.formConfig)
 
   dataBaseUrl = generatorConfig.dataBaseUrl
   dbRadio = generatorConfig.dbRadio
@@ -478,6 +491,9 @@ const reshowData = (fItem) => {
   tbData = generatorConfig.tbData
   basicConfig = generatorConfig.basicConfig
   multiTableConfig = generatorConfig.multiTableConfig
+  multiTableName = generatorConfig.dbTableConfig.multiTableName
+  multiTableDesc = generatorConfig.dbTableConfig.multiTableDesc
+  associationType = generatorConfig.dbTableConfig.associationType
 }
 
 /**

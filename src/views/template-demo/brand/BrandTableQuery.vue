@@ -28,11 +28,11 @@
               type="daterange"
               format="YYYY-MM-DD"
               value-format="YYYY-MM-DD HH:mm:ss"
-              @change="dateRangePacking"
               class="w-150px"
               range-separator="-"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
+              @change="dateRangePacking"
             />
           </el-form-item>
         </el-form>
@@ -79,7 +79,7 @@
       </el-table-column>
     </el-table>
     <!--分页-->
-    <div class="rowEC mt-20px" v-if="totalPage >= 10">
+    <div v-if="totalPage >= 10" class="rowEC mt-20px">
       <el-pagination
         :current-page="pageNum"
         :page-sizes="[10, 20, 50, 100]"

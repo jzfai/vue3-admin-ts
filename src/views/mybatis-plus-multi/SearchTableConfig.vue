@@ -12,9 +12,14 @@
         <el-input v-model="row.tableName" placeholder="tableName" />
       </template>
     </el-table-column>
-    <el-table-column prop="originField" label="字段名" align="center" width="120">
+    <el-table-column prop="field" label="字段名" align="center" width="120">
       <template #default="{ row }">
-        <el-input v-model="row.originField" placeholder="字段名" />
+        <el-input v-model="row.field" placeholder="字段名" />
+      </template>
+    </el-table-column>
+    <el-table-column prop="frontField" label="前端字段名" align="center" width="120">
+      <template #default="{ row }">
+        <el-input v-model="row.frontField" placeholder="前端字段名" />
       </template>
     </el-table-column>
     <el-table-column prop="desc" label="字段描述" min-width="120">
@@ -22,79 +27,48 @@
         <el-input v-model="row.desc" placeholder="字段描述" />
       </template>
     </el-table-column>
-    <!--    <el-table-column prop="componentType" align="center" label="类型" width="400">-->
-    <!--      <template #default="{ row }">-->
-    <!--        <el-radio-group v-model="row.componentType">-->
-    <!--          <el-radio-->
-    <!--            v-for="(item, index) in searchTableComponentTypeArr"-->
-    <!--            :key="index"-->
-    <!--            :label="item.label"-->
-    <!--            @click="chooseRowHandle(row)"-->
-    <!--          >-->
-    <!--            {{ item.title }}-->
-    <!--          </el-radio>-->
-    <!--        </el-radio-group>-->
-    <!--      </template>-->
-    <!--    </el-table-column>-->
-    <el-table-column prop="rule" align="center" label="校验规则" min-width="100">
+    <el-table-column prop="isNotShowSwagger" align="center" label="文档中显示" width="100">
       <template #default="{ row }">
-        <el-radio-group v-model="row.rule">
-          <el-radio v-for="(item, index) in ruleMapping" :key="index" :label="item.key">
-            {{ item.label }}
-          </el-radio>
-        </el-radio-group>
+        <el-switch
+          v-model="row.isNotShowSwagger"
+          inline-prompt
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          active-value="false"
+          inactive-value="true"
+        />
       </template>
     </el-table-column>
-    <!--    <el-table-column align="center" prop="api" label="额外配置(select,cascader)" width="180">-->
-    <!--      <template #default="{ row }">-->
-    <!--        <div class="text-left">-->
-    <!--          <el-input-->
-    <!--            v-if="['selectApi', 'cascaderApi'].includes(row.componentType)"-->
-    <!--            v-model="row.api"-->
-    <!--            type="textarea"-->
-    <!--            rows="2"-->
-    <!--            placeholder="请求地址"-->
-    <!--          />-->
-    <!--          <el-input-->
-    <!--            v-if="['selectApi', 'cascaderApi'].includes(row.componentType)"-->
-    <!--            v-model="row.method"-->
-    <!--            class="mt-4px w-100px"-->
-    <!--            placeholder="请求方法"-->
-    <!--          />-->
-    <!--          <el-input-->
-    <!--            v-if="['selectApi', 'cascaderApi'].includes(row.componentType)"-->
-    <!--            v-model="row.labelKey"-->
-    <!--            class="mt-4px w-100px"-->
-    <!--            placeholder="label-key"-->
-    <!--          />-->
-    <!--          <el-input-->
-    <!--            v-if="['selectApi', 'cascaderApi'].includes(row.componentType)"-->
-    <!--            v-model="row.valueKey"-->
-    <!--            class="mt-4px w-100px"-->
-    <!--            placeholder="value-key"-->
-    <!--          />-->
-    <!--          <el-input-->
-    <!--            v-if="['select', 'radio', 'checkbox', 'switch'].includes(row.componentType)"-->
-    <!--            v-model="row.optionData"-->
-    <!--            class="mt-4px"-->
-    <!--            type="textarea"-->
-    <!--            rows="2"-->
-    <!--            placeholder="数据枚举"-->
-    <!--          />-->
-    <!--          &lt;!&ndash;cascaderApi  &ndash;&gt;-->
-    <!--          <el-input-->
-    <!--            v-if="['cascaderApi'].includes(row.componentType)"-->
-    <!--            v-model="row.children"-->
-    <!--            class="mt-4px w-100px"-->
-    <!--            placeholder="childrenKey"-->
-    <!--          />-->
-    <!--        </div>-->
-    <!--      </template>-->
-    <!--    </el-table-column>-->
 
-    <el-table-column prop="width" align="center" label="操作" width="60">
+    <el-table-column prop="isNotShowSwagger" align="center" label="是否必填" width="100">
+      <template #default="{ row }">
+        <el-switch
+          v-model="row.isNeedInput"
+          inline-prompt
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          active-value="true"
+          inactive-value="false"
+        />
+      </template>
+    </el-table-column>
+
+    <el-table-column prop="rule" align="center" label="校验规则" min-width="100">
+      <template #default="{ row }">
+        <el-select v-model="row.rule" filterable placeholder="组件类型">
+          <el-option
+            v-for="(item, index) in ruleMapping"
+            :key="index"
+            :label="`${item.label}(${item.key})`"
+            :value="item.key"
+          />
+        </el-select>
+      </template>
+    </el-table-column>
+
+    <el-table-column prop="width" align="center" label="操作" width="90">
       <template #default="{ row, $index }">
-        <el-button text @click="deleteSearchItem(row, $index)">删除</el-button>
+        <el-button text type="primary" @click="deleteSearchItem(row, $index)">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -114,23 +88,32 @@ import {
   changeDashToCaseAndFirstWord
 } from './generatorUtis'
 import commonUtil from '@/utils/commonUtil'
+const findArrObjByKey = (arrObj, objKey, value, preItem) => {
+  const findItem = arrObj[arrObj.findIndex((item) => item[objKey] == value)]
+  if (findItem?.tableName === preItem.tableName) {
+    return true
+  }
+  return false
+}
 const setSearchTableData = (checkColumnArr) => {
   checkColumnArr.forEach((fItem) => {
-    const hasKey = commonUtil.findArrObjByKey(searchTableData, 'columnName', fItem.columnName)
+    const hasKey = findArrObjByKey(searchTableData, 'columnName', fItem.columnName, fItem)
+    console.log(hasKey)
     if (!hasKey) {
       fItem.field = changeDashToCase(fItem.columnName) //_转驼峰
       fItem.fieldCase = changeDashToCaseAndFirstWord(fItem.columnName)
       fItem.originField = fItem.columnName
+      fItem.frontField = fItem.columnName
       fItem.tbName = fItem.columnName
 
       fItem.type = tbTypeMapping(fItem.dataType) //数据库和java中的类型做映射
       fItem.componentType = componentTypeMapping(fItem.dataType, fItem.columnComment, fItem.columnName) //数据库和前端控件中的类型做映射
-      fItem.rule = 'isNotNull'
+      fItem.rule = 'notValid'
       fItem.value = 'value'
       fItem.label = 'label'
       fItem.children = 'children'
-      fItem.width = 120
-
+      fItem.isNotShowSwagger = 'false'
+      fItem.isNeedInput = 'false'
       fItem.desc = splitDescReturnDesc(fItem.columnComment)
       fItem.optionData = splitDescReturnOptionData(fItem.columnComment)
       //api
@@ -163,6 +146,7 @@ generatorHook(searchTableData, 'search-table-config')
 
 const getSearchTableData = () => {
   searchTableData.forEach((fItem) => {
+    fItem.frontFieldCase = changeDashToCaseAndFirstWord(fItem.frontField)
     fItem.optionDataArr = splitTheOptionArr(fItem.optionData)
   })
   return searchTableData

@@ -160,13 +160,9 @@ export const listTableComponentTypeMapping = (type, commont, field) => {
 
 //资管家校验规则
 export const ruleMapping = [
-  { key: 'notValid', label: '不校验' },
-  { key: 'upZeroInt', pattern: '^\\+?[1-9]\\d*$', parent, label: '正整数' },
-  { key: 'zeroInt', pattern: '^\\+?[0-9]\\d*$', label: '正整数(包括0)' },
-  { key: 'phone', pattern: '^0?1[0-9]{10}$', label: '手机号' },
-  { key: 'money', pattern: '((^[1-9]\\d*)|^0)(\\.\\d{0,2}){0,1}$', label: '金额' },
-  { key: 'email', pattern: '^([a-zA-Z]|[0-9])(\\w|\\-)+@[a-zA-Z0-9]+\\.([a-zA-Z]{2,4})$', label: '邮箱' },
-  { key: 'idCard', pattern: '(^\\d{15}$)|(^\\d{18}$)|(^\\d{17}(\\d|X|x)$)', label: '身份证号' }
+  { key: 'isNotNull', label: '必填' },
+  { key: 'positiveInteger', label: '整数' },
+  { key: 'positiveIntegerNotZero', label: '大于O的整数' }
 ]
 
 //desc截取

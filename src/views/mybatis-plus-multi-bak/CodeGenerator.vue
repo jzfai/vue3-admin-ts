@@ -22,20 +22,13 @@
           </el-select>
         </el-form-item>
       </div>
-      <el-form ref="refForm" label-width="120px" :inline="true" :model="basicConfig" :rules="formRules" class="pr-50px">
-        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull" label-position="left">
-          <el-input v-model="basicConfig.author" placeholder="作者" />
+      <el-form ref="refForm" label-width="100px" :inline="true" :model="basicConfig" :rules="formRules" class="pr-50px">
+        <el-form-item label="author" prop="author" :rules="formRules.isNotNull" label-position="left">
+          <el-input v-model="basicConfig.author" placeholder="author" />
         </el-form-item>
-        <el-form-item label="包名" prop="packageName" :rules="formRules.isNotNull" label-position="left">
-          <el-input v-model="basicConfig.packageName" class="w-200px" placeholder="包名" />
+        <el-form-item label="packageName" prop="packageName" :rules="formRules.isNotNull" label-position="left">
+          <el-input v-model="basicConfig.packageName" class="w-200px" placeholder="packageName" />
         </el-form-item>
-
-        <!--        <el-form-item label="实体基础类名" prop="basicClassName" :rules="formRules.isNotNull" label-position="left">-->
-        <!--          <el-input v-model="basicConfig.basicClassName" class="w-200px" placeholder="实体基础类名" />-->
-        <!--        </el-form-item>-->
-        <!--        <el-form-item label="实体基础类注释" prop="basicClassDesc" :rules="formRules.isNotNull" label-position="left">-->
-        <!--          <el-input v-model="basicConfig.basicClassDesc" class="w-200px" placeholder="实体基础类注释" />-->
-        <!--        </el-form-item>-->
       </el-form>
     </FoldingCard>
     <FoldingCard title="库和表选取">
@@ -50,39 +43,35 @@
       </div>
       <!-- 获取库和表信息 -->
       <div class="mt-20px mb-10px">请选择表(支持多表)</div>
-      <el-checkbox-group v-model="dbRadio">
-        <el-checkbox
-          v-for="(item, index) in dbData"
-          :key="index"
-          :label="item.tableName"
-          @change="dbRadioClick(item, dbRadio.includes(item.tableName))"
-        >
+      <el-checkbox-group v-model="dbRadio" @change="dbRadioClick">
+        <el-checkbox v-for="(item, index) in dbData" :key="index" :label="item.tableName">
           {{ item.tableName }}
         </el-checkbox>
       </el-checkbox-group>
 
       <div v-if="chooseDbArr.length" class="mt-3 mb-1">选中的表</div>
-      <el-button
-        v-for="(item, index) in chooseDbArr"
-        :key="index"
-        type="primary"
-        text
-        @click="dbChooseRadioClick(item)"
-      >
-        {{ item.tableName }}({{ item.tableComment }})
-      </el-button>
+      <el-radio-group v-model="chooseDbRadio">
+        <el-radio
+          v-for="(item, index) in chooseDbArr"
+          :key="index"
+          :label="item.tableName"
+          @change="dbChooseRadioClick(item)"
+        >
+          {{ item.tableName }}({{ item.tableComment }})
+        </el-radio>
+      </el-radio-group>
       <!-- 表信息-->
-      <!--      <div class="mb-10px mt-30px">表信息</div>-->
-      <!--      <div class="rowSC mt-10px">-->
-      <!--        <el-input v-model="tbName" class="w-150px mr-10px" placeholder="tbName" />-->
-      <!--        <el-button :disabled="!tbName" type="primary" @click="searchDbTable">查询字段</el-button>-->
-      <!--      </div>-->
+      <div class="mb-10px mt-30px">表信息</div>
+      <div class="rowSC mt-10px">
+        <el-input v-model="tbName" class="w-150px mr-10px" placeholder="tbName" />
+        <el-button :disabled="!tbName" type="primary" @click="searchDbTable">查询字段</el-button>
+      </div>
     </FoldingCard>
 
     <FoldingCard title="字段配置">
-      <div class="mb-10px rowSC">
+      <div class="mb-10px rowSS">
         <div>表字段（点击选择）</div>
-        <el-button text class="mr-10px" type="primary" @click="checkAllColumn">全选</el-button>
+        <el-button class="mr-10px" type="primary" @click="checkAllColumn">全选</el-button>
       </div>
       <div class="mt-1">
         <el-button
@@ -97,50 +86,40 @@
         </el-button>
 
         <!-- 选中的字段-->
-        <div class="mt-30px mb-10px rowSC">
+        <div class="mt-30px mb-10px">
           <span>选中的字段处理</span>
-          <el-button text type="danger" class="ml-1" @click="clearAllColumn">清空</el-button>
+          <el-button type="danger" class="ml-1" @click="clearAllColumn">清空</el-button>
         </div>
-        <div class="rowSC flex-wrap">
-          <div v-for="(item, index) in checkColumnArr" :key="index" class="rowSC mr-20px mt-10px mb-30px">
+        <div class="rowSS flex-wrap">
+          <div v-for="(item, index) in checkColumnArr" :key="index" class="rowSC mr-2 mt-1">
             <span style="color: #e6a23c">{{ item.columnName }}({{ item.columnComment }})</span>
             <ElSvgIcon name="CircleClose" :size="14" style="cursor: pointer" @click="deleteColumn(index)" />
           </div>
         </div>
         <div v-if="checkColumnArr.length" class="mt-20px">
-          <el-button type="primary" @click="generatorToSearch">同步到查询</el-button>
-          <el-button type="primary" @click="generatorToTable">同步到表格</el-button>
-          <el-button type="primary" @click="generatorToForm">同步到提交表单</el-button>
+          <el-button type="primary" @click="generatorToSearch">生成到查询</el-button>
+          <el-button type="primary" @click="generatorToTable">生成到表格</el-button>
+          <el-button type="primary" @click="generatorToForm">生成到表单</el-button>
         </div>
       </div>
     </FoldingCard>
     <FoldingCard title="表字段关系配置">
-      <div class="mt-20px mb-10px">
-        <div class="mb-6px">关联关系配置</div>
-
-        <el-radio-group v-model="associationType">
-          <el-radio key="0" label="一对一">一对一</el-radio>
-          <el-radio key="1" label="一对多">一对多</el-radio>
-          <el-radio key="2" label="多对多">多对多</el-radio>
-        </el-radio-group>
-      </div>
-      <div class="mb-20px rowSS">
+      <div class="mb-10px rowSS">
         <el-input v-model="multiTableName" placeholder="多表实体类名" class="w-150px mr-2" />
         <el-input v-model="multiTableDesc" placeholder="多表相关注释" class="w-150px" />
       </div>
       <div v-for="(item, index) in multiTableConfig" :key="index" class="rowSC">
         <div class="mr-10px">{{ item.originTableName }}：</div>
-
-        <el-checkbox-group v-model="item.orgAssociationKey">
-          <el-checkbox
+        <el-radio-group v-model="item.orgAssociationKey">
+          <el-radio
             v-for="(pkaItem, pkaIndex) in item.priKeyArr"
             :key="pkaIndex"
             :label="pkaItem"
             @click="pkaRadioClick(item, pkaItem)"
           >
             {{ pkaItem }}
-          </el-checkbox>
-        </el-checkbox-group>
+          </el-radio>
+        </el-radio-group>
         <ElSvgIcon
           class="ml-10px"
           name="CircleClose"
@@ -168,11 +147,11 @@
       <div class="rowSS mb-20px">
         <el-input v-model="saveFileName" class="w-200px mr-10px" placeholder="保存文件名(可以不填写)" />
         <el-button type="primary" @click="saveTmp">保存</el-button>
-        <el-button type="primary" @click="copyJson">复制json数据</el-button>
       </div>
 
       <div class="mb-10px">模版生成</div>
       <el-button type="success" @click="generatorBackTempZip">mybatis-plus基础模版生成(支持多表)</el-button>
+      <!--      <CustomUploadVms ref="refCustomUploadVms" />-->
     </FoldingCard>
   </div>
 </template>
@@ -190,11 +169,9 @@ import {
 const { formRules, elMessage } = useElement()
 import commonUtil from '@/utils/commonUtil'
 /*项目和作者信息配置*/
-let basicConfig = $ref({
-  author: '',
-  packageName: '',
-  basicClassName: '',
-  basicClassDesc: '',
+const basicConfig = reactive({
+  author: '熊猫哥',
+  packageName: 'top.kuanghua.integrationfront',
   dataTime: ''
 })
 basicConfig.dataTime = momentMini(new Date()).format('YYYY-MM-DD HH:mm:ss')
@@ -213,14 +190,10 @@ let dbRadio = $ref([])
 let chooseDbArr = $ref([])
 let chooseDbRadio = $ref(null)
 let dbData = $ref([])
-const dbRadioClick = (item, check) => {
-  if (check) {
-    if (!commonUtil.findArrObjByKey(chooseDbArr, 'tableName', item.tableName)) {
-      item.id = useCommon().guid()
-      chooseDbArr.push(item)
-    }
-  } else {
-    commonUtil.deleteArrObjByKey(chooseDbArr, 'tableName', item.tableName)
+const dbRadioClick = (item) => {
+  if (!commonUtil.findArrObjByKey(chooseDbArr, 'tableName', item.tableName) && chooseDbArr.length < 3) {
+    item.id = useCommon().guid()
+    chooseDbArr.push(item)
   }
 }
 
@@ -239,9 +212,14 @@ const dbChooseRadioClick = (item) => {
     tableNameCase: changeTheFirstWordToCase(changeDashToCase(removeTbOrT(item.tableName))),
     uniKey: 'id'
   }
+
   if (dataBaseUrl) {
     searchDbTable()
   }
+}
+const deleteChooseRadio = (index) => {
+  chooseDbArr.splice(index, 1)
+  tbData = []
 }
 const searchDataBase = () => {
   let reqConfig = {
@@ -284,14 +262,14 @@ const searchDbTable = () => {
     const priKeyArrItemFirst = priKeyItemArr[0]
     const priKeyArrItemLast = priKeyItemArr[priKeyItemArr.length - 1]
     if (!commonUtil.findArrObjByKey(multiTableConfig, 'originTableName', firstData.tableName)) {
-      // let multiTableNameString = ''
-      // multiTableConfig.forEach((fItem) => {
-      //   multiTableNameString += fItem.tableNameCase.substr(
-      //     fItem.tableNameCase.length - 4,
-      //     fItem.tableNameCase.length - 1
-      //   )
-      // })
-      // multiTableName = multiTableNameString
+      let multiTableNameString = ''
+      multiTableConfig.forEach((fItem) => {
+        multiTableNameString += fItem.tableNameCase.substr(
+          fItem.tableNameCase.length - 4,
+          fItem.tableNameCase.length - 1
+        )
+      })
+      multiTableName = multiTableNameString
 
       multiTableConfig.push({
         ...currentTableInfo,
@@ -300,7 +278,7 @@ const searchDbTable = () => {
           fItem.desc = fItem.columnComment
           fItem.fieldCase = changeDashToCaseAndFirstWord(fItem.columnName) //_转驼峰
           fItem.originField = fItem.columnName
-          // fItem.tbName = fItem.columnName
+          fItem.tbName = fItem.columnName
           fItem.type = tbTypeMapping(fItem.dataType)
           return fItem
         }),
@@ -309,7 +287,7 @@ const searchDbTable = () => {
         uniKeyType: tbTypeMapping(priKeyArrItemFirst.dataType),
         priKeyArr,
         priKeyItemArr,
-        orgAssociationKey: [priKeyArrLast],
+        orgAssociationKey: priKeyArrLast,
         associationKey: changeDashToCase(priKeyArrLast),
         associationKeyCase: changeTheFirstWordToCase(changeDashToCase(priKeyArrLast)),
         associationKeyType: tbTypeMapping(priKeyArrItemLast.dataType)
@@ -320,9 +298,7 @@ const searchDbTable = () => {
 }
 //多表关系配置
 let multiTableName = $ref(null)
-//表联合类型
-let associationType = $ref('一对一')
-let multiTableDesc = $ref('')
+let multiTableDesc = $ref('多表中实体类的注释')
 const pkaRadioClick = (item, pkaItem) => {
   item.associationKey = changeDashToCase(pkaItem)
 }
@@ -370,9 +346,9 @@ const generatorSubData = () => {
     const searchTableConfig = refSearchTableConfig.getSearchTableData()
     const searchTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
     const listTableConfig = refListTableConfig.getListTableData()
-    const listTableGroup = commonUtil.arrGroupByKey(listTableConfig, 'tableName')
+    const listTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
     const formTableConfig = refFormTableConfig.getFormTableData()
-    const formTableGroup = commonUtil.arrGroupByKey(formTableConfig, 'tableName')
+    const formTableGroup = commonUtil.arrGroupByKey(searchTableConfig, 'tableName')
 
     //多表数据处理
     multiTableConfig.forEach((fItem) => {
@@ -380,6 +356,7 @@ const generatorSubData = () => {
       fItem.tableShowArr = listTableGroup[fItem.originTableName]
       fItem.tableFormArr = formTableGroup[fItem.originTableName]
     })
+
     if (multiTableConfig.length > 1) {
       basicConfig.isMultiTable = true
     }
@@ -390,8 +367,7 @@ const generatorSubData = () => {
     let dbTableConfig = {
       multiTableName,
       multiTableNameCase: changeTheFirstWordToCase(multiTableName),
-      multiTableDesc,
-      associationType,
+      multiTableDesc: multiTableDesc,
       ...multiTableFistItem
     }
     // let reqApiPre = ''
@@ -416,24 +392,15 @@ const generatorSubData = () => {
       dbTableUrl,
       tbName,
       checkColumnArr,
-      chooseDbArr,
-      tbData
+      chooseDbArr
     }
     resolve(generatorData)
   })
 }
 
-import useClipboard from 'vue-clipboard3'
-const { toClipboard } = useClipboard()
-const copyJson = async () => {
-  const subData = await generatorSubData()
-  toClipboard(JSON.stringify(subData))
-  elMessage('复制成功')
-}
-
 //保存模板
 let saveFileName = $ref('')
-const saveName = 'mybatis-plus-query'
+const saveName = 'mybatis-plus-basic'
 const saveTmp = async () => {
   const subData = await generatorSubData()
   let reqConfig = {
@@ -488,12 +455,6 @@ const reshowData = (fItem) => {
   tbName = generatorConfig.tbName
   checkColumnArr = generatorConfig.checkColumnArr
   chooseDbArr = generatorConfig.chooseDbArr
-  tbData = generatorConfig.tbData
-  basicConfig = generatorConfig.basicConfig
-  multiTableConfig = generatorConfig.multiTableConfig
-  multiTableName = generatorConfig.dbTableConfig.multiTableName
-  multiTableDesc = generatorConfig.dbTableConfig.multiTableDesc
-  associationType = generatorConfig.dbTableConfig.associationType
 }
 
 /**
