@@ -26,9 +26,9 @@
       </div>
 
       <el-table class="column-table" row-key="uuid" :data="tableData" stripe style="width: 100%" height="400px" border>
-        <el-table-column prop="columnName" label="字段名" align="center" width="100">
+        <el-table-column prop="field" label="字段名" align="center" width="100">
           <template #default="{ row }">
-            <el-input v-model="row.originField" />
+            <el-input v-model="row.field" />
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="字段描述" align="center" min-width="140">

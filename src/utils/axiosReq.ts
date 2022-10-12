@@ -125,7 +125,7 @@ export function axiosReq({
     method: method ?? 'get',
     data: data ?? {},
     isParams: isParams ?? false,
-    bfLoading: bfLoading ?? false,
+    bfLoading: bfLoading ?? true,
     afHLoading: afHLoading ?? true,
     isUploadFile: isUploadFile ?? false,
     isDownLoadFile: isDownLoadFile ?? false,

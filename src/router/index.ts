@@ -84,6 +84,27 @@ export const constantRoutes: RouterTy = [
     ]
   },
   {
+    path: '/permission-center',
+    component: Layout,
+    meta: { title: 'permission-center', elSvgIcon: 'Fold' },
+    alwaysShow: true,
+    children: [
+      {
+        path: 'role-table-query',
+        component: () => import('@/views/permission-center/role/RoleTableQuery.vue'),
+        name: 'RoleTableQuery',
+        meta: { title: 'role列表' }
+      },
+      {
+        path: 'role-add-edit',
+        component: () => import('@/views/permission-center/role/RoleAddEdit.vue'),
+        name: 'RoleAddEdit',
+        hidden: true,
+        meta: { title: '新增编辑', activeMenu: '/permission-center/role-table-query' }
+      }
+    ]
+  },
+  {
     path: '/template-demo',
     component: Layout,
     meta: { title: '模版例子', elSvgIcon: 'Fold' },
@@ -108,6 +129,12 @@ export const constantRoutes: RouterTy = [
         name: 'BrandDetail',
         hidden: true,
         meta: { title: '详情', activeMenu: '/template-demo/brand-table-query' }
+      },
+      {
+        path: 'configSave-table-query',
+        component: () => import('@/views/template-demo/configSave/ConfigSaveTableQuery.vue'),
+        name: 'ConfigSaveTableQuery',
+        meta: { title: 'configSave列表' }
       }
     ]
   }

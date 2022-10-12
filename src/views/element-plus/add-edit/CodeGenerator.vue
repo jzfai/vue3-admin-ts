@@ -103,6 +103,7 @@ const generatorSubData = () => {
     let generatorData = {
       basicConfig,
       apiConfig,
+      saveFileName,
       queryConfig: formTableConfig,
       tableList: tableShowData
     }
@@ -154,7 +155,8 @@ const getSaveTmp = () => {
   let reqConfig: AxiosReqTy = {
     url: '/basis-func/generatorConfigSave/selectPage',
     method: 'get',
-    data: { pageSize: 200, pageNum: 1 }
+    bfLoading: true,
+    data: { pageSize: 50, pageNum: 1, name: saveName }
   }
   axiosReq(reqConfig).then(({ data }) => {
     configList = data?.records
@@ -177,6 +179,7 @@ const reshowData = (fItem) => {
   let generatorConfig = JSON.parse(fItem.generatorConfig)
   basicConfig = generatorConfig.basicConfig
   apiConfig = generatorConfig.apiConfig
+  saveFileName = generatorConfig.saveFileName
   refFormTableConfig.reshowFormTableData(generatorConfig.queryConfig)
   refFormTableConfig.reshowFormTableData(generatorConfig.tableList)
 }

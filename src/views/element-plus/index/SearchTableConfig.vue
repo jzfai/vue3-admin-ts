@@ -10,7 +10,11 @@
     row-key="originField"
     @selection-change="handleSearchSelection"
   >
-    <el-table-column prop="originField" label="字段名" align="center" width="130" />
+    <el-table-column prop="field" label="字段名" align="center" width="130">
+      <template #default="{ row }">
+        <el-input v-model="row.field" />
+      </template>
+    </el-table-column>
     <el-table-column prop="desc" label="字段描述" align="center" width="140">
       <template #default="{ row }">
         <el-input v-model="row.desc" />

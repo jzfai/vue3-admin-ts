@@ -151,8 +151,8 @@ const getSaveTmp = () => {
   let reqConfig: AxiosReqTy = {
     url: '/basis-func/generatorConfigSave/selectPage',
     method: 'get',
-    isParams: true,
-    data: { pageSize: 200, pageNum: 1 }
+    bfLoading: true,
+    data: { pageSize: 50, pageNum: 1, name: saveName }
   }
   axiosReq(reqConfig).then(({ data }) => {
     configList = data?.records

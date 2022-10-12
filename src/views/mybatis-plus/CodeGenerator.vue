@@ -162,7 +162,7 @@
       </div>
 
       <div class="mb-10px">模版生成</div>
-      <el-button type="success" @click="generatorBackTempZip">mybatis-plus基础模版生成(支持多表)</el-button>
+      <el-button type="success" @click="generatorBackTempZip">mybatis-plus基础模版生成</el-button>
     </FoldingCard>
   </div>
 </template>
@@ -448,8 +448,8 @@ const getSaveTmp = () => {
   let reqConfig = {
     url: '/basis-func/generatorConfigSave/selectPage',
     method: 'get',
-    isParams: true,
-    data: { pageSize: 200, pageNum: 1 }
+    bfLoading: true,
+    data: { pageSize: 50, pageNum: 1, name: saveName }
   }
   axiosReq(reqConfig).then(({ data }) => {
     configList = data?.records
@@ -490,7 +490,7 @@ const reshowData = (fItem) => {
 const generatorBackTempZip = async () => {
   let generatorData = await generatorSubData()
   let reqConfig = {
-    url: '/basis-func/generator/generatorBackTempZip',
+    url: '/basis-func/mybatis-plus/generatorMybatisPlusBasicTmp',
     method: 'post',
     isDownLoadFile: true,
     data: generatorData

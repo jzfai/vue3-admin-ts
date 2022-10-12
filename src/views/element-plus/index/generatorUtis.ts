@@ -22,6 +22,16 @@ export const changeTheFirstWordToCase = (str) => {
   return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase()
 }
 
+export const changeWordToCase = (str) => {
+  let changeStr = ``
+  const arr = str.split(`-`)
+  const newArr = arr.map((ele, idx) => {
+    return idx === 0 ? ele : ele[0].toUpperCase() + ele.slice(1)
+  })
+  changeStr = newArr.join(``)
+  return changeStr.slice(0, 1).toUpperCase() + changeStr.slice(1)
+}
+
 /**
  * 类型映射
  * @param type 数据库类型

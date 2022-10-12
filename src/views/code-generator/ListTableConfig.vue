@@ -131,7 +131,7 @@ const setListTableData = (checkColumnArr) => {
 
       fItem.type = tbTypeMapping(fItem.dataType) //数据库和java中的类型做映射
       fItem.componentType = listTableComponentTypeMapping(fItem.dataType, fItem.columnComment, fItem.columnName) //数据库和前端控件中的类型做映射
-      fItem.rule = 'isNotNull'
+      fItem.rule = 'notValid'
       fItem.value = 'value'
       fItem.label = 'label'
       fItem.children = 'children'

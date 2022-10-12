@@ -92,7 +92,7 @@ const setFormTableData = (checkColumnArr) => {
 
       fItem.type = tbTypeMapping(fItem.dataType) //数据库和java中的类型做映射
       fItem.componentType = componentTypeMapping(fItem.dataType, fItem.columnComment, fItem.columnName) //数据库和前端控件中的类型做映射
-      fItem.rule = 'isNotNull'
+      fItem.rule = 'notValid'
       fItem.value = 'value'
       fItem.label = 'label'
       fItem.children = 'children'

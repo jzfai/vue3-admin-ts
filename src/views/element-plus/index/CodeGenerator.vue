@@ -61,8 +61,8 @@
             inline-prompt
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-value="true"
-            inactive-value="false"
+            :active-value="true"
+            :inactive-value="false"
           />
         </el-form-item>
         <el-form-item label="导出" prop="isAdd" :rules="formRules.isNotNull" label-position="left">
@@ -71,8 +71,8 @@
             inline-prompt
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-value="true"
-            inactive-value="false"
+            :active-value="true"
+            :inactive-value="false"
           />
         </el-form-item>
         <el-form-item label="分页" prop="isPagination" :rules="formRules.isNotNull" label-position="left">
@@ -81,8 +81,8 @@
             inline-prompt
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-value="true"
-            inactive-value="false"
+            :active-value="true"
+            :inactive-value="false"
           />
         </el-form-item>
         <el-form-item label="编辑" prop="isEdit" :rules="formRules.isNotNull" label-position="left">
@@ -91,8 +91,8 @@
             inline-prompt
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-value="true"
-            inactive-value="false"
+            :active-value="true"
+            :inactive-value="false"
           />
         </el-form-item>
         <el-form-item label="详情" prop="isDetail" :rules="formRules.isNotNull" label-position="left">
@@ -101,8 +101,8 @@
             inline-prompt
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-value="true"
-            inactive-value="false"
+            :active-value="true"
+            :inactive-value="false"
           />
         </el-form-item>
         <el-form-item label="删除" prop="isDelete" :rules="formRules.isNotNull" label-position="left">
@@ -111,8 +111,8 @@
             inline-prompt
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-value="true"
-            inactive-value="false"
+            :active-value="true"
+            :inactive-value="false"
           />
         </el-form-item>
 
@@ -122,8 +122,18 @@
             inline-prompt
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-value="true"
-            inactive-value="false"
+            :active-value="true"
+            :inactive-value="false"
+          />
+        </el-form-item>
+        <el-form-item label="是否多选" prop="isTableMulChoose" :rules="formRules.isNotNull" label-position="left">
+          <el-switch
+            v-model="tableConfig.isTableMulChoose"
+            inline-prompt
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            :active-value="true"
+            :inactive-value="false"
           />
         </el-form-item>
       </el-form>
@@ -174,13 +184,13 @@ let apiConfig = $ref({
 
 /*前端页面参数配置*/
 let tableConfig = $ref({
-  isAdd: 'true',
-  isDelete: 'true',
-  isMulDelete: 'true',
-  isEdit: 'true',
-  isPagination: 'true',
-  isDetail: 'true',
-  isTableMulChoose: 'true'
+  isAdd: true,
+  isDelete: true,
+  isMulDelete: true,
+  isEdit: true,
+  isPagination: true,
+  isDetail: true,
+  isTableMulChoose: true
   // isFilterHead: 'true'
 })
 
@@ -193,7 +203,7 @@ const refSearchTableConfig = $ref(null)
 import ListTableConfig from './ListTableConfig.vue'
 import { AxiosReqTy } from '~/common'
 import momentMini from 'moment-mini'
-import { changeTheFirstWordToCase } from '@/views/element-plus/index/generatorUtis'
+import { changeWordToCase } from '@/views/element-plus/index/generatorUtis'
 const refListTableConfig = $ref(null)
 
 //生成模板
@@ -201,11 +211,12 @@ const generatorSubData = () => {
   return new Promise((resolve) => {
     const searchTableConfig = refSearchTableConfig.getSearchTableData()
     const tableShowData = refListTableConfig.getListTableData()
-    basicConfig.apiFileNameFirstCase = changeTheFirstWordToCase(basicConfig.apiFileName)
+    basicConfig.apiFileNameFirstCase = changeWordToCase(basicConfig.apiFileName)
     let generatorData = {
       basicConfig,
       apiConfig,
       tableConfig,
+      saveFileName,
       queryConfig: searchTableConfig,
       tableList: tableShowData
     }
@@ -257,8 +268,8 @@ const getSaveTmp = () => {
   let reqConfig: AxiosReqTy = {
     url: '/basis-func/generatorConfigSave/selectPage',
     method: 'get',
-    isParams: true,
-    data: { pageSize: 200, pageNum: 1 }
+    bfLoading: true,
+    data: { pageSize: 50, pageNum: 1, name: saveName }
   }
   axiosReq(reqConfig).then(({ data }) => {
     configList = data?.records
@@ -277,6 +288,7 @@ const reshowData = (fItem) => {
   let generatorConfig = JSON.parse(fItem.generatorConfig)
   basicConfig = generatorConfig.basicConfig
   apiConfig = generatorConfig.apiConfig
+  saveFileName = generatorConfig.saveFileName
   tableConfig = generatorConfig.tableConfig
   refSearchTableConfig.reshowSearchTableData(generatorConfig.queryConfig)
   refListTableConfig.reshowListTableData(generatorConfig.tableList)
