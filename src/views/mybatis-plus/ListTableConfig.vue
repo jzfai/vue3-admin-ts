@@ -1,4 +1,8 @@
 <template>
+  <div class="mb-10px rowSC">
+    <el-button type="primary" @click="copyJson">复制json数据</el-button>
+    <el-button type="primary" @click="clearData">清空</el-button>
+  </div>
   <el-table
     ref="refListTable"
     row-key="originField"
@@ -25,6 +29,18 @@
     <el-table-column prop="desc" label="字段描述" min-width="120">
       <template #default="{ row }">
         <el-input v-model="row.desc" placeholder="字段描述" />
+      </template>
+    </el-table-column>
+    <el-table-column prop="isNotShowSwagger" align="center" label="文档中显示" width="100">
+      <template #default="{ row }">
+        <el-switch
+          v-model="row.isNotShowSwagger"
+          inline-prompt
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          active-value="false"
+          inactive-value="true"
+        />
       </template>
     </el-table-column>
     <!--    <el-table-column prop="componentType" align="center" label="组件类型" width="400">-->
@@ -143,6 +159,7 @@ const setListTableData = (checkColumnArr) => {
       fItem.componentType = listTableComponentTypeMapping(fItem.dataType, fItem.columnComment, fItem.columnName) //数据库和前端控件中的类型做映射
       fItem.rule = 'notValid'
       fItem.value = 'value'
+      fItem.isNotShowSwagger = 'false'
       fItem.label = 'label'
       fItem.children = 'children'
       fItem.width = 120
@@ -186,6 +203,20 @@ const getListTableData = () => {
 
 const reshowListTableData = (checkColumnArr) => {
   listTableData = checkColumnArr
+}
+
+const clearData = () => {
+  listTableData = []
+}
+import useClipboard from 'vue-clipboard3'
+const { toClipboard } = useClipboard()
+const copyJson = () => {
+  let collectionObj = {}
+  listTableData.forEach((fItem) => {
+    collectionObj[fItem.field] = fItem.desc
+  })
+  toClipboard(JSON.stringify(collectionObj))
+  useElement().elMessage('复制成功')
 }
 
 defineExpose({ setListTableData, getListTableData, reshowListTableData })

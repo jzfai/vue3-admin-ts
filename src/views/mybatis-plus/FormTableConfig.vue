@@ -1,4 +1,8 @@
 <template>
+  <div class="mb-10px rowSC">
+    <el-button type="primary" @click="copyJson">复制json数据</el-button>
+    <el-button type="primary" @click="clearData">清空</el-button>
+  </div>
   <el-table
     ref="refFormTable"
     row-key="originField"
@@ -34,7 +38,7 @@
         />
       </template>
     </el-table-column>
-    <el-table-column prop="isNotShowSwagger" align="center" label="是否必填" width="100">
+    <el-table-column prop="isNeedInput" align="center" label="是否必填" width="100">
       <template #default="{ row }">
         <el-switch
           v-model="row.isNeedInput"
@@ -96,8 +100,8 @@ const setFormTableData = (checkColumnArr) => {
       fItem.value = 'value'
       fItem.label = 'label'
       fItem.children = 'children'
-      fItem.isNotShowSwagger = 'true'
-      fItem.isNeedInput = 'false'
+      fItem.isNotShowSwagger = 'false'
+      fItem.isNeedInput = 'true'
       fItem.desc = splitDescReturnDesc(fItem.columnComment)
       fItem.optionData = splitDescReturnOptionData(fItem.columnComment)
       //api
@@ -138,7 +142,19 @@ const getFormTableData = () => {
 const reshowFormTableData = (checkColumnArr) => {
   formTableData = checkColumnArr
 }
-
+const clearData = () => {
+  formTableData = []
+}
+import useClipboard from 'vue-clipboard3'
+const { toClipboard } = useClipboard()
+const copyJson = () => {
+  let collectionObj = {}
+  formTableData.forEach((fItem) => {
+    collectionObj[fItem.field] = fItem.desc
+  })
+  toClipboard(JSON.stringify(collectionObj))
+  useElement().elMessage('复制成功')
+}
 defineExpose({ setFormTableData, getFormTableData, reshowFormTableData })
 </script>
 

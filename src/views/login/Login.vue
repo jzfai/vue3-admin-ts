@@ -5,7 +5,7 @@
       <div class="title-container">
         <h3 class="title text-center">{{ settings.title }}</h3>
       </div>
-      <el-form-item prop="username" :rules="formRules.isNotNull">
+      <el-form-item prop="username" :rules="formRules.isNotNull()">
         <div class="rowSC">
           <span class="svg-container">
             <svg-icon icon-class="user" />
@@ -16,7 +16,7 @@
         </div>
       </el-form-item>
       <!--<el-form-item prop="password" :rules="formRules.passwordValid">-->
-      <el-form-item prop="password" :rules="formRules.isNotNull">
+      <el-form-item prop="password" :rules="formRules.isNotNull()">
         <div class="rowSC flex-1">
           <span class="svg-container">
             <svg-icon icon-class="password" />

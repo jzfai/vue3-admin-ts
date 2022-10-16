@@ -15,13 +15,13 @@
             </el-select>
           </el-form-item>
         </div>
-        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.author" placeholder="请输入作者" class="w-300px" />
         </el-form-item>
-        <el-form-item label="生成的api文件名" prop="apiFileName" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="生成的api文件名" prop="apiFileName" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.apiFileName" placeholder="生成的api文件名" class="w-300px" />
         </el-form-item>
-        <el-form-item label="路由父路径" prop="routerParentDir" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="路由父路径" prop="routerParentDir" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.routerParentDir" placeholder="路由父路径" class="w-300px" />
         </el-form-item>
       </el-form>
@@ -30,24 +30,29 @@
     <!-- 前端请求接口配置  -->
     <FoldingCard title="接口配置">
       <el-form ref="refForm" label-width="100px" :inline="true" :model="apiConfig" class="pr-5">
-        <el-form-item label="查询接口" prop="queryApi" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="查询接口" prop="queryApi" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.queryApi" placeholder="查询接口" class="w-380px" />
         </el-form-item>
-        <el-form-item label="查询方法" prop="queryMethod" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="查询方法" prop="queryMethod" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.queryMethod" placeholder="查询方法" class="w-100px" />
         </el-form-item>
 
-        <el-form-item label="删除接口" prop="deleteApi" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="删除接口" prop="deleteApi" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.deleteApi" placeholder="删除接口" class="w-380px" />
         </el-form-item>
-        <el-form-item label="删除方法" prop="queryApi" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="删除方法" prop="queryApi" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.deleteMethod" placeholder="删除方法" class="w-100px" />
         </el-form-item>
 
-        <el-form-item label="批量删除接口" prop="multiDeleteApi" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="批量删除接口" prop="multiDeleteApi" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.multiDeleteApi" placeholder="批量删除接口" class="w-380px" />
         </el-form-item>
-        <el-form-item label="批量删除方法" prop="multiDeleteMethod" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item
+          label="批量删除方法"
+          prop="multiDeleteMethod"
+          :rules="formRules.isNotNull()"
+          label-position="left"
+        >
           <el-input v-model="apiConfig.multiDeleteMethod" placeholder="批量删除方法" class="w-100px" />
         </el-form-item>
       </el-form>
@@ -55,7 +60,7 @@
 
     <FoldingCard title="表格功能配置">
       <el-form ref="refCcForm" label-width="150px" :inline="true" :model="tableConfig" :rules="formRules" class="pr-5">
-        <el-form-item label="新增" prop="isAdd" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="新增" prop="isAdd" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isAdd"
             inline-prompt
@@ -65,7 +70,7 @@
             :inactive-value="false"
           />
         </el-form-item>
-        <el-form-item label="导出" prop="isAdd" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="导出" prop="isAdd" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isExport"
             inline-prompt
@@ -75,7 +80,7 @@
             :inactive-value="false"
           />
         </el-form-item>
-        <el-form-item label="分页" prop="isPagination" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="分页" prop="isPagination" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isPagination"
             inline-prompt
@@ -85,7 +90,7 @@
             :inactive-value="false"
           />
         </el-form-item>
-        <el-form-item label="编辑" prop="isEdit" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="编辑" prop="isEdit" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isEdit"
             inline-prompt
@@ -95,7 +100,7 @@
             :inactive-value="false"
           />
         </el-form-item>
-        <el-form-item label="详情" prop="isDetail" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="详情" prop="isDetail" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isDetail"
             inline-prompt
@@ -105,7 +110,7 @@
             :inactive-value="false"
           />
         </el-form-item>
-        <el-form-item label="删除" prop="isDelete" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="删除" prop="isDelete" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isDelete"
             inline-prompt
@@ -116,7 +121,7 @@
           />
         </el-form-item>
 
-        <el-form-item label="批量删除" prop="isMulDelete" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="批量删除" prop="isMulDelete" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isMulDelete"
             inline-prompt
@@ -126,7 +131,7 @@
             :inactive-value="false"
           />
         </el-form-item>
-        <el-form-item label="是否多选" prop="isTableMulChoose" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="是否多选" prop="isTableMulChoose" :rules="formRules.isNotNull()" label-position="left">
           <el-switch
             v-model="tableConfig.isTableMulChoose"
             inline-prompt

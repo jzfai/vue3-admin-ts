@@ -1,38 +1,61 @@
 import { ElLoading, ElNotification, ElMessage, ElMessageBox } from 'element-plus'
 const useElementExample = () => {
-  /* element form校验相关*/
-  // 密码必须为6-18位字母、数字
-  const passwordValid: any = (rule: any, value: any, callback: any) => {
-    if (!/^(?![^a-zA-Z]+$)(?!\D+$)/.test(value)) {
-      callback(new Error('6-18位字母、数字'))
-    } else {
-      callback()
-    }
-  }
-  // 大于0的整数
-  const upZeroInt = (rule: any, value: any, callback: any) => {
-    if (!/^\+?[1-9]\d*$/.test(value)) {
-      callback(new Error('大于0的整数'))
-    } else {
-      callback()
-    }
-  }
-  const upZeroIntCanNull = (rule: any, value: any, callback: any) => {
+  // 正整数
+  const upZeroInt = (rule, value, callback, msg) => {
     if (!value) {
+      callback(new Error(`${msg}不能为空`))
+    }
+    if (/^\+?[1-9]\d*$/.test(value)) {
       callback()
     } else {
-      if (!/^\+?[1-9]\d*$/.test(value)) {
-        callback(new Error('大于0的整数'))
-      } else {
-        callback()
-      }
+      callback(new Error(`${msg}输入有误`))
     }
   }
-  const validatePass = (rule: any, value: any, callback: any) => {
-    if (value === '') {
-      callback(new Error('请输入密码'))
-    } else {
+
+  // 正整数（包括0）
+  const zeroInt = (rule, value, callback, msg) => {
+    if (!value) {
+      callback(new Error(`${msg}不能为空`))
+    }
+    if (/^\+?[0-9]\d*$/.test(value)) {
       callback()
+    } else {
+      callback(new Error(`${msg}输入有误`))
+    }
+  }
+
+  // 金额
+  const money = (rule, value, callback, msg) => {
+    if (!value) {
+      callback(new Error(`${msg}不能为空`))
+    }
+    if (/((^[1-9]\d*)|^0)(\.\d{0,2}){0,1}$/.test(value)) {
+      callback()
+    } else {
+      callback(new Error(`${msg}输入有误`))
+    }
+  }
+
+  // 手机号
+  const phone = (rule, value, callback, msg) => {
+    if (!value) {
+      callback(new Error(`${msg}不能为空`))
+    }
+    if (/^0?1[0-9]{10}$/.test(value)) {
+      callback()
+    } else {
+      callback(new Error(`${msg}输入有误`))
+    }
+  }
+  // 邮箱
+  const email = (rule, value, callback, msg) => {
+    if (!value) {
+      callback(new Error(`${msg}不能为空`))
+    }
+    if (/(^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4}))$/.test(value)) {
+      callback()
+    } else {
+      callback(new Error(`${msg}`))
     }
   }
 
@@ -47,24 +70,29 @@ const useElementExample = () => {
     searchForm: {},
     /* 表单校验*/
     formRules: {
-      isNotNull: [{ required: true, message: '该字段不能为空', trigger: 'blur' }],
-      isNotNullSecond: [{ required: true, message: '不能为空', trigger: 'blur' }],
-      mLength8: [
-        { required: true, message: '该字段不能为空', trigger: 'blur' },
-        { max: 8, message: '最长为8个字符', trigger: 'blur' }
+      //非空
+      isNull: (msg) => [{ required: false, message: `${msg}`, trigger: 'blur' }],
+      isNotNull: (msg) => [{ required: true, message: `${msg}`, trigger: 'blur' }],
+      // 正整数
+      upZeroInt: (msg) => [
+        { required: true, validator: (rule, value, callback) => upZeroInt(rule, value, callback, msg), trigger: 'blur' }
       ],
-      minLength7: [
-        { required: true, message: '该字段不能为空', trigger: 'blur' },
-        { min: 7, message: '最小7个字符', trigger: 'blur' }
+      // 正整数（包括0）
+      zeroInt: (msg) => [
+        { required: true, validator: (rule, value, callback) => zeroInt(rule, value, callback, msg), trigger: 'blur' }
       ],
-      length17: [
-        { required: true, message: '该字段不能为空', trigger: 'blur' },
-        { min: 17, max: 17, message: '长度为17个字符', trigger: 'blur' }
+      // 金额
+      money: (msg) => [
+        { required: true, validator: (rule, value, callback) => money(rule, value, callback, msg), trigger: 'blur' }
       ],
-      desc: [{ validator: validatePass, trigger: 'blur' }],
-      upZeroInt: [{ validator: upZeroInt, trigger: 'blur' }],
-      upZeroIntCanNull: [{ validator: upZeroIntCanNull, trigger: 'blur' }],
-      passwordValid: [{ validator: passwordValid, trigger: 'blur' }]
+      // 手机号
+      phone: (msg) => [
+        { required: true, validator: (rule, value, callback) => phone(rule, value, callback, msg), trigger: 'blur' }
+      ],
+      // 邮箱
+      email: (msg) => [
+        { required: true, validator: (rule, value, callback) => email(rule, value, callback, msg), trigger: 'blur' }
+      ]
     },
     /* 时间packing相关*/
     datePickerOptions: {

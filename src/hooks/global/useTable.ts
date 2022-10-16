@@ -59,7 +59,7 @@ const useTableExample = (searchForm, selectPageReq) => {
     pageSize.value = val
     selectPageReq()
   }
-  const resetBtnClick = () => {
+  const resetPageReq = () => {
     pageNum.value = 1
     selectPageReq()
   }
@@ -92,7 +92,7 @@ const useTableExample = (searchForm, selectPageReq) => {
         ...reqConfig
       }).then(() => {
         elMessage('删除成功')
-        selectPageReq()
+        resetPageReq()
       })
     })
   }
@@ -100,7 +100,7 @@ const useTableExample = (searchForm, selectPageReq) => {
   const tableDelDill = (row, reqConfig) => {
     elConfirm('确定', `您确定要删除【${row.name}】吗？`).then(() => {
       axiosReq(reqConfig).then(() => {
-        selectPageReq()
+        resetPageReq()
         elMessage(`【${row.name}】删除成功`)
       })
     })
@@ -117,7 +117,7 @@ const useTableExample = (searchForm, selectPageReq) => {
     handleSelectionChange,
     handleCurrentChange,
     handleSizeChange,
-    resetBtnClick,
+    resetPageReq,
     multiDelBtnDill,
     tableDelDill
   }

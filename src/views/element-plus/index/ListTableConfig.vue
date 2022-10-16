@@ -8,6 +8,7 @@
     :data="listTableData"
     border
     row-key="originField"
+    class="list-table-class"
     @selection-change="handleSearchSelection"
   >
     <el-table-column prop="originField" label="字段名" align="center" width="130" />
@@ -194,24 +195,11 @@ const handleSearchSelection = (val) => {
 const deleteSearchItem = (row, index) => {
   listTableData.splice(index, 1)
 }
+
 //拖拽
-onMounted(() => {
-  nextTick(() => {
-    rowDrop()
-  })
-})
-const rowDrop = () => {
-  // 获取到element-ui封装的表格标签
-  const tbody = document.querySelector(' .el-table__body-wrapper tbody') as HTMLElement
-  Sortable.create(tbody, {
-    animation: 180,
-    delay: 0,
-    onEnd({ newIndex, oldIndex }) {
-      const currRow = listTableData.splice(oldIndex, 1)[0]
-      listTableData.splice(newIndex, 0, currRow)
-    }
-  })
-}
+import generatorHook from '../hook/generatorHook'
+generatorHook(listTableData, 'list-table-class')
+
 const clearData = () => {
   listTableData = []
 }

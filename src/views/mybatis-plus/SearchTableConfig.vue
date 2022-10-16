@@ -1,4 +1,8 @@
 <template>
+  <div class="mb-10px rowSC">
+    <el-button type="primary" @click="copyJson">复制json数据</el-button>
+    <el-button type="primary" @click="clearData">清空</el-button>
+  </div>
   <el-table
     ref="refSearchTable"
     row-key="originField"
@@ -98,7 +102,7 @@ const setSearchTableData = (checkColumnArr) => {
       fItem.value = 'value'
       fItem.label = 'label'
       fItem.children = 'children'
-      fItem.isNotShowSwagger = 'true'
+      fItem.isNotShowSwagger = 'false'
       fItem.isNeedInput = 'false'
       fItem.desc = splitDescReturnDesc(fItem.columnComment)
       fItem.optionData = splitDescReturnOptionData(fItem.columnComment)
@@ -139,6 +143,23 @@ const getSearchTableData = () => {
 
 const reshowSearchTableData = (checkColumnArr) => {
   searchTableData = checkColumnArr
+}
+
+const reshowFormTableData = (checkColumnArr) => {
+  searchTableData = checkColumnArr
+}
+const clearData = () => {
+  searchTableData = []
+}
+import useClipboard from 'vue-clipboard3'
+const { toClipboard } = useClipboard()
+const copyJson = () => {
+  let collectionObj = {}
+  searchTableData.forEach((fItem) => {
+    collectionObj[fItem.field] = fItem.desc
+  })
+  toClipboard(JSON.stringify(collectionObj))
+  useElement().elMessage('复制成功')
 }
 defineExpose({ setSearchTableData, getSearchTableData, reshowSearchTableData })
 </script>

@@ -23,10 +23,10 @@
         </el-form-item>
       </div>
       <el-form ref="refForm" label-width="100px" :inline="true" :model="basicConfig" :rules="formRules" class="pr-50px">
-        <el-form-item label="author" prop="author" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="author" prop="author" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.author" placeholder="author" />
         </el-form-item>
-        <el-form-item label="packageName" prop="packageName" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="packageName" prop="packageName" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.packageName" class="w-200px" placeholder="packageName" />
         </el-form-item>
       </el-form>

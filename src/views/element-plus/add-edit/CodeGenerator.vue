@@ -15,10 +15,10 @@
             </el-select>
           </el-form-item>
         </div>
-        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.author" placeholder="请输入作者" class="w-300px" />
         </el-form-item>
-        <el-form-item label="生成的api文件名" prop="apiFileName" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="生成的api文件名" prop="apiFileName" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.apiFileName" placeholder="生成的api文件名" class="w-300px" />
         </el-form-item>
       </el-form>
@@ -27,22 +27,22 @@
     <!-- 前端请求接口配置  -->
     <FoldingCard title="接口配置">
       <el-form ref="refForm" label-width="100px" :inline="true" :model="apiConfig" class="pr-5">
-        <el-form-item label="新增接口" prop="insertApi" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="新增接口" prop="insertApi" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.insertApi" placeholder="新增接口" class="w-380px" />
         </el-form-item>
-        <el-form-item label="新增方法" prop="insertMethod" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="新增方法" prop="insertMethod" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.insertMethod" placeholder="新增方法" class="w-80px" />
         </el-form-item>
-        <el-form-item label="更新接口" prop="updateApi" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="更新接口" prop="updateApi" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.updateApi" placeholder="更新接口" class="w-380px" />
         </el-form-item>
-        <el-form-item label="更新方法" prop="updateMethod" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="更新方法" prop="updateMethod" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.updateMethod" placeholder="更新方法" class="w-80px" />
         </el-form-item>
-        <el-form-item label="详情接口" prop="detailApi" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="详情接口" prop="detailApi" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.detailApi" placeholder="详情接口" class="w-380px" />
         </el-form-item>
-        <el-form-item label="详情方法" prop="detailMethod" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="详情方法" prop="detailMethod" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="apiConfig.detailMethod" placeholder="详情方法" class="w-80px" />
         </el-form-item>
       </el-form>

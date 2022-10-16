@@ -10,44 +10,44 @@
     <!--项目和作者信息配置-->
     <div class="mb-1">项目和作者信息配置</div>
     <el-form ref="refForm" label-width="150px" :inline="true" :model="poaForm" :rules="formRules" class="pr-50px">
-      <el-form-item label="author" prop="author" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="author" prop="author" :rules="formRules.isNotNull()" label-position="left">
         <el-input v-model="poaForm.author" placeholder="author" />
       </el-form-item>
-      <el-form-item label="packageName" prop="packageName" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="packageName" prop="packageName" :rules="formRules.isNotNull()" label-position="left">
         <el-input v-model="poaForm.packageName" placeholder="packageName" />
       </el-form-item>
-      <el-form-item label="serviceName" prop="serviceName" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="serviceName" prop="serviceName" :rules="formRules.isNotNull()" label-position="left">
         <el-input v-model="poaForm.serviceName" placeholder="serviceName" />
       </el-form-item>
-      <el-form-item label="modalTitle" prop="modalTitle" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="modalTitle" prop="modalTitle" :rules="formRules.isNotNull()" label-position="left">
         <el-input v-model="poaForm.modalTitle" placeholder="modalTitle" />
       </el-form-item>
     </el-form>
     <!-- 前端页面参数配置-->
     <div class="mt-3 mb-1">前端页面参数配置</div>
     <el-form ref="refCcForm" label-width="150px" :inline="true" :model="ccForm" :rules="formRules" class="pr-5">
-      <el-form-item label="upFileApi" prop="upFileApi" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="upFileApi" prop="upFileApi" :rules="formRules.isNotNull()" label-position="left">
         <el-input v-model="ccForm.upFileApi" placeholder="upFileApi" />
       </el-form-item>
-      <el-form-item label="isAdd" prop="isAdd" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="isAdd" prop="isAdd" :rules="formRules.isNotNull()" label-position="left">
         <el-switch v-model="ccForm.isAdd" inline-prompt active-color="#13ce66" inactive-color="#ff4949" />
       </el-form-item>
-      <el-form-item label="isDelete" prop="isDelete" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="isDelete" prop="isDelete" :rules="formRules.isNotNull()" label-position="left">
         <el-switch v-model="ccForm.isDelete" inline-prompt active-color="#13ce66" inactive-color="#ff4949" />
       </el-form-item>
-      <el-form-item label="isMulDelete" prop="isMulDelete" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="isMulDelete" prop="isMulDelete" :rules="formRules.isNotNull()" label-position="left">
         <el-switch v-model="ccForm.isMulDelete" inline-prompt active-color="#13ce66" inactive-color="#ff4949" />
       </el-form-item>
-      <el-form-item label="isEdit" prop="isEdit" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="isEdit" prop="isEdit" :rules="formRules.isNotNull()" label-position="left">
         <el-switch v-model="ccForm.isEdit" inline-prompt active-color="#13ce66" inactive-color="#ff4949" />
       </el-form-item>
-      <el-form-item label="isPagination" prop="isPagination" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="isPagination" prop="isPagination" :rules="formRules.isNotNull()" label-position="left">
         <el-switch v-model="ccForm.isPagination" inline-prompt active-color="#13ce66" inactive-color="#ff4949" />
       </el-form-item>
-      <el-form-item label="isDetail" prop="isDetail" :rules="formRules.isNotNull" label-position="left">
+      <el-form-item label="isDetail" prop="isDetail" :rules="formRules.isNotNull()" label-position="left">
         <el-switch v-model="ccForm.isDetail" inline-prompt active-color="#13ce66" inactive-color="#ff4949" />
       </el-form-item>
-      <!--      <el-form-item label="isTableMulChoose" prop="isTableMulChoose" :rules="formRules.isNotNull" label-position="left">-->
+      <!--      <el-form-item label="isTableMulChoose" prop="isTableMulChoose" :rules="formRules.isNotNull()" label-position="left">-->
       <!--        <el-switch v-model="ccForm.isTableMulChoose" inline-prompt active-color="#13ce66" inactive-color="#ff4949" />-->
       <!--      </el-form-item>-->
     </el-form>

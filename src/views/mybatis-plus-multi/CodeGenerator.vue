@@ -23,17 +23,17 @@
         </el-form-item>
       </div>
       <el-form ref="refForm" label-width="120px" :inline="true" :model="basicConfig" :rules="formRules" class="pr-50px">
-        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.author" placeholder="作者" />
         </el-form-item>
-        <el-form-item label="包名" prop="packageName" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="包名" prop="packageName" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.packageName" class="w-200px" placeholder="包名" />
         </el-form-item>
 
-        <!--        <el-form-item label="实体基础类名" prop="basicClassName" :rules="formRules.isNotNull" label-position="left">-->
+        <!--        <el-form-item label="实体基础类名" prop="basicClassName" :rules="formRules.isNotNull()" label-position="left">-->
         <!--          <el-input v-model="basicConfig.basicClassName" class="w-200px" placeholder="实体基础类名" />-->
         <!--        </el-form-item>-->
-        <!--        <el-form-item label="实体基础类注释" prop="basicClassDesc" :rules="formRules.isNotNull" label-position="left">-->
+        <!--        <el-form-item label="实体基础类注释" prop="basicClassDesc" :rules="formRules.isNotNull()" label-position="left">-->
         <!--          <el-input v-model="basicConfig.basicClassDesc" class="w-200px" placeholder="实体基础类注释" />-->
         <!--        </el-form-item>-->
       </el-form>

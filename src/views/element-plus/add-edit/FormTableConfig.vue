@@ -87,19 +87,6 @@
         />
         <el-input v-if="['cascaderApi'].includes(row.componentType)" v-model="row.children" placeholder="childrenKey" />
 
-        <el-input
-          v-if="['selectDict', 'specialDict'].includes(row.componentType)"
-          v-model="row.dictCode"
-          class="mt-1"
-          placeholder="dictCode"
-        />
-        <el-input
-          v-if="['specialDict'].includes(row.componentType)"
-          v-model="row.type"
-          class="mt-1"
-          placeholder="type"
-        />
-
         <!--    表格    -->
         <el-button v-if="['table'].includes(row.componentType)" text type="primary" @click="tableSetting(row)">
           设置

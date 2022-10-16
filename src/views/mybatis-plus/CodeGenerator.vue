@@ -23,17 +23,17 @@
         </el-form-item>
       </div>
       <el-form ref="refForm" label-width="120px" :inline="true" :model="basicConfig" :rules="formRules" class="pr-50px">
-        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="作者" prop="author" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.author" placeholder="作者" />
         </el-form-item>
-        <el-form-item label="包名" prop="packageName" :rules="formRules.isNotNull" label-position="left">
+        <el-form-item label="包名" prop="packageName" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.packageName" class="w-200px" placeholder="包名" />
         </el-form-item>
 
-        <!--        <el-form-item label="实体基础类名" prop="basicClassName" :rules="formRules.isNotNull" label-position="left">-->
+        <!--        <el-form-item label="实体基础类名" prop="basicClassName" :rules="formRules.isNotNull()" label-position="left">-->
         <!--          <el-input v-model="basicConfig.basicClassName" class="w-200px" placeholder="实体基础类名" />-->
         <!--        </el-form-item>-->
-        <!--        <el-form-item label="实体基础类注释" prop="basicClassDesc" :rules="formRules.isNotNull" label-position="left">-->
+        <!--        <el-form-item label="实体基础类注释" prop="basicClassDesc" :rules="formRules.isNotNull()" label-position="left">-->
         <!--          <el-input v-model="basicConfig.basicClassDesc" class="w-200px" placeholder="实体基础类注释" />-->
         <!--        </el-form-item>-->
       </el-form>
@@ -336,20 +336,20 @@ let checkColumnArr = $ref([])
 import SearchTableConfig from './SearchTableConfig.vue'
 const refSearchTableConfig = $ref(null)
 const generatorToSearch = () => {
-  refSearchTableConfig.setSearchTableData(checkColumnArr)
+  refSearchTableConfig.setSearchTableData(JSON.parse(JSON.stringify(checkColumnArr)))
 }
 //table
 import ListTableConfig from './ListTableConfig.vue'
 const refListTableConfig = $ref(null)
 const generatorToTable = () => {
-  refListTableConfig.setListTableData(checkColumnArr)
+  refListTableConfig.setListTableData(JSON.parse(JSON.stringify(checkColumnArr)))
 }
 //Form
 import FormTableConfig from './FormTableConfig.vue'
 import momentMini from 'moment-mini'
 const refFormTableConfig = $ref(null)
 const generatorToForm = () => {
-  refFormTableConfig.setFormTableData(checkColumnArr)
+  refFormTableConfig.setFormTableData(JSON.parse(JSON.stringify(checkColumnArr)))
 }
 
 //生成模板
@@ -400,6 +400,7 @@ const generatorSubData = () => {
       //此处保存的数据主要用于回显
       dataBaseUrl,
       dbRadio,
+      saveFileName,
       chooseDbRadio,
       dbTableUrl,
       tbName,
@@ -476,6 +477,7 @@ const reshowData = (fItem) => {
   tbName = generatorConfig.tbName
   checkColumnArr = generatorConfig.checkColumnArr
   chooseDbArr = generatorConfig.chooseDbArr
+  saveFileName = generatorConfig.saveFileName
   tbData = generatorConfig.tbData
   basicConfig = generatorConfig.basicConfig
   multiTableConfig = generatorConfig.multiTableConfig

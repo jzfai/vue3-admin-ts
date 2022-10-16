@@ -7,10 +7,10 @@
     :before-close="closeFormModal"
   >
     <el-form ref="refForm" label-width="150px" :inline="false" :model="subForm" :rules="formRules" class="pr-5">
-      <el-form-item label="选中的字段配置" prop="name" :rules="formRules.isNotNull">
+      <el-form-item label="选中的字段配置" prop="name" :rules="formRules.isNotNull()">
         <el-input v-model="subForm.name" style="width: 120px" placeholder="选中的字段配置" />
       </el-form-item>
-      <el-form-item label="生成的配置" prop="generatorConfig" :rules="formRules.isNotNull">
+      <el-form-item label="生成的配置" prop="generatorConfig" :rules="formRules.isNotNull()">
         <el-input v-model="subForm.generatorConfig" style="width: 120px" placeholder="生成的配置" />
       </el-form-item>
     </el-form>

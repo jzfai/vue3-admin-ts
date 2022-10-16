@@ -162,12 +162,12 @@ export const getControlTypeByComponentType = (componentType) => {
 //校验规则
 export const ruleMapping = [
   { key: 'isNotNull', label: '必填' },
-  { key: 'positiveInteger', label: '整数' },
-  { key: 'positiveIntegerNotZero', label: '大于O整数' },
-  { key: 'regEmail', label: '邮箱' },
-  { key: 'idCardNumber', label: '身份证' },
-  { key: 'mobilePhone', label: '手机号' },
-  { key: 'bankCardNo', label: '银行卡号' }
+  { key: 'isNull', label: '非必填' },
+  { key: 'upZeroInt', label: '整数' },
+  { key: 'zeroInt', label: '整数(包括0)' },
+  { key: 'email', label: '邮箱' },
+  { key: 'phone', label: '手机号' },
+  { key: 'idCard', label: '身份证' }
 ]
 /**
  * 组件类型映射

@@ -101,9 +101,58 @@ export const constantRoutes: RouterTy = [
         name: 'RoleAddEdit',
         hidden: true,
         meta: { title: '新增编辑', activeMenu: '/permission-center/role-table-query' }
+      },
+      {
+        path: 'permission-table-query',
+        component: () => import('@/views/permission-center/permission/PermissionTableQuery.vue'),
+        name: 'PermissionTableQuery',
+        meta: { title: 'permission列表' }
+      },
+      {
+        path: 'permission-add-edit',
+        component: () => import('@/views/permission-center/permission/PermissionAddEdit.vue'),
+        name: 'PermissionAddEdit',
+        hidden: true,
+        meta: { title: '新增编辑', activeMenu: '/permission-center/permission-table-query' }
+      },
+      {
+        path: 'plateForm-table-query',
+        component: () => import('@/views/permission-center/plateForm/PlateFormTableQuery.vue'),
+        name: 'PlateFormTableQuery',
+        meta: { title: 'plateForm列表' }
+      },
+      {
+        path: 'plateForm-add-edit',
+        component: () => import('@/views/permission-center/plateForm/PlateFormAddEdit.vue'),
+        name: 'PlateFormAddEdit',
+        hidden: true,
+        meta: { title: '新增编辑', activeMenu: '/permission-center/plateForm-table-query' }
       }
     ]
   },
+
+  {
+    path: '/permission-test',
+    component: Layout,
+    meta: { title: '权限测试Demo', elSvgIcon: 'Fold' },
+    alwaysShow: true,
+    children: [
+      {
+        path: 'test-table-query',
+        component: () => import('@/views/permission-center/test/TestTableQuery.vue'),
+        name: 'TestTableQuery',
+        meta: { title: '权限测试' }
+      },
+      {
+        path: 'test-add-edit',
+        component: () => import('@/views/permission-center/test/TestAddEdit.vue'),
+        name: 'TestAddEdit',
+        hidden: true,
+        meta: { title: '新增编辑', activeMenu: '/permission-center/test-table-query' }
+      }
+    ]
+  },
+
   {
     path: '/template-demo',
     component: Layout,
