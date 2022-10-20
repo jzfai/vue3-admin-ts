@@ -41,7 +41,7 @@
 
     <FoldingCard title="菜单权限配置">
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-        <el-tab-pane :label="item.name" :name="item.id" v-for="(item, index) in plateFormList" :key="index">
+        <el-tab-pane v-for="(item, index) in plateFormList" :key="index" :label="item.name" :name="item.id">
           <el-tree
             ref="treeRef"
             node-key="id"

@@ -55,7 +55,7 @@
       </el-table-column>
     </el-table>
     <!--分页-->
-    <div class="rowCC mt-20px" v-if="totalPage >= 10">
+    <div v-if="totalPage >= 10" class="rowCC mt-20px">
       <el-pagination
         :current-page="pageNum"
         :page-sizes="[10, 20, 50, 100]"
