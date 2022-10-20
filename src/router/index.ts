@@ -106,7 +106,7 @@ export const constantRoutes: RouterTy = [
         path: 'permission-table-query',
         component: () => import('@/views/permission-center/permission/PermissionTableQuery.vue'),
         name: 'PermissionTableQuery',
-        meta: { title: 'permission列表' }
+        meta: { title: '菜单权限' }
       },
       {
         path: 'permission-add-edit',
@@ -119,7 +119,7 @@ export const constantRoutes: RouterTy = [
         path: 'plateForm-table-query',
         component: () => import('@/views/permission-center/plateForm/PlateFormTableQuery.vue'),
         name: 'PlateFormTableQuery',
-        meta: { title: 'plateForm列表' }
+        meta: { title: '平台列表' }
       },
       {
         path: 'plateForm-add-edit',
