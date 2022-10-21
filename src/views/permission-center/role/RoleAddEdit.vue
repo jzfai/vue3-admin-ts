@@ -21,9 +21,9 @@
             placeholder="请输入角色介绍"
           />
         </el-form-item>
-        <el-form-item label="权限Id" prop="permissionId" :rules="formRules.isNotNull('权限Id不能为空')">
-          <el-input v-model="subForm.permissionId" class="w-300px" placeholder="权限Id" />
-        </el-form-item>
+        <!--        <el-form-item label="权限Id" prop="permissionId" :rules="formRules.isNotNull('权限Id不能为空')">-->
+        <!--          <el-input v-model="subForm.permissionId" class="w-300px" placeholder="权限Id" />-->
+        <!--        </el-form-item>-->
         <el-form-item label="是否激活" prop="deleted" :rules="formRules.isNotNull('请选择是否激活')">
           <el-radio-group v-model="subForm.deleted">
             <el-radio :label="1">未激活</el-radio>
@@ -56,6 +56,7 @@
       <el-button @click="testTree">testTree</el-button>
       <el-button @click="setTree">setTree</el-button>
     </FoldingCard>
+    <div @click="getTreeItemsAndPlateFormId">getTreeItemsAndPlateFormId</div>
   </div>
 </template>
 
@@ -64,9 +65,12 @@ import useForm from '@/hooks/global/useForm'
 const { getQueryParam, routerBack } = useVueRouter()
 /*回显数据*/
 const { isEdit, row } = getQueryParam()
+let detailData = $ref({})
 if (isEdit) {
   onBeforeMount(async () => {
     const { data } = await getDetailByIdReq(row.id)
+    detailData = data
+
     reshowData(data, subForm)
   })
 }
@@ -85,6 +89,8 @@ const refForm = $ref(null)
 let confirmBtnClick = () => {
   refForm.validate((valid) => {
     if (valid) {
+      //设置权限id列表
+      subForm.permissionId = JSON.stringify(getTreeItemsAndPlateFormId())
       if (subForm.id) {
         updateReq()
       } else {
@@ -122,7 +128,6 @@ let updateReq = () => {
   })
 }
 /*4.上传文件*/
-
 //获取 plateFormId
 let plateFormList = $ref([])
 let plateFormListReq = () => {
@@ -133,6 +138,24 @@ let plateFormListReq = () => {
     bfLoading: true
   }).then(({ data }) => {
     plateFormList = data.records
+
+    //回显权限
+    if (detailData.permissionId) {
+      console.log('我进入了222')
+      let ObjItem: any = JSON.parse(detailData.permissionId)
+      console.log('我进入了222')
+      plateFormList.forEach((fItem, index) => {
+        console.log('我进入了', ObjItem[fItem.id])
+        if (ObjItem[fItem.id]) {
+          useCommon()
+            .sleep(500)
+            .then(() => {
+              treeRef.value[index]!.setCheckedKeys(ObjItem[fItem.id], true)
+            })
+        }
+      })
+    }
+
     //取第一个
     let firstItem = plateFormList[0]
     activeName = firstItem.id
@@ -158,6 +181,17 @@ const handleClick = (tab: TabsPaneContext) => {
   console.log(tab.props.name)
   permissionListReq(tab.props.name)
 }
+//getData
+const getTreeItemsAndPlateFormId = () => {
+  console.log(11)
+  let Obj = {}
+  plateFormList.forEach((fItem, index) => {
+    console.log('Obj', Obj)
+    Obj[fItem.id] = treeRef.value[index]!.getCheckedNodes(false, true).map((mItem) => mItem.id)
+  })
+  console.log('Obj', Obj)
+  return Obj
+}
 
 //tree
 const treeRef: any = ref()
@@ -168,7 +202,7 @@ const testTree = () => {
   console.log(treeRef.value[0]!.getCheckedNodes(false, true))
 }
 const setTree = () => {
-  treeRef.value[0]!.setCheckedKeys([2, 4], true)
+  treeRef.value[0]!.setCheckedKeys([2, 3, 5], false)
 }
 const { reshowData, chooseFileName, handleCancel, formRules } = useForm(subForm)
 </script>
