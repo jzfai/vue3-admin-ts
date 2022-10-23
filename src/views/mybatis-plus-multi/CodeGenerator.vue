@@ -1,12 +1,5 @@
 <template>
   <div class="project-page-style pb-5">
-    <!--    <div class="mt-2 mb-2">-->
-    <!--      <el-alert-->
-    <!--        title="新一代的低代码生成平台，提供数据源能力，根据数据库字段自动生成基于vue3-admin-plus和micro-service-plus的模版。-->
-    <!--      可以使用默认模版和自定义模版生成，经过测试可以为企业提升40%左右的开发效率"-->
-    <!--        type="warning"-->
-    <!--      />-->
-    <!--    </div>-->
     <!--项目和作者信息配置-->
     <FoldingCard title="基础信息配置">
       <div class="mb-10px">
@@ -29,13 +22,6 @@
         <el-form-item label="包名" prop="packageName" :rules="formRules.isNotNull()" label-position="left">
           <el-input v-model="basicConfig.packageName" class="w-200px" placeholder="包名" />
         </el-form-item>
-
-        <!--        <el-form-item label="实体基础类名" prop="basicClassName" :rules="formRules.isNotNull()" label-position="left">-->
-        <!--          <el-input v-model="basicConfig.basicClassName" class="w-200px" placeholder="实体基础类名" />-->
-        <!--        </el-form-item>-->
-        <!--        <el-form-item label="实体基础类注释" prop="basicClassDesc" :rules="formRules.isNotNull()" label-position="left">-->
-        <!--          <el-input v-model="basicConfig.basicClassDesc" class="w-200px" placeholder="实体基础类注释" />-->
-        <!--        </el-form-item>-->
       </el-form>
     </FoldingCard>
     <FoldingCard title="库和表选取">
@@ -411,6 +397,7 @@ const generatorSubData = () => {
 
       //此处保存的数据主要用于回显
       dataBaseUrl,
+      saveFileName,
       dbRadio,
       chooseDbRadio,
       dbTableUrl,
@@ -489,6 +476,7 @@ const reshowData = (fItem) => {
   checkColumnArr = generatorConfig.checkColumnArr
   chooseDbArr = generatorConfig.chooseDbArr
   tbData = generatorConfig.tbData
+  saveFileName = generatorConfig.saveFileName
   basicConfig = generatorConfig.basicConfig
   multiTableConfig = generatorConfig.multiTableConfig
   multiTableName = generatorConfig.dbTableConfig.multiTableName

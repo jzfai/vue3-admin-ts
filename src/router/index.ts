@@ -86,21 +86,34 @@ export const constantRoutes: RouterTy = [
   {
     path: '/permission-center',
     component: Layout,
-    meta: { title: 'permission-center', elSvgIcon: 'Fold' },
+    meta: { title: '菜单按钮配置中心', elSvgIcon: 'Fold' },
     alwaysShow: true,
     children: [
+      {
+        path: 'user-table-query',
+        component: () => import('@/views/permission-center/user/UserTableQuery.vue'),
+        name: 'UserTableQuery',
+        meta: { title: '用户列表' }
+      },
+      {
+        path: 'user-add-edit',
+        component: () => import('@/views/permission-center/user/UserAddEdit.vue'),
+        name: 'UserAddEdit',
+        hidden: true,
+        meta: { title: '用户列表-新增编辑', activeMenu: '/permission-center/user-table-query' }
+      },
       {
         path: 'role-table-query',
         component: () => import('@/views/permission-center/role/RoleTableQuery.vue'),
         name: 'RoleTableQuery',
-        meta: { title: 'role列表' }
+        meta: { title: '角色列表' }
       },
       {
         path: 'role-add-edit',
         component: () => import('@/views/permission-center/role/RoleAddEdit.vue'),
         name: 'RoleAddEdit',
         hidden: true,
-        meta: { title: '新增编辑', activeMenu: '/permission-center/role-table-query' }
+        meta: { title: '角色列表-新增编辑', activeMenu: '/permission-center/role-table-query' }
       },
       {
         path: 'permission-table-query',
@@ -113,7 +126,7 @@ export const constantRoutes: RouterTy = [
         component: () => import('@/views/permission-center/permission/PermissionAddEdit.vue'),
         name: 'PermissionAddEdit',
         hidden: true,
-        meta: { title: '新增编辑', activeMenu: '/permission-center/permission-table-query' }
+        meta: { title: '菜单权限-新增编辑', activeMenu: '/permission-center/permission-table-query' }
       },
       {
         path: 'plateForm-table-query',
@@ -131,27 +144,27 @@ export const constantRoutes: RouterTy = [
     ]
   },
 
-  {
-    path: '/permission-test',
-    component: Layout,
-    meta: { title: '权限测试Demo', elSvgIcon: 'Fold' },
-    alwaysShow: true,
-    children: [
-      {
-        path: 'test-table-query',
-        component: () => import('@/views/permission-center/test/TestTableQuery.vue'),
-        name: 'TestTableQuery',
-        meta: { title: '权限测试' }
-      },
-      {
-        path: 'test-add-edit',
-        component: () => import('@/views/permission-center/test/TestAddEdit.vue'),
-        name: 'TestAddEdit',
-        hidden: true,
-        meta: { title: '新增编辑', activeMenu: '/permission-center/test-table-query' }
-      }
-    ]
-  },
+  // {
+  //   path: '/permission-test',
+  //   component: Layout,
+  //   meta: { title: '权限测试Demo', elSvgIcon: 'Fold' },
+  //   alwaysShow: true,
+  //   children: [
+  //     {
+  //       path: 'test-table-query',
+  //       component: () => import('@/views/permission-center/test/TestTableQuery.vue'),
+  //       name: 'TestTableQuery',
+  //       meta: { title: '权限测试' }
+  //     },
+  //     {
+  //       path: 'test-add-edit',
+  //       component: () => import('@/views/permission-center/test/TestAddEdit.vue'),
+  //       name: 'TestAddEdit',
+  //       hidden: true,
+  //       meta: { title: '新增编辑', activeMenu: '/permission-center/test-table-query' }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/template-demo',

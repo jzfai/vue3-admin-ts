@@ -3,7 +3,7 @@ import { ObjTy } from '~/common'
 
 export function loginReq(data: ObjTy) {
   return request({
-    url: '/integration-front/user/loginValid',
+    url: '/basis-func/user/loginValid',
     data,
     method: 'post',
     bfLoading: false,
@@ -12,18 +12,20 @@ export function loginReq(data: ObjTy) {
   })
 }
 
-export function getInfoReq() {
+export function getInfoReq(plateFormId) {
   return request({
-    url: '/integration-front/user/getUserInfo',
+    url: '/basis-func/user/getUserInfo',
     bfLoading: false,
+    data: { plateFormId },
     method: 'post',
+    isParams: true,
     isAlertErrorMsg: false
   })
 }
 
 export function logoutReq() {
   return request({
-    url: '/integration-front/user/loginOut',
+    url: '/basis-func/user/loginOut',
     method: 'post'
   })
 }

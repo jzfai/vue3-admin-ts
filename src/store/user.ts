@@ -5,6 +5,7 @@ import router, { constantRoutes, asyncRoutes } from '@/router'
 import { defineStore } from 'pinia'
 import { usePermissionStore } from '@/store/permission'
 import { useTagsViewStore } from '@/store/tagsView'
+import settings from '@/settings'
 
 const resetRouter = () => {
   const asyncRouterNameArr: Array<any> = asyncRoutes.map((mItem) => mItem.name)
@@ -20,62 +21,47 @@ export const useUserStore = defineStore('user', {
     return {
       username: '',
       avatar: '',
-      roles: [] as Array<any>
+      userInfo: {
+        id: null
+      },
+      roles: [] as Array<string>
     }
   },
 
   actions: {
-    M_username(username: string) {
-      this.$patch((state) => {
-        state.username = username
-      })
-    },
-    M_roles(roles: Array<string>) {
-      this.$patch((state) => {
-        state.roles = roles
-      })
-    },
-
-    login(data: ObjTy) {
+    login(data) {
       return new Promise((resolve, reject) => {
         loginReq(data)
-          .then((res: ObjTy) => {
-            if (res.code === 20000) {
-              //commit('SET_Token', res.data?.jwtToken)
-              setToken(res.data?.jwtToken)
-              resolve(null)
-            } else {
-              reject(res)
-            }
+          .then(({ data }) => {
+            //存储用户信息
+            this.$patch((state) => {
+              state.userInfo = data.userInfo
+              state.username = data.userInfo
+              state.avatar = data.userInfo.headImgUrl
+            })
+            setToken(data?.jwtToken)
+            resolve(null)
           })
-          .catch((error: any) => {
+          .catch((error) => {
             reject(error)
           })
       })
     },
     // get user info
-    getInfo() {
-      return new Promise((resolve, reject) => {
-        getInfoReq()
-          .then((response: ObjTy) => {
-            const { data } = response
+    getUserInfo() {
+      return new Promise<Array<ObjTy>>((resolve, reject) => {
+        getInfoReq(settings.plateFormId)
+          .then(({ data }) => {
             if (!data) {
               return reject('Verification failed, please Login again.')
             }
-            //此处模拟数据
-            const rolesArr: any = localStorage.getItem('roles')
-            if (rolesArr) {
-              data.roles = JSON.parse(rolesArr)
-            } else {
-              data.roles = ['admin']
-              localStorage.setItem('roles', JSON.stringify(data.roles))
-            }
-            const { roles, username } = data
-            this.M_username(username)
-            this.M_roles(roles)
-            resolve(data)
+            const { roleCodeArr, menuList } = data
+            this.$patch((state) => {
+              state.roles = roleCodeArr
+            })
+            resolve(menuList)
           })
-          .catch((error: any) => {
+          .catch((error) => {
             reject(error)
           })
       })
@@ -95,12 +81,10 @@ export const useUserStore = defineStore('user', {
     },
     resetState() {
       return new Promise((resolve) => {
-        this.M_username('')
-        this.M_roles([])
         removeToken() // must remove  token  first
         resetRouter() // reset the router
         const permissionStore = usePermissionStore()
-        permissionStore.M_isGetUserInfo(false)
+        permissionStore.setGetUserInfo(false)
         const tagsViewStore = useTagsViewStore()
         tagsViewStore.delAllViews()
         resolve(null)

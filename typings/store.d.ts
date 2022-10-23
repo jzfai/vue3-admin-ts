@@ -26,4 +26,5 @@ export interface PermissionTy {
   isGetUserInfo: boolean //是否已经设置了权限
   routes: RouterTy //将过滤后的异步路由和静态路由集合
   addRoutes: RouterTy //过滤后的异步路由
+  buttonCodes: Array<string>
 }

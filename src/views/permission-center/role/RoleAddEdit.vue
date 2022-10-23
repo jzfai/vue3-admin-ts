@@ -53,10 +53,9 @@
           />
         </el-tab-pane>
       </el-tabs>
-      <el-button @click="testTree">testTree</el-button>
-      <el-button @click="setTree">setTree</el-button>
+      <!--      <el-button @click="testTree">testTree</el-button>-->
+      <!--      <el-button @click="setTree">setTree</el-button>-->
     </FoldingCard>
-    <div @click="getTreeItemsAndPlateFormId">getTreeItemsAndPlateFormId</div>
   </div>
 </template>
 
@@ -138,29 +137,29 @@ let plateFormListReq = () => {
     bfLoading: true
   }).then(({ data }) => {
     plateFormList = data.records
-
-    //回显权限
-    if (detailData.permissionId) {
-      console.log('我进入了222')
-      let ObjItem: any = JSON.parse(detailData.permissionId)
-      console.log('我进入了222')
-      plateFormList.forEach((fItem, index) => {
-        console.log('我进入了', ObjItem[fItem.id])
-        if (ObjItem[fItem.id]) {
-          useCommon()
-            .sleep(500)
-            .then(() => {
-              treeRef.value[index]!.setCheckedKeys(ObjItem[fItem.id], true)
-            })
-        }
-      })
-    }
-
+    reshowTree()
     //取第一个
     let firstItem = plateFormList[0]
     activeName = firstItem.id
     permissionListReq(firstItem.id)
   })
+}
+//回显tree权限
+let reshowTree = () => {
+  if (detailData.permissionId) {
+    let ObjItem: any = JSON.parse(detailData.permissionId)
+    plateFormList.forEach((fItem, index) => {
+      if (ObjItem[fItem.id]) {
+        useCommon()
+          .sleep(100)
+          .then(() => {
+            ObjItem[fItem.id].forEach((eItem) => {
+              treeRef.value[index]!.setChecked(eItem, true, false)
+            })
+          })
+      }
+    })
+  }
 }
 plateFormListReq()
 let permissionList = $ref([])
@@ -172,21 +171,20 @@ let permissionListReq = (plateFormId) => {
     bfLoading: true
   }).then(({ data }) => {
     permissionList = data.records
+    //回显tree
+    reshowTree()
   })
 }
 //tabs
 let activeName = $ref('')
 import type { TabsPaneContext } from 'element-plus'
 const handleClick = (tab: TabsPaneContext) => {
-  console.log(tab.props.name)
   permissionListReq(tab.props.name)
 }
 //getData
 const getTreeItemsAndPlateFormId = () => {
-  console.log(11)
   let Obj = {}
   plateFormList.forEach((fItem, index) => {
-    console.log('Obj', Obj)
     Obj[fItem.id] = treeRef.value[index]!.getCheckedNodes(false, true).map((mItem) => mItem.id)
   })
   console.log('Obj', Obj)
@@ -202,7 +200,8 @@ const testTree = () => {
   console.log(treeRef.value[0]!.getCheckedNodes(false, true))
 }
 const setTree = () => {
-  treeRef.value[0]!.setCheckedKeys([2, 3, 5], false)
+  // treeRef.value[0]!.setCheckedKeys([2, 3, 5, 4], false)
+  treeRef.value[0]!.setChecked(2, true, false)
 }
 const { reshowData, chooseFileName, handleCancel, formRules } = useForm(subForm)
 </script>

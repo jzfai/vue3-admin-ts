@@ -17,6 +17,7 @@ interface SettingTy {
   showTopNavbar: boolean
   mainNeedAnimation: boolean
   viteBasePath: string
+  plateFormId: number
 }
 
 const setting: SettingTy = {
@@ -107,7 +108,10 @@ const setting: SettingTy = {
    * vite.config.js base config
    * such as
    * */
-  viteBasePath: './'
+  viteBasePath: './',
+
+  //平台id  1->前端后端低代码平台
+  plateFormId: 1
 }
 
 export default setting
