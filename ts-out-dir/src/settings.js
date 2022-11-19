@@ -1,5 +1,5 @@
-const setting = {
-    title: 'Vue3 Admin Ts',
+const settings = {
+    title: 'Vue3 Admin Template',
     sidebarLogo: true,
     showNavbarTitle: false,
     ShowDropDown: true,
@@ -18,5 +18,4 @@ const setting = {
     tmpToken: 'tmp_token',
     viteBasePath: './'
 };
-export default setting;
-//# sourceMappingURL=settings.js.map
+export default settings;

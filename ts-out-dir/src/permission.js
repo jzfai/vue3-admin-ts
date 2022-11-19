@@ -1,70 +1,44 @@
-import router, { asyncRoutes } from '@/router';
-import settings from './settings';
-import { getToken, setToken } from '@/utils/auth';
-import NProgress from 'nprogress';
-NProgress.configure({ showSpinner: false });
-import 'nprogress/nprogress.css';
-import getPageTitle from '@/utils/getPageTitle';
-import { useUserStore } from '@/store/user';
-import { usePermissionStore } from '@/store/permission';
+import router from '@/router';
+import { filterAsyncRouter, progressClose, progressStart } from '@/hooks/use-permission';
+import { useBasicStore } from '@/store/basic';
+import { userInfoReq } from '@/api/user';
 const whiteList = ['/login', '/404', '/401'];
-router.beforeEach(async (to, from, next) => {
-    if (settings.isNeedNprogress)
-        NProgress.start();
-    document.title = getPageTitle(to.meta.title);
-    if (!settings.isNeedLogin)
-        setToken(settings.tmpToken);
-    const hasToken = getToken();
-    const userStore = useUserStore();
-    const permissionStore = usePermissionStore();
-    if (hasToken) {
+router.beforeEach(async (to) => {
+    progressStart();
+    const basicStore = useBasicStore();
+    if (basicStore.token) {
         if (to.path === '/login') {
-            next({ path: '/' });
+            return '/';
         }
         else {
-            const isGetUserInfo = permissionStore.isGetUserInfo;
-            if (isGetUserInfo) {
-                next();
+            if (!basicStore.getUserInfo) {
+                try {
+                    const userData = await userInfoReq();
+                    filterAsyncRouter(userData);
+                    basicStore.setUserInfo(userData);
+                    return { ...to, replace: true };
+                }
+                catch (e) {
+                    console.error(`route permission error${e}`);
+                    basicStore.resetState();
+                    progressClose();
+                    return `/login?redirect=${to.path}`;
+                }
             }
             else {
-                try {
-                    let accessRoutes = [];
-                    if (settings.isNeedLogin) {
-                        const { roles } = await userStore.getInfo();
-                        accessRoutes = await permissionStore.generateRoutes(roles);
-                    }
-                    else {
-                        accessRoutes = asyncRoutes;
-                    }
-                    permissionStore.M_routes(accessRoutes);
-                    accessRoutes.forEach((route) => {
-                        router.addRoute(route);
-                    });
-                    permissionStore.M_isGetUserInfo(true);
-                    next({ ...to, replace: true });
-                }
-                catch (err) {
-                    await userStore.resetState();
-                    next(`/login?redirect=${to.path}`);
-                    if (settings.isNeedNprogress)
-                        NProgress.done();
-                }
+                return true;
             }
         }
     }
     else {
-        if (whiteList.indexOf(to.path) !== -1) {
-            next();
+        if (!whiteList.includes(to.path)) {
+            return `/login?redirect=${to.path}`;
         }
         else {
-            next(`/login?redirect=${to.path}`);
-            if (settings.isNeedNprogress)
-                NProgress.done();
+            return true;
         }
     }
 });
 router.afterEach(() => {
-    if (settings.isNeedNprogress)
-        NProgress.done();
+    progressClose();
 });
-//# sourceMappingURL=permission.js.map

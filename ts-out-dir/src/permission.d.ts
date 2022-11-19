@@ -1,1 +1,1 @@
-import 'nprogress/nprogress.css';
+export {};

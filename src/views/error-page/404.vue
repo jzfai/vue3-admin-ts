@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const message = computed(() => {
   return 'The webmaster said that you can not enter this page...'
 })

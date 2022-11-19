@@ -23,22 +23,21 @@ suggestion the Node.js >= 16.0.0。
 
 [Access address](https://github.jzfai.top/vue3-admin-ts)
 
+
 国内体验地址：https://github.jzfai.top/vue3-admin-ts
 
-github 地址：  https://github.com/jzfai/vue3-admin-ts.git
+github 地址：https://github.com/jzfai/vue3-admin-ts.git
+
 
 
 ## Related items
 
-The framework is available in js, ts and plus versions
-- js version：[vue3-element-admin](https://github.com/jzfai/vue3-admin-template.git)
+The framework is available in js, ts , plus and electron versions
+- js version：[vue3-admin-template](https://github.com/jzfai/vue3-admin-template.git) -- basic version
 - ts version：[vue3-element-ts](https://github.com/jzfai/vue3-admin-ts.git)
 - js version for plus：[vue3-element-plus](https://github.com/jzfai/vue3-admin-plus.git)
-- react version： [react-admin-template](https://github.com/jzfai/react-admin-template.git)
 - java Micro-service background data：[micro-service-plus](https://github.com/jzfai/micro-service-plus)
 > development and  experience：two words  Really fragrant！！！！！
-
-
 
 ## Build Setup
 
@@ -49,15 +48,16 @@ git clone https://github.com/jzfai/vue3-admin-ts.git
 # enter the project directory
 cd vue3-admin-ts
 
+# pnpm address https://pnpm.io/zh/motivation
 # install dependency(Recommend use pnpm)
-#you can run npm i -g pnpm@6.32.3 to install it  
-pnpm
+# you can  use "npm -g i pnpm@7.9.0" to install pnpm 
+pnpm i
 
 # develop
 pnpm run dev
 ```
 
-using the browser to open http://localhost:5003
+using the browser to open http://localhost:5001
 
 ## Build
 
@@ -92,5 +92,6 @@ Note: Vue3 is not supported the Internet Explorer
 
 ## Discussion and Communication
 [WeChat group](https://github.jzfai.top/file/images/wx-groud.png)
+
 
 
