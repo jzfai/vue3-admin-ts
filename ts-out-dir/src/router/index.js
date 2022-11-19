@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import Layout from '@/layout';
+import Layout from '@/layout/index.vue';
 export const constantRoutes = [
     {
         path: '/redirect',
@@ -14,7 +14,7 @@ export const constantRoutes = [
     },
     {
         path: '/login',
-        component: () => import('@/views/login/Login.vue'),
+        component: () => import('@/views/login/index.vue'),
         hidden: true
     },
     {
@@ -46,153 +46,29 @@ export const constantRoutes = [
         children: [
             {
                 path: 'index',
-                component: () => import('@/views/setting-switch'),
+                component: () => import('@/views/setting-switch/index.vue'),
                 name: 'SettingSwitch',
-                meta: { title: 'Setting Switch', icon: 'example' }
+                meta: { title: 'Setting Switch', icon: 'example', affix: true }
             }
         ]
     },
     {
-        path: '/error-log',
+        path: '/error-collection',
         component: Layout,
-        redirect: '/error-log/list',
-        meta: { title: 'ErrorLog', icon: 'bug' },
+        meta: { title: 'Error Collection', icon: 'eye' },
+        alwaysShow: true,
         children: [
             {
-                path: 'list',
-                component: () => import('@/views/error-log'),
-                name: 'ErrorLog',
-                meta: { title: 'Error Log' }
+                path: 'error-collection-table-query',
+                component: () => import('@/views/error-collection/ErrorCollectionTableQuery.vue'),
+                name: 'ErrorCollectionTableQuery',
+                meta: { title: 'Index' }
             },
             {
                 path: 'error-log-test',
                 component: () => import('@/views/error-log/ErrorLogTest.vue'),
                 name: 'ErrorLogTest',
                 meta: { title: 'ErrorLog Test' }
-            }
-        ]
-    },
-    {
-        path: '/writing-demo',
-        component: Layout,
-        meta: { title: 'Writing Demo', icon: 'eye-open' },
-        alwaysShow: true,
-        children: [
-            {
-                path: 'hook',
-                component: () => import('@/views/example/hook/Hook.vue'),
-                name: 'Hook',
-                meta: { title: 'Hook-Demo' }
-            },
-            {
-                path: 'vuex-use',
-                component: () => import('@/views/example/vuex-use/VuexUse.vue'),
-                name: 'VuexUse',
-                meta: { title: 'Vuex-Demo' }
-            },
-            {
-                path: 'mock-test',
-                component: () => import('@/views/example/mock-test/MockTest.vue'),
-                name: 'MockTest',
-                meta: { title: 'Mock-Demo' }
-            },
-            {
-                path: 'svg-icon',
-                component: () => import('@/views/example/svg-icon/SvgIcon.vue'),
-                name: 'SvgIcon',
-                meta: { title: 'Svg-Demo' }
-            },
-            {
-                path: 'parent-children',
-                component: () => import('@/views/example/parent-children/Parent.vue'),
-                name: 'Parent',
-                meta: { title: 'Parent-Children' }
-            },
-            {
-                path: 'keep-alive',
-                component: () => import('@/views/example/keep-alive'),
-                name: 'KeepAlive',
-                meta: { title: 'Keep-Alive', cachePage: true, leaveRmCachePage: false }
-            },
-            {
-                path: 'tab-keep-alive',
-                component: () => import('@/views/example/keep-alive/TabKeepAlive.vue'),
-                name: 'TabKeepAlive',
-                meta: { title: 'Tab-Keep-Alive', cachePage: true, closeTabRmCache: true }
-            },
-            {
-                path: 'router-demo-f',
-                name: 'routerDemoF',
-                hidden: true,
-                component: () => import('@/views/example/keep-alive/RouterDemoF.vue'),
-                meta: { title: 'RouterDemo-F', cachePage: true, activeMenu: '/writing-demo/keep-alive' }
-            },
-            {
-                path: 'router-demo-s',
-                name: 'routerDemoS',
-                hidden: true,
-                component: () => import('@/views/example/keep-alive/RouterDemoS.vue'),
-                meta: { title: 'RouterDemo-S', cachePage: true, activeMenu: '/writing-demo/keep-alive' }
-            },
-            {
-                path: 'deep-router-keep-alive',
-                name: 'DeepRouterKeepAlive',
-                component: () => import('@/views/example/keep-alive/DeepRouterKeepAlive.vue'),
-                meta: { title: 'Deep KeepAlive', cachePage: true, leaveRmCachePage: true },
-                alwaysShow: true,
-                children: [
-                    {
-                        path: 'deep-children',
-                        name: 'DeepChildren',
-                        component: () => import('@/views/example/keep-alive/deep-children/DeepChildren.vue'),
-                        meta: { title: 'DeepChildren', cachePage: false, leaveRmCachePage: true }
-                    },
-                    {
-                        path: 'deep-children-sd',
-                        name: 'DeepChildrenSd',
-                        component: () => import('@/views/example/keep-alive/deep-children/DeepChildrenSd.vue'),
-                        meta: { title: 'DeepChildrenSd', cachePage: true, leaveRmCachePage: false }
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        path: '/example',
-        component: Layout,
-        redirect: '/example/table',
-        name: 'Example',
-        meta: { title: 'Example', icon: 'example' },
-        children: [
-            {
-                path: 'table',
-                name: 'Table',
-                component: () => import('@/views/table/index.vue'),
-                meta: { title: 'Table', icon: 'table' }
-            },
-            {
-                path: 'tree',
-                name: 'Tree',
-                component: () => import('@/views/tree/index.vue'),
-                meta: { title: 'Tree', icon: 'tree' }
-            },
-            {
-                path: 'worker-Demo',
-                name: 'WorkerDemo',
-                component: () => import('@/views/example/worker'),
-                meta: { title: 'Worker Demo', icon: 'nested' }
-            }
-        ]
-    },
-    {
-        path: '/form',
-        component: Layout,
-        children: [
-            {
-                path: 'index',
-                name: 'Form',
-                component: () => import('@/views/form/index.vue'),
-                meta: { title: 'Form', icon: 'table' }
             }
         ]
     },
@@ -266,11 +142,11 @@ export const constantRoutes = [
         ]
     }
 ];
-export const asyncRoutes = [
+export const roleCodeRoutes = [
     {
-        path: '/permission',
+        path: '/roles-codes',
         component: Layout,
-        redirect: '/permission/page',
+        redirect: '/roles-codes/page',
         alwaysShow: true,
         name: 'Permission',
         meta: {
@@ -280,50 +156,44 @@ export const asyncRoutes = [
         },
         children: [
             {
-                path: 'roleIndex',
-                component: () => import('@/views/permission'),
-                name: 'Permission',
+                path: 'index',
+                component: () => import('@/views/roles-codes/index.vue'),
+                name: 'RolesCodes',
                 meta: {
-                    title: 'role Index'
+                    title: 'index'
                 }
             },
             {
-                path: 'page',
-                component: () => import('@/views/permission/page.vue'),
-                name: 'PagePermission',
+                path: 'roleIndex',
+                component: () => import('@/views/roles-codes/role-index.vue'),
+                name: 'RoleIndex',
                 meta: {
-                    title: 'Page Permission',
+                    title: 'Role Index',
                     roles: ['admin']
                 }
             },
             {
-                path: 'directive',
-                component: () => import('@/views/permission/directive.vue'),
-                name: 'DirectivePermission',
-                meta: {
-                    title: 'Directive Permission'
-                }
-            },
-            {
                 path: 'code-index',
-                component: () => import('@/views/permission/CodePermission.vue'),
-                name: 'CodePermission',
+                component: () => import('@/views/roles-codes/code-index.vue'),
+                name: 'CodeIndex',
                 meta: {
-                    title: 'Code Index'
+                    title: 'Code Index',
+                    code: 16
                 }
             },
             {
-                path: 'code-page',
-                component: () => import('@/views/permission/CodePage.vue'),
-                name: 'CodePage',
+                path: 'button-permission',
+                component: () => import('@/views/roles-codes/button-permission.vue'),
+                name: 'ButtonPermission',
                 meta: {
-                    title: 'Code Page',
-                    code: 1
+                    title: 'Button Permission'
                 }
             }
         ]
-    },
-    { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
+    }
+];
+export const asyncRoutes = [
+    { path: '/:catchAll(.*)', name: 'CatchAll', redirect: '/404', hidden: true }
 ];
 const router = createRouter({
     history: createWebHashHistory(),
@@ -331,4 +201,3 @@ const router = createRouter({
     routes: constantRoutes
 });
 export default router;
-//# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
-import { Router } from 'vue-router';
-import { RouterTy } from '~/router';
-export declare const constantRoutes: RouterTy;
-export declare const asyncRoutes: RouterTy;
-declare const router: Router;
+import type { RouterTypes } from '~/basic';
+export declare const constantRoutes: RouterTypes;
+export declare const roleCodeRoutes: RouterTypes;
+export declare const asyncRoutes: RouterTypes;
+declare const router: import("vue-router").Router;
 export default router;

@@ -1,26 +1,7 @@
-interface SettingTy {
-  title: string
-  sidebarLogo: boolean
-  showLeftMenu: boolean
-  ShowDropDown: boolean
-  showHamburger: boolean
-  isNeedLogin: boolean
-  isNeedNprogress: boolean
-  showTagsView: boolean
-  tagsViewNum: number
-  openProdMock: boolean
-  errorLog: string | Array<string>
-  permissionMode: string
-  delWindowHeight: string
-  tmpToken: string
-  showNavbarTitle: boolean
-  showTopNavbar: boolean
-  mainNeedAnimation: boolean
-  viteBasePath: string
-}
+import type { SettingsConfig } from '~/basic'
 
-const setting: SettingTy = {
-  title: 'Vue3 Admin Ts',
+export const settings: SettingsConfig = {
+  title: 'Vue3 Admin Template',
   /**
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
@@ -65,7 +46,7 @@ const setting: SettingTy = {
    * @type {boolean} true | false
    * @description Whether need animation of main area
    */
-  mainNeedAnimation: true,
+  mainNeedAnimation: false,
   /**
    * @type {boolean} true | false
    * @description Whether need nprogress
@@ -79,7 +60,7 @@ const setting: SettingTy = {
    */
   isNeedLogin: true,
   /**
-   * @type {string} 'roles' | 'code'
+   * @type {string} 'rbac'| 'roles' | 'code'
    */
   permissionMode: 'roles',
   /**
@@ -105,9 +86,30 @@ const setting: SettingTy = {
 
   /*
    * vite.config.js base config
+   * */
+  viteBasePath: './',
+
+  /*
+   * i18n setting default language
+   * en/zh
+   * */
+  defaultLanguage: 'zh',
+  /*
+   *  default theme
+   * base-theme/lighting-theme/dark-theme
+   * */
+  defaultTheme: 'base-theme',
+  /*
+   * setting default defaultSize
+   * large / default /small
+   * */
+  defaultSize: 'small',
+  /*
+   * vite.config.js base config
    * such as
    * */
-  viteBasePath: './'
+  //平台id  2->vue3-admin-plus
+  plateFormId: 2
 }
 
-export default setting
+export default settings
