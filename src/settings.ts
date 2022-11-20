@@ -93,7 +93,7 @@ export const settings: SettingsConfig = {
    * i18n setting default language
    * en/zh
    * */
-  defaultLanguage: 'zh',
+  defaultLanguage: 'en',
   /*
    *  default theme
    * base-theme/lighting-theme/dark-theme

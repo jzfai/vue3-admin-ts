@@ -6,10 +6,9 @@ import type { RouterTypes } from '~/basic'
 export const useBasicStore = defineStore('basic', {
   state: () => {
     return {
-      //user info
       token: '',
       getUserInfo: false,
-      userInfo: { username: '', avatar: '' },
+      userInfo: { username: '', avatar: '' }, //user info
       //router
       allRoutes: [] as RouterTypes,
       buttonCodes: [],

@@ -1,4 +1,4 @@
-import path from 'path'
+import { resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -14,8 +14,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import setting from './src/settings'
 const prodMock = setting.openProdMock
 // import { visualizer } from 'rollup-plugin-visualizer'
-const pathSrc = path.resolve(__dirname, 'src')
-
+const pathSrc = resolve(__dirname, 'src')
 export default defineConfig(({ command, mode }) => {
   //const env = loadEnv(mode, process.cwd(), '') //获取环境变量
   return {
@@ -52,7 +51,7 @@ export default defineConfig(({ command, mode }) => {
       //   additionalLegacyPolyfills: ['regenerator-runtime/runtime']
       // }),
       createSvgIconsPlugin({
-        iconDirs: [path.resolve(process.cwd(), 'src/icons/common'), path.resolve(process.cwd(), 'src/icons/nav-bar')],
+        iconDirs: [resolve(process.cwd(), 'src/icons/common'), resolve(process.cwd(), 'src/icons/nav-bar')],
         symbolId: 'icon-[dir]-[name]'
       }),
       //https://github.com/anncwb/vite-plugin-mock/blob/HEAD/README.zh_CN.md
@@ -84,7 +83,7 @@ export default defineConfig(({ command, mode }) => {
           }
         ],
         //配置后会自动扫描目录下的文件
-        dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**'],
+        dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
         eslintrc: {
           enabled: true, // Default `false`
           filepath: './eslintrc/.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
