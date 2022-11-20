@@ -16,24 +16,24 @@
           @contextmenu.prevent="openMenu(tag, $event)"
           @click="navigate"
         >
-          {{ tag.title }}
+          {{ langTitle(tag.title) }}
           <Close v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
         </div>
       </router-link>
     </div>
     <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">Refresh</li>
-      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">Close</li>
-      <li @click="closeOthersTags">Close Others</li>
-      <li @click="closeAllTags(selectedTag)">Close All</li>
+      <li @click="refreshSelectedTag(selectedTag)">{{ langTitle('Refresh') }}</li>
+      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">{{ langTitle('Close') }}</li>
+      <li @click="closeOthersTags">{{ langTitle('Close Others') }}</li>
+      <li @click="closeAllTags(selectedTag)">{{ langTitle('Close All') }}</li>
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
+import { langTitle } from '@/hooks/use-common'
 import { getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
 import { Close } from '@element-plus/icons-vue'
-
 import { resolve } from 'path-browserify'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia/dist/pinia'

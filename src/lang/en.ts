@@ -1,165 +1,163 @@
 export default {
   router: {
-    Dashboard: 'Dashboard',
-    'Setting Switch': 'Setting Switch',
-    Guide: 'Guide',
-    'Error Log': 'Error Log',
-    'ErrorLog Test': 'ErrorLog Test',
-    Example: 'Example',
-    Nested: 'Nested Routes',
-    Menu1: 'Menu1',
-    'Menu1-1': 'Menu 1-1',
-    'Menu1-2': 'Menu 1-2',
-    'Menu1-2-1': 'Menu 1-2-1',
-    'Menu1-2-2': 'Menu 1-2-2',
-    Menu2: 'Menu 2',
-    Table: 'Table',
-    Charts: 'Charts',
-    'Keyboard Chart': 'Keyboard Chart',
-    'Line Chart': 'Line Chart',
-    'Mix Chart': 'Mix Chart',
-    'Echarts Demo': 'Echarts Demo',
-    ExternalLink: 'External Link',
-    CRUD: 'CRUD',
-    'CRUD-Demo': 'CRUD-Demo',
-    ImportExport: 'Import Export',
-    ImgAddPack: 'ImgAdd Pack',
-    WritingDemo: 'Writing Demo',
-    'Hook-Demo': 'Hook-Demo',
-    'Vuex-Demo': 'Vuex-Demo',
-    'Mock-Demo': 'Mock-Demo',
-    'Svg-Demo': 'Svg-Demo',
-    'Parent-Children': 'Parent-Children',
-    'Keep-Alive': 'Keep-Alive',
-    'RouterDemo-F': 'RouterDemo-F',
-    'RouterDemo-S': 'RouterDemo-S',
-    'Use Example': 'Use Example',
-    directive: 'directive',
-    Tinymce: 'Tinymce',
-    'I18n-Demo': 'I18n Demo',
-    Permission: 'Permission',
-    'Role Index': 'Role Index',
-    'Page Permission': 'Page Permission',
-    'Directive Permission': 'Directive Permission',
-    'Code Index': 'Code Index',
-    'Code Page': 'Code Page'
+    Dashboard: '',
+    'Setting Switch': '',
+    'Error Log': '',
+    'Error Index': '',
+    'Error Generator': '',
+
+    Nested: '',
+    Menu1: '',
+    'Menu1-1': '',
+    'Menu1-2': '',
+    'Menu1-2-1': '',
+    'Menu1-2-2': '',
+    'Menu1-3': '',
+    menu2: '',
+
+    'External Link': '',
+
+    'Basic Demo': '',
+    Hook: '',
+    Pinia: '',
+    Mock: '',
+    'Svg Icon': '',
+    'Parent Children': '',
+    'Second KeepAlive': '',
+    'Tab KeepAlive': '',
+    'Third KeepAlive': '',
+    SecondChild: '',
+    ThirdChild: '',
+
+    Worker: '',
+
+    Permission: '',
+
+    'Permission Switch': '',
+    'Role Index': '',
+    'Code Index': '',
+    'Button Permission': ''
   },
   navbar: {
-    dashboard: 'Dashboard',
-    github: 'Github',
-    logOut: 'Log Out',
-    profile: 'Profile',
-    theme: 'Theme',
-    size: 'Global Size'
+    Home: '',
+    Github: '',
+    Docs: '',
+    'login out': ''
   },
-  login: {
-    title: 'Login Form',
-    logIn: 'Login',
-    username: 'Username',
-    password: 'Password',
-    any: 'any',
-    thirdparty: 'Or connect with',
-    thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !'
+
+  //page
+  dashboard: {
+    'switch theme': '',
+    'switch size': '',
+    'switch language': '',
+    en: 'English',
+    zh: '中文',
+    'Button Group': '',
+    'unocss using': '',
+    'global var': ''
   },
-  documentation: {
-    documentation: 'Documentation',
-    github: 'Github Repository'
+  'error-log': {
+    log: '',
+    pageUrl: '',
+    startDate: '',
+    endDate: '',
+    github: '',
+    search: '',
+    reset: '',
+    multiDel: ''
   },
   permission: {
-    addRole: 'New Role',
-    editPermission: 'Edit',
-    roles: 'Your roles',
-    switchRoles: 'Switch roles',
+    addRole: '',
+    editPermission: '',
+    roles: '',
+    switchRoles: '',
     tips:
-      'In some cases, using v-permission will have no effect. For example: Element-UI  el-tab or el-table-column and other scenes that dynamically render dom. You can only do this with v-if.',
-    delete: 'Delete',
-    confirm: 'Confirm',
-    cancel: 'Cancel'
+      '在某些情况下，不适合使用 v-permission。例如：Element-UI 的 el-tab 或 el-table-column 以及其它动态渲染 dom 的场景。你只能通过手动设置 v-if 来实现。',
+    delete: '删除',
+    confirm: '确定',
+    cancel: '取消'
   },
   guide: {
-    description:
-      'The guide page is useful for some people who entered the project for the first time. You can briefly introduce the features of the project. Demo is based on ',
-    button: 'Show Guide'
+    description: '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本 Demo 是基于',
+    button: '打开引导'
   },
   components: {
-    documentation: 'Documentation',
+    documentation: '文档',
     tinymceTips:
-      'Rich text is a core feature of the management backend, but at the same time it is a place with lots of pits. In the process of selecting rich texts, I also took a lot of detours. The common rich texts on the market have been basically used, and I finally chose Tinymce. See the more detailed rich text comparison and introduction.',
+      '富文本是管理后台一个核心的功能，但同时又是一个有很多坑的地方。在选择富文本的过程中我也走了不少的弯路，市面上常见的富文本都基本用过了，最终权衡了一下选择了Tinymce。更详细的富文本比较和介绍见',
     dropzoneTips:
-      'Because my business has special needs, and has to upload images to qiniu, so instead of a third party, I chose encapsulate it by myself. It is very simple, you can see the detail code in @/components/Dropzone.',
-    stickyTips: 'when the page is scrolled to the preset position will be sticky on the top.',
-    backToTopTips1:
-      'When the page is scrolled to the specified position, the Back to Top button appears in the lower right corner',
+      '由于我司业务有特殊需求，而且要传七牛 所以没用第三方，选择了自己封装。代码非常的简单，具体代码你可以在这里看到 @/components/Dropzone',
+    stickyTips: '当页面滚动到预设的位置会吸附在顶部',
+    backToTopTips1: '页面滚动到指定位置会在右下角出现返回顶部按钮',
     backToTopTips2:
-      'You can customize the style of the button, show / hide, height of appearance, height of the return. If you need a text prompt, you can use element-ui el-tooltip elements externally',
+      '可自定义按钮的样式、show/hide、出现的高度、返回的位置 如需文字提示，可在外部使用Element的el-tooltip元素',
     imageUploadTips:
-      'Since I was using only the vue@1 version, and it is not compatible with mockjs at the moment, I modified it myself, and if you are going to use it, it is better to use official version.'
+      '由于我在使用时它只有vue@1版本，而且和mockjs不兼容，所以自己改造了一下，如果大家要使用的话，优先还是使用官方版本。'
   },
   table: {
-    dynamicTips1: 'Fixed header, sorted by header order',
-    dynamicTips2: 'Not fixed header, sorted by click order',
-    dragTips1: 'The default order',
-    dragTips2: 'The after dragging order',
-    title: 'Title',
-    importance: 'Imp',
-    type: 'Type',
-    remark: 'Remark',
-    search: 'Search',
-    add: 'Add',
-    export: 'Export',
-    reviewer: 'reviewer',
-    id: 'ID',
-    date: 'Date',
-    author: 'Author',
-    readings: 'Readings',
-    status: 'Status',
-    actions: 'Actions',
-    edit: 'Edit',
-    publish: 'Publish',
-    draft: 'Draft',
-    delete: 'Delete',
-    cancel: 'Cancel',
-    confirm: 'Confirm'
+    dynamicTips1: '固定表头, 按照表头顺序排序',
+    dynamicTips2: '不固定表头, 按照点击顺序排序',
+    dragTips1: '默认顺序',
+    dragTips2: '拖拽后顺序',
+    title: '标题',
+    importance: '重要性',
+    type: '类型',
+    remark: '点评',
+    search: '搜索',
+    add: '添加',
+    export: '导出',
+    reviewer: '审核人',
+    id: '序号',
+    date: '时间',
+    author: '作者',
+    readings: '阅读数',
+    status: '状态',
+    actions: '操作',
+    edit: '编辑',
+    publish: '发布',
+    draft: '草稿',
+    delete: '删除',
+    cancel: '取 消',
+    confirm: '确 定'
   },
   example: {
     warning:
-      'Creating and editing pages cannot be cached by keep-alive because keep-alive include does not currently support caching based on routes, so it is currently cached based on component name. If you want to achieve a similar caching effect, you can use a browser caching scheme such as localStorage. Or do not use keep-alive include to cache all pages directly. See details'
+      '创建和编辑页面是不能被 keep-alive 缓存的，因为keep-alive 的 include 目前不支持根据路由来缓存，所以目前都是基于 component name 来进行缓存的。如果你想类似的实现缓存效果，可以使用 localStorage 等浏览器缓存方案。或者不要使用 keep-alive 的 include，直接缓存所有页面。详情见'
   },
   errorLog: {
-    tips: 'Please click the bug icon in the upper right corner',
+    tips: '请点击右上角bug小图标',
     description:
-      'Now the management system are basically the form of the spa, it enhances the user experience, but it also increases the possibility of page problems, a small negligence may lead to the entire page deadlock. Fortunately Vue provides a way to catch handling exceptions, where you can handle errors or report exceptions.',
-    documentation: 'Document introduction'
+      '现在的管理后台基本都是spa的形式了，它增强了用户体验，但同时也会增加页面出问题的可能性，可能一个小小的疏忽就导致整个页面的死锁。好在 Vue 官网提供了一个方法来捕获处理异常，你可以在其中进行错误处理或者异常上报。',
+    documentation: '文档介绍'
   },
   excel: {
-    export: 'Export',
-    selectedExport: 'Export Selected Items',
-    placeholder: 'Please enter the file name (default excel-list)'
+    export: '导出',
+    selectedExport: '导出已选择项',
+    placeholder: '请输入文件名(默认excel-list)'
   },
   zip: {
-    export: 'Export',
-    placeholder: 'Please enter the file name (default file)'
+    export: '导出',
+    placeholder: '请输入文件名(默认file)'
   },
   pdf: {
-    tips: 'Here we use window.print() to implement the feature of downloading PDF.'
+    tips: '这里使用   window.print() 来实现下载pdf的功能'
   },
   theme: {
-    change: 'Change Theme',
-    documentation: 'Theme documentation',
-    tips:
-      'Tips: It is different from the theme-pick on the navbar is two different skinning methods, each with different application scenarios. Refer to the documentation for details.'
+    change: '换肤',
+    documentation: '换肤文档',
+    tips: 'Tips: 它区别于 navbar 上的 theme-pick, 是两种不同的换肤方法，各自有不同的应用场景，具体请参考文档。'
   },
   tagsView: {
-    refresh: 'Refresh',
-    close: 'Close',
-    closeOthers: 'Close Others',
-    closeAll: 'Close All'
+    refresh: '刷新',
+    close: '关闭',
+    closeOthers: '关闭其它',
+    closeAll: '关闭所有'
   },
   settings: {
-    title: 'Page style setting',
-    theme: 'Theme Color',
-    tagsView: 'Open Tags-View',
-    fixedHeader: 'Fixed Header',
-    sidebarLogo: 'Sidebar Logo'
+    title: '系统布局配置',
+    theme: '主题色',
+    tagsView: '开启 Tags-View',
+    fixedHeader: '固定 Header',
+    sidebarLogo: '侧边栏 Logo'
   }
 }

@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout/index.vue'
 import type { RouterTypes } from '~/basic'
 import basicDemo from './modules/basic-demo'
+
 export const constantRoutes: RouterTypes = [
   {
     path: '/redirect',
@@ -65,7 +66,7 @@ export const constantRoutes: RouterTypes = [
         path: 'error-log',
         component: () => import('@/views/error-log/index.vue'),
         name: 'ErrorLog',
-        meta: { title: 'Index' }
+        meta: { title: 'Error Index' }
       },
       {
         path: 'error-generator',
@@ -166,35 +167,25 @@ export const roleCodeRoutes: RouterTypes = [
         path: 'index',
         component: () => import('@/views/roles-codes/index.vue'),
         name: 'RolesCodes',
-        meta: {
-          title: 'index'
-        }
+        meta: { title: 'Permission Switch' }
       },
       {
         path: 'roleIndex',
         component: () => import('@/views/roles-codes/role-index.vue'),
         name: 'RoleIndex',
-        meta: {
-          title: 'Role Index',
-          roles: ['admin']
-        }
+        meta: { title: 'Role Index', roles: ['admin'] }
       },
       {
         path: 'code-index',
         component: () => import('@/views/roles-codes/code-index.vue'),
         name: 'CodeIndex',
-        meta: {
-          title: 'Code Index',
-          code: 16
-        }
+        meta: { title: 'Code Index', code: 16 }
       },
       {
         path: 'button-permission',
         component: () => import('@/views/roles-codes/button-permission.vue'),
         name: 'ButtonPermission',
-        meta: {
-          title: 'Button Permission'
-        }
+        meta: { title: 'Button Permission' }
       }
     ]
   }
