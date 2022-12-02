@@ -28,7 +28,11 @@ export const copyValueToClipboard = (value: any) => {
   ElMessage.success('复制成功')
 }
 const { t, te } = i18n.global
+import settings from '@/settings'
 export const langTitle = (title) => {
+  if (!title) {
+    return settings.title
+  }
   for (const key of Object.keys(langEn)) {
     if (te(`${key}.${title}`) && t(`${key}.${title}`)) {
       return t(`${key}.${title}`)
