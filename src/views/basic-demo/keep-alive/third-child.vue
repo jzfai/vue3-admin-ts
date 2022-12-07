@@ -13,12 +13,7 @@
   </div>
 </template>
 
-<script setup>
-defineOptions({ name: 'ThirdChild' })
-const searchForm = reactive({
-  name: '',
-  age: ''
-})
+<script setup name="ThirdChild">
 const backClick = () => {
   routerBack()
 }

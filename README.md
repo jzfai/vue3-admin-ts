@@ -1,13 +1,13 @@
+# vue3-admin-ts
 
-
-# The typescript version of  vue3 admin template  
+the typescript version of  vue3 admin template  
 
 suggestion the Node.js >= 16.0.0。
 
 
 ## Documents
 
-- [Official Documentation](https://github.jzfai.top/vue3-admin-en-doc/)
+- [Official Documentation](https://github.jzfai.top/vue3-admin-doc/)
 
 - [中文官网](https://github.jzfai.top/vue3-admin-cn-doc/)
 
@@ -49,7 +49,6 @@ pnpm i
 pnpm run dev
 ```
 
-using the browser to open http://localhost:5001
 
 ## Build
 
