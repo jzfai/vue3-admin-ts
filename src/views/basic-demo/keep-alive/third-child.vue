@@ -14,6 +14,10 @@
 </template>
 
 <script setup name="ThirdChild">
+const searchForm = reactive({
+  name: '',
+  age: ''
+})
 const backClick = () => {
   routerBack()
 }
