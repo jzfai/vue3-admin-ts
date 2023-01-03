@@ -3,7 +3,8 @@ import { jsErrorCollection } from 'js-error-collection'
 import pack from '../../package.json'
 import settings from '@/settings'
 import bus from '@/utils/bus'
-import axiosReq from '@/utils/axios-req'
+//此处不要使用utils下的axios
+import axiosReq from 'axios'
 const reqUrl = '/integration-front/errorCollection/insert'
 const errorLogReq = (errLog: string) => {
   axiosReq({
