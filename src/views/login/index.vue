@@ -1,4 +1,3 @@
-<!--suppress ALL -->
 <template>
   <div class="login-container columnCC">
     <el-form ref="refLoginForm" class="login-form" :model="subForm" :rules="formRules">
@@ -48,7 +47,7 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useBasicStore } from '@/store/basic'
 import { elMessage, useElement } from '@/hooks/use-element'
-import { loginReq } from '@/api/system.ts'
+import { loginReq } from '@/api/system'
 
 /* listen router change and set the query  */
 const { settings } = useBasicStore()
@@ -59,9 +58,9 @@ const subForm = reactive({
   keyword: 'panda',
   password: '123456'
 })
-const state = reactive({
+const state:any = reactive({
   otherQuery: {},
-  redirect: undefined
+  redirect: ""
 })
 const route = useRoute()
 const getOtherQuery = (query) => {
@@ -86,14 +85,14 @@ watch(
 /*
  *  login relative
  * */
-let subLoading = $ref(false)
+const subLoading = $ref(false)
 //tip message
-let tipMessage = $ref('')
+const tipMessage = $ref('')
 //sub form
 const refLoginForm = $ref(null)
 const handleLogin = () => {
   refLoginForm.validate((valid) => {
-    subLoading = true
+    subLoading.value = true
     if (valid) loginFunc()
   })
 }
@@ -108,10 +107,10 @@ const loginFunc = () => {
       router.push('/')
     })
     .catch((err) => {
-      tipMessage = err?.msg
+      tipMessage.value = err?.msg
     })
     .finally(() => {
-      subLoading = false
+      subLoading.value = false
     })
 }
 /*
@@ -147,7 +146,7 @@ $light_gray: #eee;
     .title {
       font-size: 22px;
       color: #eee;
-      margin: 0px auto 25px auto;
+      margin: 0 auto 25px auto;
       text-align: center;
       font-weight: bold;
     }
@@ -168,7 +167,6 @@ $light_gray: #eee;
   margin-top: -12px;
   font-size: 12px;
 }
-
 //登录按钮
 .login-btn {
   width: 100%;
