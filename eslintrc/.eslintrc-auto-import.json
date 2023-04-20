@@ -98,7 +98,6 @@
     "useSlots": true,
     "useTable": true,
     "useTagsViewStore": true,
-    "userInfoReq": true,
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,

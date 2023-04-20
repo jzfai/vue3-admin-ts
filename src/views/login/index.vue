@@ -43,12 +43,12 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useBasicStore } from '@/store/basic'
 import { elMessage, useElement } from '@/hooks/use-element'
-import { loginReq } from '@/api/user'
+import { loginReq } from '@/api/system.ts'
 
 /* listen router change and set the query  */
 const { settings } = useBasicStore()
@@ -118,7 +118,7 @@ const loginFunc = () => {
  *  password show or hidden
  * */
 const passwordType = ref('password')
-const refPassword = ref(null)
+const refPassword:any = ref(null)
 const showPwd = () => {
   if (passwordType.value === 'password') {
     passwordType.value = ''
