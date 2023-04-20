@@ -40,8 +40,6 @@
     "isRef": true,
     "lang": true,
     "langTitle": true,
-    "loginOutReq": true,
-    "loginReq": true,
     "markRaw": true,
     "nextTick": true,
     "onActivated": true,

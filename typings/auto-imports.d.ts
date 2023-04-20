@@ -41,8 +41,6 @@ declare global {
   const isRef: typeof import('vue')['isRef']
   const lang: typeof import('../src/directives/lang')['default']
   const langTitle: typeof import('../src/hooks/use-common')['langTitle']
-  const loginOutReq: typeof import('../src/api/system')['loginOutReq']
-  const loginReq: typeof import('../src/api/system')['loginReq']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
