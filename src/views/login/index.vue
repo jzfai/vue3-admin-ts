@@ -85,13 +85,13 @@ watch(
 /*
  *  login relative
  * */
-const subLoading = $ref(false)
+const subLoading = ref(false)
 //tip message
-const tipMessage = $ref('')
+const tipMessage = ref()
 //sub form
-const refLoginForm = $ref(null)
+const refLoginForm = ref()
 const handleLogin = () => {
-  refLoginForm.validate((valid) => {
+  refLoginForm.value.validate((valid) => {
     subLoading.value = true
     if (valid) loginFunc()
   })
