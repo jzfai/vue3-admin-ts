@@ -5,12 +5,14 @@ import { useBasicStore } from '@/store/basic'
 //使用axios.create()创建一个axios请求实例
 const service = axios.create()
 let loadingInstance: any = null //loading实例
+let tempReqUrlSave:any = ''
 //请求前拦截
 service.interceptors.request.use(
   (req) => {
     const { token, axiosPromiseArr } = useBasicStore()
     //axiosPromiseArr收集请求地址,用于取消请求
     req.cancelToken = new axios.CancelToken((cancel) => {
+      tempReqUrlSave = req.url
       axiosPromiseArr.push({
         url: req.url,
         cancel
@@ -44,6 +46,7 @@ service.interceptors.request.use(
 //请求后拦截
 service.interceptors.response.use(
   (res) => {
+    useBasicStore().remotePromiseArrByReqUrl(tempReqUrlSave) //从请求集合中移除
     if (loadingInstance) {
       loadingInstance && loadingInstance.close()
     }
@@ -81,6 +84,7 @@ service.interceptors.response.use(
   },
   //响应报错
   (err) => {
+    useBasicStore().remotePromiseArrByReqUrl(tempReqUrlSave)  //从请求集合中移除
     if (loadingInstance) {
       loadingInstance && loadingInstance.close()
     }
