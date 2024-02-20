@@ -14,6 +14,7 @@ import vitePluginSetupExtend from './src/plugins/vite-plugin-setup-extend'
 const prodMock = setting.openProdMock
 // import { visualizer } from 'rollup-plugin-visualizer'
 const pathSrc = resolve(__dirname, 'src')
+// @ts-ignore
 export default defineConfig(({ command, mode }) => {
   //const env = loadEnv(mode, process.cwd(), '') //获取环境变量
   return {
@@ -54,14 +55,13 @@ export default defineConfig(({ command, mode }) => {
       }),
       //https://github.com/anncwb/vite-plugin-mock/blob/HEAD/README.zh_CN.md
       viteMockServe({
-        supportTs: true,
+        enable:true,
         mockPath: 'mock',
-        localEnabled: command === 'serve',
-        prodEnabled: prodMock,
-        injectCode: `
-          import { setupProdMockServer } from './mock-prod-server';
-          setupProdMockServer();
-        `,
+        // prodEnabled: prodMock,
+        // injectCode: `
+        //   import { setupProdMockServer } from './mock-prod-server';
+        //   setupProdMockServer();
+        // `,
         logger: true
       }),
       // VueSetupExtend(),using  DefineOptions instant of it

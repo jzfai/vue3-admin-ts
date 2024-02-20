@@ -21,17 +21,12 @@
         </div>
       </router-link>
     </div>
-    <div style="position:relative;top:-6px">
-      <div v-show="visible" class="triangle" :style="{left: left + 'px'}"/>
-      <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
-
-        <li @click="refreshSelectedTag(selectedTag)">{{ langTitle('Refresh') }}</li>
-        <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">{{ langTitle('Close') }}</li>
-        <li @click="closeOthersTags">{{ langTitle('Close Others') }}</li>
-        <li @click="closeAllTags(selectedTag)">{{ langTitle('Close All') }}</li>
-      </ul>
-    </div>
-
+    <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
+      <li @click="refreshSelectedTag(selectedTag)">{{ langTitle('Refresh') }}</li>
+      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">{{ langTitle('Close') }}</li>
+      <li @click="closeOthersTags">{{ langTitle('Close Others') }}</li>
+      <li @click="closeAllTags(selectedTag)">{{ langTitle('Close All') }}</li>
+    </ul>
   </div>
 </template>
 
@@ -145,7 +140,7 @@ const openMenu = (tag, e) => {
   } else {
     state.left = left
   }
-  state.top =16
+  state.top = e.clientY
   state.visible = true
   state.selectedTag = tag
 }
@@ -165,7 +160,7 @@ const closeSelectedTag = (view) => {
         basicStore.delCachedView(view.name)
       }
       if (routerLevel === 3) {
-        basicStore.delCacheViewDeep(view.name)
+        basicStore.setCacheViewDeep(view.name)
       }
     }
   })
@@ -220,24 +215,14 @@ const { visible, top, left, selectedTag } = toRefs(state)
 </script>
 
 <style lang="scss" scoped>
-//三角形汽包
-.triangle {
-  position: relative;
-  width: 0;
-  height: 0;
-  left: 10px;
-  border: 8px solid transparent;
-  border-bottom-color: #eee;
-  opacity:0.4;
-}
 .tags-view-container {
   height: var(--tag-view-height);
   width: 100%;
-  position: relative;
-  z-index: 10;
   background: var(--tags-view-background);
   border-bottom: 1px solid var(--tags-view-border-bottom);
   box-shadow: var(--tags-view-box-shadow);
+  position: relative;
+  z-index: 0;
   .tags-view-wrapper {
     .tags-view-item {
       display: inline-block;
@@ -278,7 +263,6 @@ const { visible, top, left, selectedTag } = toRefs(state)
   .contextmenu {
     margin: 0;
     background: var(--tags-view-contextmenu-background);
-    z-index: 3000;
     position: absolute;
     list-style-type: none;
     padding: 5px 0;
@@ -300,8 +284,6 @@ const { visible, top, left, selectedTag } = toRefs(state)
 </style>
 
 <style lang="scss">
-
-
 //reset element css of el-icon-close
 .tags-view-wrapper {
   .tags-view-item {

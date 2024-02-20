@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia/dist/pinia'
 import { useRoute } from 'vue-router'
@@ -44,9 +44,3 @@ const activeMenu = computed(() => {
   border-right: 1px solid var(--side-bar-border-right-color);
 }
 </style>
-
-
-<style lang="scss">
-
-</style>
-
