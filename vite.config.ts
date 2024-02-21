@@ -111,8 +111,7 @@ export default defineConfig(({ command, mode }) => {
     },
     resolve: {
       alias: {
-        '@/': `${pathSrc}/`,
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js' //remove i18n waring
+        '@/': `${pathSrc}/`
       }
     },
     optimizeDeps: {
