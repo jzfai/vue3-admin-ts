@@ -7,16 +7,14 @@
           <el-avatar round :size="128" src="https://github.jzfai.top/file/images/nav-right-logo.gif" />
           <div class="screen-nickname">Vue3 Admin Plus</div>
         </div>
-        <Teleport to="body">
-          <div ref="slider" class="screen-slider">
-            <div class="screen-locker-placeholder">滑动解锁</div>
-            <div ref="sliderButton" class="screen-slider-button" @mousedown="onMousedown">
-              <el-icon :size="25">
-                <icon />
-              </el-icon>
-            </div>
+        <div ref="slider" class="screen-slider">
+          <div class="screen-locker-placeholder">滑动解锁</div>
+          <div ref="sliderButton" class="screen-slider-button" @mousedown="onMousedown">
+            <el-icon :size="25">
+              <icon />
+            </el-icon>
           </div>
-        </Teleport>
+        </div>
       </div>
     </transition>
   </Teleport>
