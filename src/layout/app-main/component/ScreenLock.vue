@@ -104,6 +104,7 @@ const icon = computed(() => {
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.3);
   /* backdrop-filter暂不兼容firefox */
   backdrop-filter: blur(10px);

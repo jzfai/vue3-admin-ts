@@ -234,7 +234,6 @@ const { visible, top, left, selectedTag } = toRefs(state)
   height: var(--tag-view-height);
   width: 100%;
   position: relative;
-  z-index: 10;
   background: var(--tags-view-background);
   border-bottom: 1px solid var(--tags-view-border-bottom);
   box-shadow: var(--tags-view-box-shadow);
@@ -278,7 +277,6 @@ const { visible, top, left, selectedTag } = toRefs(state)
   .contextmenu {
     margin: 0;
     background: var(--tags-view-contextmenu-background);
-    z-index: 3000;
     position: absolute;
     list-style-type: none;
     padding: 5px 0;
