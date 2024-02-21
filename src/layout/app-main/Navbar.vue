@@ -16,7 +16,7 @@
     <!-- 下拉操作菜单 -->
     <div v-if="settings.ShowDropDown" class="right-menu rowSC">
       <ScreenFull />
-      <ScreenLock />
+      <ScreenLock/>
       <ThemeSelect />
       <SizeSelect />
       <LangSelect />
@@ -45,6 +45,7 @@
         </template>
       </el-dropdown>
     </div>
+
   </div>
 </template>
 

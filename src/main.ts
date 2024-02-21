@@ -26,10 +26,10 @@ import './permission'
 
 //import element-plus
 import 'element-plus/dist/index.css'
-const app = createApp(App)
 
 //import element-plus svg icon
 import ElSvgIcon from "@/lib/el-svg-icon"
+const app = createApp(App)
 app.use(ElSvgIcon)
 
 

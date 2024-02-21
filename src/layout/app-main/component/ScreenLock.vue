@@ -1,21 +1,25 @@
 <template>
   <svg-icon icon-class="lock" style="width: 18px; height: 19px" class="mr-12px" @click="open = true" />
-  <transition enter-active-class="screen-locker-lock" append-to-body leave-active-class="screen-locker-unlock">
-    <div v-if="open" class="screen-locker">
-      <div class="screen-avatar">
-        <el-avatar round :size="128" src="https://github.jzfai.top/file/images/nav-right-logo.gif" />
-        <div class="screen-nickname">Vue3 Admin Plus</div>
-      </div>
-      <div ref="slider" class="screen-slider">
-        <div class="screen-locker-placeholder">滑动解锁</div>
-        <div ref="sliderButton" class="screen-slider-button" @mousedown="onMousedown">
-          <el-icon :size="25">
-            <icon />
-          </el-icon>
+  <Teleport to="body">
+    <transition enter-active-class="screen-locker-lock" append-to-body leave-active-class="screen-locker-unlock">
+      <div v-if="open" class="screen-locker">
+        <div class="screen-avatar">
+          <el-avatar round :size="128" src="https://github.jzfai.top/file/images/nav-right-logo.gif" />
+          <div class="screen-nickname">Vue3 Admin Plus</div>
         </div>
+        <Teleport to="body">
+          <div ref="slider" class="screen-slider">
+            <div class="screen-locker-placeholder">滑动解锁</div>
+            <div ref="sliderButton" class="screen-slider-button" @mousedown="onMousedown">
+              <el-icon :size="25">
+                <icon />
+              </el-icon>
+            </div>
+          </div>
+        </Teleport>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </Teleport>
 </template>
 <script setup>
 import { computed, ref, watch } from 'vue'
@@ -102,7 +106,6 @@ const icon = computed(() => {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 10;
   background-color: rgba(0, 0, 0, 0.3);
   /* backdrop-filter暂不兼容firefox */
   backdrop-filter: blur(10px);
