@@ -226,6 +226,7 @@ const { visible, top, left, selectedTag } = toRefs(state)
   width: 0;
   height: 0;
   left: 10px;
+  z-index: 100;
   border: 8px solid transparent;
   border-bottom-color: #eee;
   opacity:0.4;
@@ -275,6 +276,7 @@ const { visible, top, left, selectedTag } = toRefs(state)
     }
   }
   .contextmenu {
+    z-index: 100;
     margin: 0;
     background: var(--tags-view-contextmenu-background);
     position: absolute;
