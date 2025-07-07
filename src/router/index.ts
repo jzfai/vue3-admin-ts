@@ -3,6 +3,28 @@ import basicDemo from './modules/basic-demo'
 import type { RouterTypes } from '~/basic'
 import Layout from '@/layout/index.vue'
 
+
+const userList = [
+  {
+    path: '/user-item:1',
+    name: 'UserItem1',
+    component: () => import('@/views/user-item/index.vue'),
+    meta: { title: '用户01' }
+  },
+  {
+    path: '/user-item:2',
+    name: 'UserItem2',
+    component: () => import('@/views/user-item/index.vue'),
+    meta: { title: '用户02' }
+  },
+  {
+    path: '/user-item:3',
+    name: 'UserItem3',
+    component: () => import('@/views/user-item/index.vue'),
+    meta: { title: '用户03' }
+  }
+]
+
 export const constantRoutes: RouterTypes = [
   {
     path: '/redirect',
@@ -44,6 +66,13 @@ export const constantRoutes: RouterTypes = [
       }
     ]
   },
+  {
+      path: '/userCenter',
+      component: Layout,
+      alwaysShow: true,
+      meta: { title: '用户管理', elSvgIcon: 'Setting' },
+      children: userList
+    },
   {
     path: '/setting-switch',
     component: Layout,
@@ -131,6 +160,14 @@ export const roleCodeRoutes: RouterTypes = [
 export const asyncRoutes: RouterTypes = [
   // 404 page must be placed at the end !!!
 ]
+
+/**指定预加载某个页面 */
+export function preloadPage(name) {
+  const page = constantRoutes.find((page) => page.name === name);
+  if (page) {
+    page.component(false);
+  }
+}
 
 const router = createRouter({
   history: createWebHashHistory(),

@@ -1,5 +1,5 @@
 //获取用户信息
-import axiosReq from 'axios'
+import axiosReq from '@/utils/axios-req';
 // export const userInfoReq = (): Promise<any> => {
 //   return new Promise((resolve) => {
 //     const reqConfig = {
@@ -16,8 +16,8 @@ import axiosReq from 'axios'
 //登录
 export const loginReq = (subForm) => {
   return axiosReq({
-    url: '/mock/login',
-    params: subForm,
+    url: 'sys/auth/login',
+    data: subForm,
     method: 'post'
   })
 }
@@ -27,5 +27,13 @@ export const loginOutReq = () => {
   return axiosReq({
     url: '/mock/loginOut',
     method: 'post'
+  })
+}
+
+// 获取用户数据
+export const getUserInfoReq = () => {
+  return axiosReq({
+    url: '/sys/user/info',
+    method: 'get'
   })
 }

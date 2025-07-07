@@ -2,7 +2,8 @@ import { defineConfig } from 'vitest/config'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import DefineOptions from 'unplugin-vue-define-options/vite'
-
+// 确保 esbuild 以兼容方式加载
+import * as esbuild from 'esbuild'
 export default defineConfig({
   // @ts-ignore
   plugins: [Vue(), VueJsx(), DefineOptions()],

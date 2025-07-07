@@ -54,6 +54,8 @@ export const useBasicStore = defineStore('basic', {
       })
     },
     setUserInfo({ userInfo, roles, codes }) {
+        console.log(userInfo, roles, codes,'223');
+        
       const { username, avatar } = userInfo
       this.$patch((state) => {
         state.roles = roles

@@ -77,6 +77,7 @@
     "shallowReadonly": true,
     "shallowRef": true,
     "sleepTimeout": true,
+    "sm2Encrypt": true,
     "storeToRefs": true,
     "toRaw": true,
     "toRef": true,
